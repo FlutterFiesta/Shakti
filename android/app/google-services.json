@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "853109704778",
+    "project_id": "powershe-5fad1",
+    "storage_bucket": "powershe-5fad1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:853109704778:android:398e0330c88ae331c37eb3",
+        "android_client_info": {
+          "package_name": "com.example.power_she_pre"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "853109704778-i17jpdsiief9pjkg197s75jvqk3iuann.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.power_she_pre",
+            "certificate_hash": "312aa86e8867fa39e009c2a251074e31ce2c14f8"
+          }
+        },
+        {
+          "client_id": "853109704778-mdcj9c4od4mpcsqljskq5om61l3d6qa2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBtHfnKdbfIVnvZdQhtTb-C_Cm5E87Q8tw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "853109704778-mdcj9c4od4mpcsqljskq5om61l3d6qa2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
