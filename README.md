@@ -1,6 +1,7 @@
 # <center><h1 align="center"> PowerShe <img src='images/logo.png' width="40" height="40"></h1></center>
 ### <center><p align="center"><i>A women empowerment app</i></p></center>
 
+<p align="center"><img src='https://user-images.githubusercontent.com/83594113/211775849-acf25f49-168c-4513-9c8f-1a3195d71208.png' width="920" height="450"></p>
 <br> 
 
 ## About the project
