@@ -14,20 +14,21 @@
     
 ## Salient Features
 
-- Learn and explore with the tutorials available
-- Share feelings and grievances with other women and counsellor
-- Buy and sell your products from home itself
-- Search for the available opportunities and scholarships
-- Feel safe with alerts and safe locations
+- Explore with the tutorials available
+- Buy and sell your products, see your orders
+- Look for the available opportunities and scholarships
+- Safety implemented with alerts and safe locations
+- Share feelings and grievances with other women and counsellor using communities
+- A chat support feature is provided for asking questions and queries on the application
 
 ## Technology Stack
 
-- Flutter and Dart were used to develop the application.
+- Flutter and Dart were used as the languages to develop the application.
 - Necessary packages were imported from pub.dev.
-- The backend has been implemented using Firebase. (Firebase authentication, Firestore and Firebase Storage have been used).
-- The models for Face Recognition have been implemented using tflite.
-- The locations have been fetched using Google Maps API.
-
+- The backend has been implemented using Firebase (authentication, store and storage are used).
+- Tflite is used for implementing models for Face Recognition.
+- Google Maps API are used for fetching location.
+- Google DialogFlow is used for chat support.
 
 ## Compatibility
 
@@ -38,6 +39,7 @@ The flutter application is compatible to run on android smart phones.
 
 - It made the app development process more efficient and predictable.
 - We worked on functionalities looking at them as smaller units of the larger app due to which the process was easy to handle, flexible and allowed more room to adjust new functionalities.
+   
    
 
 ## Installation
@@ -76,4 +78,21 @@ Once the build is complete, run the ```run``` command to start the app:
 flutter run
 ```
 
+In case you encounter the error ```A problem occurred evaluating project ':tflite'```,
+
+you should change this on ~\tflite-1.1.2\android\build.gradle:
+
+```
+dependencies {
+    compile 'org.tensorflow:tensorflow-lite:+'
+    compile 'org.tensorflow:tensorflow-lite-gpu:+'
+}
+```
+to this:
+```
+dependencies {
+    implementation 'org.tensorflow:tensorflow-lite:+'
+    implementation 'org.tensorflow:tensorflow-lite-gpu:+'
+} 
+```
     
