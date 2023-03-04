@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:power_she_pre/constants.dart';
 import 'package:power_she_pre/screens/home_screen.dart';
 import 'dart:async';
+import 'package:power_she_pre/screens/onboard/onboardScreen.dart';
 import 'package:power_she_pre/screens/welcome_screen.dart';
+
+import 'helper/helper_function.dart';
 
 class SplashScreen extends StatefulWidget {
   static const String id = "splash_screen";
@@ -13,12 +16,26 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+  bool _isSignedIn = false;
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
-    Timer(Duration(seconds: 5),
-        () => Navigator.pushNamed(context, WelcomeScreen.id));
+    getUserLoggedInStatus();
+    Timer(
+        Duration(seconds: 5),
+        _isSignedIn
+            ? () => Navigator.pushNamed(context, HomeScreen.id)
+            : () => Navigator.pushNamed(context, OnboardScreen.id));
+  }
+
+  getUserLoggedInStatus() async {
+    await HelperFunctions.getUserLoggedInStatus().then((value) {
+      if (value != null) {
+        setState(() {
+          _isSignedIn = value;
+        });
+      }
+    });
   }
 
   @override
@@ -35,7 +52,7 @@ class _SplashScreenState extends State<SplashScreen> {
                   'images/splash_gif.gif',
                   width: MediaQuery.of(context).size.width * 0.99,
                   height: MediaQuery.of(context).size.height * 0.99,
-                  ),
+                ),
               ),
             ),
           ],

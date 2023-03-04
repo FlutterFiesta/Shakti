@@ -10,6 +10,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:power_she_pre/screens/welcome_screen.dart';
 
+import '../helper/helper_function.dart';
+import '../service/auth_service.dart';
+
 class RegisterationScreen extends StatefulWidget {
   static const String id = "registeration_screen";
   const RegisterationScreen({Key? key}) : super(key: key);
@@ -19,39 +22,41 @@ class RegisterationScreen extends StatefulWidget {
 }
 
 class _RegisterationScreenState extends State<RegisterationScreen> {
-  final _auth = FirebaseAuth.instance;
-  final _firestore = FirebaseFirestore.instance;
+  AuthService authService = AuthService();
+  // final _auth = FirebaseAuth.instance;
+  // final _firestore = FirebaseFirestore.instance;
   String? gender;
   late String email;
   late String password;
   late String name;
   late String phoneNumber;
+  late String safety;
   CountryCode countryCode = CountryCode(name: "IN", dialCode: '+91');
   bool spinner = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar:  AppBar(
-        backgroundColor: kpink,
-        title: Padding(
-          padding: const EdgeInsets.only(right: 40),
-          child: Center(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Image.asset(
-                  'images/logo.png',
-                  fit: BoxFit.contain,
-                  height: 32,
-                ),
-                Container(
-                    padding: const EdgeInsets.all(8.0), child: Text('PowerShe'))
-              ],
-
+        appBar: AppBar(
+          backgroundColor: kpink,
+          title: Padding(
+            padding: const EdgeInsets.only(right: 40),
+            child: Center(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image.asset(
+                    'images/logo.png',
+                    fit: BoxFit.contain,
+                    height: 32,
+                  ),
+                  Container(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text('Sign up'))
+                ],
+              ),
             ),
           ),
         ),
-      ),
         backgroundColor: kbase,
         body: ModalProgressHUD(
           inAsyncCall: spinner,
@@ -314,48 +319,30 @@ class _RegisterationScreenState extends State<RegisterationScreen> {
                                 setState(() {
                                   spinner = true;
                                 });
-                                try {
-                                  final newUser = await _auth
-                                      .createUserWithEmailAndPassword(
-                                          email: email, password: password);
-                                  if (newUser != null) {
-                                    final user = _auth.currentUser;
-                                    final userid = user?.uid;
-
-                                    _firestore
-                                        .collection('details')
-                                        .doc(userid)
-                                        .set({
-                                      'Email': email,
-                                      'Name': name,
-                                      'Phone': phoneNumber,
-                                      'Safety':"",
-                                    });
-                                    Navigator.pushNamed(context, SelfieUpload.id);
+                                await authService
+                                    .registerUserWithEmailandPassword(
+                                        name,
+                                        email,
+                                        password,
+                                        phoneNumber,
+                                        "",
+                                        context)
+                                    .then((value) async {
+                                  if (value == true) {
+                                    // saving the shared preference state
+                                    await HelperFunctions
+                                        .saveUserLoggedInStatus(true);
+                                    await HelperFunctions.saveUserEmailSF(
+                                        email);
+                                    await HelperFunctions.saveUserNameSF(name);
+                                    Navigator.pushNamed(
+                                        context, SelfieUpload.id);
+                                  } else {
                                     setState(() {
                                       spinner = false;
                                     });
                                   }
-                                } catch (e) {
-                                  print(e);
-                                  setState(() {
-                                    spinner = false;
-                                  });
-                                  showDialog<void>(
-                                    context: context,
-                                    barrierDismissible:
-                                        false, // user must tap button!
-                                    builder: (BuildContext context) {
-                                      return AlertBox(
-                                        titleText:
-                                            'Please check the following:',
-                                        bodyText:
-                                            '• Your name must have at least one character. \n\n• Enter a valid email address which is not previously registered on the app. \n\n• Enter a valid phone number. \n\n• Your password must have at least 6 characters.',
-                                        finalText: 'Retry',
-                                      );
-                                    },
-                                  );
-                                }
+                                });
                               }
                             }),
                       ),

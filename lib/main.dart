@@ -1,7 +1,14 @@
+import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/services.dart';
+import 'package:power_she_pre/constants.dart';
+import 'package:power_she_pre/screens/ChatBotSupport/mainScreen.dart';
 import 'package:power_she_pre/screens/gender_auth/selfie_upload.dart';
+import 'package:power_she_pre/screens/group_chat/chat_page.dart';
+import 'package:power_she_pre/screens/group_chat/groupsHomeScreen.dart';
+import 'package:power_she_pre/screens/group_chat/searchScreen.dart';
 import 'package:power_she_pre/screens/my_products.dart';
 import 'package:power_she_pre/screens/new_product.dart';
 import 'package:power_she_pre/screens/onboard/onboardScreen.dart';
@@ -35,9 +42,14 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(
+        SystemUiOverlayStyle(statusBarColor: Colors.transparent));
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: const SplashScreen(),
       theme: ThemeData(
+        primaryColor: kpink,
+        scaffoldBackgroundColor: kbase,
         textTheme: GoogleFonts.openSansTextTheme(Theme.of(context).textTheme),
       ),
       initialRoute: SplashScreen.id,
@@ -49,19 +61,21 @@ class MyApp extends StatelessWidget {
         LoginScreen.id: (context) => LoginScreen(),
         HomeScreen.id: (context) => const HomeScreen(),
         Course.id: (context) => const Course(),
-        OprScreen.id:(context)=>const OprScreen(),
-        SelfieUpload.id:(context)=>const SelfieUpload(),
-        StoreScreen.id:(context)=>const StoreScreen(),
-        OrderScreen.id:(context)=>const OrderScreen(),
+        OprScreen.id: (context) => const OprScreen(),
+        SelfieUpload.id: (context) => const SelfieUpload(),
+        StoreScreen.id: (context) => const StoreScreen(),
+        OrderScreen.id: (context) => const OrderScreen(),
         OprScreen.id: (context) => const OprScreen(),
         SafetyScreen.id: (context) => const SafetyScreen(),
         PhoneDetails.id: (context) => const PhoneDetails(),
-        MyProducts.id:(context)=>const MyProducts(),
-        NewProduct.id:(context)=>const NewProduct(),
+        MyProducts.id: (context) => const MyProducts(),
+        NewProduct.id: (context) => const NewProduct(),
         UserProfile.id: (context) => const UserProfile(),
         Location.id: (context) => const Location(),
+        mainChatScreen.id: (context) => const mainChatScreen(),
+        groupsHome.id: (context) => const groupsHome(),
+        SearchPage.id: (context) => const SearchPage(),
       },
     );
   }
 }
-

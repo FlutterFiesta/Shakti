@@ -123,7 +123,10 @@ class _NewProductState extends State<NewProduct> {
                         hintText: 'e.g. 499',labelText: 'Price (in INR)'),
                   ),
                 ),
-                TextButton(onPressed: ()async{
+                TextButton(
+
+                    onPressed: ()async{
+
                   setState(() {
                     spinner=true;
                   });
@@ -136,9 +139,9 @@ class _NewProductState extends State<NewProduct> {
 
                 TextButton(
                   style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all<Color>(kpink)
+                      backgroundColor: MaterialStateProperty.all<Color>(kpink)
                   ),
-                  onPressed: () async {
+                    onPressed: () async {
                   setState(
                           () {
                         spinner =

@@ -7,9 +7,9 @@ import 'package:power_she_pre/constants.dart';
 import 'package:power_she_pre/components/card.dart';
 import 'package:power_she_pre/screens/map/location.dart';
 import 'package:power_she_pre/screens/opr_screen.dart';
-import'package:power_she_pre/screens/splash.dart';
-import'dart:async';
-import'package:power_she_pre/screens/welcome_screen.dart';
+import 'package:power_she_pre/screens/splash.dart';
+import 'dart:async';
+import 'package:power_she_pre/screens/welcome_screen.dart';
 import 'package:sidebarx/sidebarx.dart';
 import '../components/BottomBar.dart';
 import '../components/appBarInit.dart';
@@ -51,7 +51,7 @@ class _SafetyScreenState extends State<SafetyScreen> {
     return Scaffold(
       backgroundColor: kbase,
       appBar: AppBarHome(),
-      endDrawer:EndDrawer(),
+      endDrawer: EndDrawer(),
       bottomNavigationBar: BottomBar(),
       body: ModalProgressHUD(
         inAsyncCall: spinner,
@@ -64,25 +64,33 @@ class _SafetyScreenState extends State<SafetyScreen> {
           children: <Widget>[
             Expanded(
               child: GestureDetector(
-                onTap: ()async{
+                onTap: () async {
                   //
-
-
-                  final docref = await _firestore.collection("details").doc(userId).get();
-                  String phoneSafety =docref['Safety'];
+                  print("*");
+                  final docref =
+                      await _firestore.collection("users").doc(userId).get();
+                  print(docref.data().toString());
+                  print(docref.data().toString().contains('safety'));
+                  print(docref['safety']);
+                  String phoneSafety = docref['safety'];
+                  print("*");
+                  print(phoneSafety.length);
                   print(phoneSafety);
 
-                  if(phoneSafety.length==0){
-                    Navigator.push(context,MaterialPageRoute(builder: (context) => PhoneDetails()));
-                  }else{
+                  if (phoneSafety.length == 0) {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => PhoneDetails()));
+                  } else {
                     //Add code here
                     final Uri url = Uri(
                       scheme: 'tel',
                       path: phoneSafety,
                     );
-                    if(await canLaunchUrl(url)){
+                    if (await canLaunchUrl(url)) {
                       await launchUrl(url);
-                    }else{
+                    } else {
                       print('Cannot launch this url!');
                     }
                   }

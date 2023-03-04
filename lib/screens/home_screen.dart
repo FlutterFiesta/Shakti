@@ -831,7 +831,6 @@ class _HomeScreenState extends State<HomeScreen> {
           )),
         ),
         endDrawer: EndDrawer(),
-        // endDrawer: EndDrawer(),//
         bottomNavigationBar: BottomBar());
   }
 

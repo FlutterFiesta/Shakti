@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "powershe-olwo",
+  "private_key_id": "cf2da341850671afcb8cddf32217d5595caf60d1",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDGVgCuXPy+Q2+r\nvu55uxDHgb+ilsbmJNDC2gJjQ0oSFN/UpcR7wUwuN8/54ha9Lc2OvRIhLfKSNfBR\ncOtXyWxf75S6HlfB/sx4VRTfSmlV3ZMAHhCVll5PJzn/o8/yp6lyBzDjoxa8D1hw\nW8vlLYbErSgggj6CqEc9AXqWTCXkjLEGfnsX9mJxChbvLhbHbNdmgFOdMgrOp1z0\nh0EXzbg16ILceGTIz3vkOpsrugdTYNr7cJ5/Es/TaPZ4ikh0HwFj+U2QQuz5leKg\n2y8cIcDgqRhs3uiNI92DyumyAt4qDQsqteVl7NziHXPp21zo3VCpqPS8SD+3nxy4\nmI3Zp/a7AgMBAAECggEADcjudS/7VRIE0fAMTSOmT+eBtUA7hMVsSQ6z+cg0frs6\nr2HyHRPbQp8Ycmq3X+CuF8ymVO4HnQfosxBhGxHh2W0ibikruk0GUxq+v6JBXflv\nfSOZzXvNBD1at5zgGCJ1EXrUeA3ex6VdZTnMGxql8keCsXe79oLRqLjQl1+lhpPt\nazHxZCsOfPnRlPh/WpTHzETQad5lH27NvTSsZuLdwaf1fHKIXrG5U+xO0+i27szd\nF4Qpo6XN5Fz3vylTxarg0sbWfG7V7IozBXZplsX8D34eFX83i9J8858drPFxedHw\nHdQI8FNxXDfqVOjFqhtKxXwAoKQMpMFDUt99wT9y6QKBgQDiTPMqokQs1vNjKIej\n9dfbAHtdZuweWqVUXIJxLppPTDmRiVx8D+Vpws5+zzK2tAyO5sAGp6g5dTvRvqfH\nTM/o7bzDpKrvrP2XgJAL1JRoCPfmhRzQ2nIp04BRxmjcZTNj+kqpop4e3BxJzzfA\nISzlYGw3NhgR8tFdW+WUlgbjnwKBgQDgXYVvs6lnrRFU6zuz5Wnp9iSfD4EpN5hO\n2IP2i+P11ojUaftvQdEsDzu8IaeVcNyX0dny9J3QMLeBrUqYI/TdIcixE+27zYPq\ns9sDELkU3hbU+AoygRDdVAECI4QQiQcuJKoGLqHFLh4FeGDP7j8CpouV3Zm1yd38\nRwP7TVc3ZQKBgCibhkbwNyuUprf0XeKeCs3RmFF6VoRb367zqrSEmEwCcZIcA+x/\nLbt8qXE33PHL/TTnUy3eh+FHmCRbAeBReD1j66tvsPyxHhBBkZeN3dONSG6lFDal\n/DZlLXF/GPHzdvVJxHwMIjOHa8wS0v429cdzNffyTP9rgwYtp1SyVyohAoGBALoc\neaJ12rE4e6cAVg7c32WGm0wiFVb2We4VZimuUtNLOUdR/pKEexlcLYXaOOQasbFy\nDqOdTAc1UhNMhxL6yJRiANL6n/pn+ORIewTo604nB7NzaSoJq86cbxWyFkuNDxq0\nqSDlr6UboyWQfGYez7/IHQOcxXNpVy18Tw43UoCNAoGBAMgYSsy3+IokIwgur2Lr\nEiZAepQhzWI4LwX44z6GNZcZrkCeg9Tyvfcd7a3Tc59U6ogmCfe6AUH9OsweBn7T\nrqAd644g/t2hJ5EA5HbAxQQDnVvzooRmvKZm7dXRwTuL4DdAOBIIDdH1TrW2lUnZ\nhsydA8RUZyt7GRw96PutsXCO\n-----END PRIVATE KEY-----\n",
+  "client_email": "powershebot@powershe-olwo.iam.gserviceaccount.com",
+  "client_id": "117902468228106691162",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/powershebot%40powershe-olwo.iam.gserviceaccount.com"
+}

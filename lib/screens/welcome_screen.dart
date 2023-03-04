@@ -3,6 +3,7 @@ import 'package:power_she_pre/constants.dart';
 import 'package:power_she_pre/components/AppButton.dart';
 import 'package:power_she_pre/screens/authentication/registration.dart';
 import 'package:power_she_pre/screens/authentication/login.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class WelcomeScreen extends StatelessWidget {
   static const String id = "welcome_screen";

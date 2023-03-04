@@ -11,8 +11,8 @@ import 'dart:async';
 import 'package:sidebarx/sidebarx.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
 import 'package:power_she_pre/components/AlertBox.dart';
-import'package:power_she_pre/components/AppBarHome.dart';
-import'package:power_she_pre/components/BottomBar.dart';
+import 'package:power_she_pre/components/AppBarHome.dart';
+import 'package:power_she_pre/components/BottomBar.dart';
 
 class UserProfile extends StatefulWidget {
   static const String id = "user_profile";
@@ -31,7 +31,6 @@ class _UserProfileState extends State<UserProfile> {
   String userEmail = '';
   String userPhone = '';
   String userSafety = '';
-
 
   @override
   void initState() {
@@ -52,12 +51,12 @@ class _UserProfileState extends State<UserProfile> {
   }
 
   void getDoc() async {
-    final docref = await _firestore.collection("details").doc(userId).get();
+    final docref = await _firestore.collection("users").doc(userId).get();
     setState(() {
-      userName = docref['Name'];
-      userEmail = docref['Email'];
-      userPhone = docref['Phone'];
-      userSafety = docref['Safety'];
+      userName = docref['fullName'];
+      userEmail = docref['email'];
+      userPhone = docref['phoneNumber'];
+      userSafety = docref['safety'];
     });
   }
 
@@ -66,8 +65,8 @@ class _UserProfileState extends State<UserProfile> {
     bool spinner = false;
     return Scaffold(
       backgroundColor: kbase,
-      appBar: AppBarHome(),
-      endDrawer:EndDrawer(),
+      // appBar: AppBarHome(),
+      endDrawer: EndDrawer(),
       bottomNavigationBar: BottomBar(),
       body: ModalProgressHUD(
         inAsyncCall: spinner,
@@ -98,8 +97,7 @@ class _UserProfileState extends State<UserProfile> {
                             backgroundColor: Colors.black,
                             radius: 63,
                             child: CircleAvatar(
-                              backgroundImage:
-                                  AssetImage('images/Profile.png'),
+                              backgroundImage: AssetImage('images/Profile.png'),
                               radius: 60,
                             ),
                           ),
@@ -126,7 +124,8 @@ class _UserProfileState extends State<UserProfile> {
                                     child: Padding(
                                       padding: const EdgeInsets.all(8.0),
                                       child: Row(
-                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
                                         children: [
                                           Text(
                                             userName,
@@ -141,35 +140,42 @@ class _UserProfileState extends State<UserProfile> {
                                                 context: context,
                                                 builder: (context) =>
                                                     AlertDialog(
-                                                  title: Text(
-                                                      'Change your name '),
+                                                  title:
+                                                      Text('Change your name '),
                                                   content: TextField(
                                                     decoration:
                                                         const InputDecoration(
                                                             border:
                                                                 UnderlineInputBorder(
-                                                              borderSide:
-                                                                  BorderSide(
-                                                                      color:
-                                                                          Color.fromARGB(255, 21, 101, 192)),
+                                                              borderSide: BorderSide(
+                                                                  color: Color
+                                                                      .fromARGB(
+                                                                          255,
+                                                                          21,
+                                                                          101,
+                                                                          192)),
                                                             ),
                                                             enabledBorder:
                                                                 UnderlineInputBorder(
-                                                              borderSide:
-                                                                  BorderSide(
-                                                                      color:
-                                                                          Color.fromARGB(255, 21, 101, 192),
-                                                                      width:
-                                                                          1.0),
+                                                              borderSide: BorderSide(
+                                                                  color: Color
+                                                                      .fromARGB(
+                                                                          255,
+                                                                          21,
+                                                                          101,
+                                                                          192),
+                                                                  width: 1.0),
                                                             ),
                                                             focusedBorder:
                                                                 UnderlineInputBorder(
-                                                              borderSide:
-                                                                  BorderSide(
-                                                                      color:
-                                                                          Color.fromARGB(255, 21, 101, 192),
-                                                                      width:
-                                                                          2.0),
+                                                              borderSide: BorderSide(
+                                                                  color: Color
+                                                                      .fromARGB(
+                                                                          255,
+                                                                          21,
+                                                                          101,
+                                                                          192),
+                                                                  width: 2.0),
                                                             ),
                                                             hintText:
                                                                 'Your name'),
@@ -182,13 +188,16 @@ class _UserProfileState extends State<UserProfile> {
                                                   actions: [
                                                     TextButton(
                                                       onPressed: () {
-                                                        Navigator.pop(
-                                                            context);
+                                                        Navigator.pop(context);
                                                       },
                                                       child: Text(
                                                         'Change',
                                                         style: TextStyle(
-                                                          color: Color.fromARGB(255, 21, 101, 192),
+                                                          color: Color.fromARGB(
+                                                              255,
+                                                              21,
+                                                              101,
+                                                              192),
                                                         ),
                                                       ),
                                                     ),
@@ -208,7 +217,8 @@ class _UserProfileState extends State<UserProfile> {
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(10),
                                       border: Border.all(
-                                        color: Color.fromARGB(255, 21, 101, 192),
+                                        color:
+                                            Color.fromARGB(255, 21, 101, 192),
                                         width: 1,
                                       ),
                                     ),
@@ -233,7 +243,8 @@ class _UserProfileState extends State<UserProfile> {
                                     child: Padding(
                                       padding: const EdgeInsets.all(8.0),
                                       child: Row(
-                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
                                         children: [
                                           Text(
                                             userPhone,
@@ -255,28 +266,35 @@ class _UserProfileState extends State<UserProfile> {
                                                         const InputDecoration(
                                                             border:
                                                                 UnderlineInputBorder(
-                                                              borderSide:
-                                                                  BorderSide(
-                                                                      color:
-                                                                          Color.fromARGB(255, 21, 101, 192)),
+                                                              borderSide: BorderSide(
+                                                                  color: Color
+                                                                      .fromARGB(
+                                                                          255,
+                                                                          21,
+                                                                          101,
+                                                                          192)),
                                                             ),
                                                             enabledBorder:
                                                                 UnderlineInputBorder(
-                                                              borderSide:
-                                                                  BorderSide(
-                                                                      color:
-                                                                          Color.fromARGB(255, 21, 101, 192),
-                                                                      width:
-                                                                          1.0),
+                                                              borderSide: BorderSide(
+                                                                  color: Color
+                                                                      .fromARGB(
+                                                                          255,
+                                                                          21,
+                                                                          101,
+                                                                          192),
+                                                                  width: 1.0),
                                                             ),
                                                             focusedBorder:
                                                                 UnderlineInputBorder(
-                                                              borderSide:
-                                                                  BorderSide(
-                                                                      color:
-                                                                          Color.fromARGB(255, 21, 101, 192),
-                                                                      width:
-                                                                          2.0),
+                                                              borderSide: BorderSide(
+                                                                  color: Color
+                                                                      .fromARGB(
+                                                                          255,
+                                                                          21,
+                                                                          101,
+                                                                          192),
+                                                                  width: 2.0),
                                                             ),
                                                             hintText:
                                                                 'Your phone number'),
@@ -289,13 +307,16 @@ class _UserProfileState extends State<UserProfile> {
                                                   actions: [
                                                     TextButton(
                                                       onPressed: () {
-                                                        Navigator.pop(
-                                                            context);
+                                                        Navigator.pop(context);
                                                       },
                                                       child: Text(
                                                         'Change',
                                                         style: TextStyle(
-                                                          color: Color.fromARGB(255, 21, 101, 192),
+                                                          color: Color.fromARGB(
+                                                              255,
+                                                              21,
+                                                              101,
+                                                              192),
                                                         ),
                                                       ),
                                                     ),
@@ -315,7 +336,8 @@ class _UserProfileState extends State<UserProfile> {
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(10),
                                       border: Border.all(
-                                        color: Color.fromARGB(255, 21, 101, 192),
+                                        color:
+                                            Color.fromARGB(255, 21, 101, 192),
                                         width: 1,
                                       ),
                                     ),
@@ -340,7 +362,8 @@ class _UserProfileState extends State<UserProfile> {
                                     child: Padding(
                                       padding: const EdgeInsets.all(8.0),
                                       child: Row(
-                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
                                         children: [
                                           Text(
                                             userEmail,
@@ -361,13 +384,16 @@ class _UserProfileState extends State<UserProfile> {
                                                   actions: [
                                                     TextButton(
                                                       onPressed: () {
-                                                        Navigator.pop(
-                                                            context);
+                                                        Navigator.pop(context);
                                                       },
                                                       child: Text(
                                                         'Ok',
                                                         style: TextStyle(
-                                                          color: Color.fromARGB(255, 21, 101, 192),
+                                                          color: Color.fromARGB(
+                                                              255,
+                                                              21,
+                                                              101,
+                                                              192),
                                                         ),
                                                       ),
                                                     ),
@@ -387,7 +413,8 @@ class _UserProfileState extends State<UserProfile> {
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(10),
                                       border: Border.all(
-                                        color: Color.fromARGB(255, 21, 101, 192),
+                                        color:
+                                            Color.fromARGB(255, 21, 101, 192),
                                         width: 1,
                                       ),
                                     ),
@@ -412,7 +439,8 @@ class _UserProfileState extends State<UserProfile> {
                                     child: Padding(
                                       padding: const EdgeInsets.all(8.0),
                                       child: Row(
-                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
                                         children: [
                                           Text(
                                             userSafety,
@@ -434,28 +462,35 @@ class _UserProfileState extends State<UserProfile> {
                                                         const InputDecoration(
                                                             border:
                                                                 UnderlineInputBorder(
-                                                              borderSide:
-                                                                  BorderSide(
-                                                                      color:
-                                                                          Color.fromARGB(255, 21, 101, 192)),
+                                                              borderSide: BorderSide(
+                                                                  color: Color
+                                                                      .fromARGB(
+                                                                          255,
+                                                                          21,
+                                                                          101,
+                                                                          192)),
                                                             ),
                                                             enabledBorder:
                                                                 UnderlineInputBorder(
-                                                              borderSide:
-                                                                  BorderSide(
-                                                                      color:
-                                                                          Color.fromARGB(255, 21, 101, 192),
-                                                                      width:
-                                                                          1.0),
+                                                              borderSide: BorderSide(
+                                                                  color: Color
+                                                                      .fromARGB(
+                                                                          255,
+                                                                          21,
+                                                                          101,
+                                                                          192),
+                                                                  width: 1.0),
                                                             ),
                                                             focusedBorder:
                                                                 UnderlineInputBorder(
-                                                              borderSide:
-                                                                  BorderSide(
-                                                                      color:
-                                                                          Color.fromARGB(255, 21, 101, 192),
-                                                                      width:
-                                                                          2.0),
+                                                              borderSide: BorderSide(
+                                                                  color: Color
+                                                                      .fromARGB(
+                                                                          255,
+                                                                          21,
+                                                                          101,
+                                                                          192),
+                                                                  width: 2.0),
                                                             ),
                                                             hintText:
                                                                 'Your safety phone number'),
@@ -468,13 +503,16 @@ class _UserProfileState extends State<UserProfile> {
                                                   actions: [
                                                     TextButton(
                                                       onPressed: () {
-                                                        Navigator.pop(
-                                                            context);
+                                                        Navigator.pop(context);
                                                       },
                                                       child: Text(
                                                         'Change',
                                                         style: TextStyle(
-                                                          color: Color.fromARGB(255, 21, 101, 192),
+                                                          color: Color.fromARGB(
+                                                              255,
+                                                              21,
+                                                              101,
+                                                              192),
                                                         ),
                                                       ),
                                                     ),
@@ -494,7 +532,8 @@ class _UserProfileState extends State<UserProfile> {
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(10),
                                       border: Border.all(
-                                        color: Color.fromARGB(255, 21, 101, 192),
+                                        color:
+                                            Color.fromARGB(255, 21, 101, 192),
                                         width: 1,
                                       ),
                                     ),
@@ -512,13 +551,13 @@ class _UserProfileState extends State<UserProfile> {
                                         spinner = true;
                                       });
                                       await _firestore
-                                          .collection('details')
+                                          .collection('users')
                                           .doc(userId)
                                           .update({
-                                        'Name': userName,
-                                        'Phone': userPhone,
-                                        'Email':userEmail,
-                                        'Safety':userSafety,
+                                        'fullName': userName,
+                                        'phoneNumber': userPhone,
+                                        'email': userEmail,
+                                        'safety': userSafety,
                                       });
                                       setState(() {
                                         spinner = false;
