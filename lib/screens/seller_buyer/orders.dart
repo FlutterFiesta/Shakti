@@ -6,7 +6,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
-import '../components/AlertBox.dart';
+import '../../components/AlertBox.dart';
 
 class OrderScreen extends StatefulWidget {
   static const String id = "order_screen";
@@ -42,9 +42,9 @@ class _OrderScreenState extends State<OrderScreen> {
   }
 
   void getDoc() async {
-    final docref = await _firestore.collection("details").doc(userId).get();
+    final docref = await _firestore.collection("users").doc(userId).get();
     setState(() {
-      userName = docref['Name'];
+      userName = docref['fullName'];
       print(userName);
       print(userId);
     });

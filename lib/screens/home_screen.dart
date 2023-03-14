@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:power_she_pre/components/EndDrawer.dart';
 import 'package:power_she_pre/constants.dart';
-import 'package:power_she_pre/screens/my_products.dart';
+import 'package:power_she_pre/screens/seller_buyer/my_products.dart';
 import 'package:power_she_pre/screens/splash.dart';
-import 'package:power_she_pre/screens/store.dart';
+import 'package:power_she_pre/screens/seller_buyer/store.dart';
 import 'dart:async';
 import 'package:power_she_pre/screens/welcome_screen.dart';
 import 'package:sidebarx/sidebarx.dart';
@@ -11,7 +11,7 @@ import '../components/AppBarHome.dart';
 import '../components/appBarInit.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 import '../components/BottomBar.dart';
-import 'orders.dart';
+import 'seller_buyer/orders.dart';
 
 import 'package:power_she_pre/screens/opr_screen.dart';
 

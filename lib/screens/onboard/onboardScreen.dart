@@ -29,11 +29,9 @@ class _OnboardScreenState extends State<OnboardScreen> {
   }
 
   _storeOnboardInfo() async {
-    print("Shared pref called");
     int isViewed = 0;
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.setInt('onBoard', isViewed);
-    print(prefs.getInt('onBoard'));
   }
 
   @override
@@ -120,8 +118,6 @@ class _OnboardScreenState extends State<OnboardScreen> {
                   ),
                   InkWell(
                     onTap: () async {
-                      print(index);
-                      print(screens.length);
                       if (index == screens.length - 1) {
                         Navigator.pushReplacement(
                             context,
@@ -130,7 +126,7 @@ class _OnboardScreenState extends State<OnboardScreen> {
                       }
 
                       _pageController.nextPage(
-                        duration: Duration(milliseconds: 3),
+                        duration: Duration(milliseconds: 5),
                         curve: Curves.bounceIn,
                       );
                     },

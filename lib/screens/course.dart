@@ -1,5 +1,6 @@
 import'package:flutter/material.dart';
 import'package:power_she_pre/constants.dart';
+import 'package:power_she_pre/screens/helper/helper_function.dart';
 import'package:power_she_pre/screens/splash.dart';
 import'dart:async';
 import'package:power_she_pre/screens/welcome_screen.dart';
@@ -29,6 +30,7 @@ class _CourseState extends State<Course> {
 
     @override
     Widget build(BuildContext context) {
+
       return Scaffold(
         appBar: AppBar(
           title: Text('Example'),

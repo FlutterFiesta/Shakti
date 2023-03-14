@@ -50,11 +50,11 @@ class _NewProductState extends State<NewProduct> {
     }
   }
   void getDoc() async {
-    final docref = await _firestore.collection("details").doc(userId).get();
+    print(userId);
+    final docref = await _firestore.collection("users").doc(userId).get();
     setState(() {
-      userName = docref['Name'];
+      userName = docref['fullName'];
       print(userName);
-      print(userId);
     });
   }
   @override
@@ -108,15 +108,13 @@ class _NewProductState extends State<NewProduct> {
                 Padding(
                   padding: const EdgeInsets.fromLTRB(20, 20, 20, 10),
                   child: TextField(
-                    keyboardType: TextInputType.text,
+                    keyboardType: TextInputType.number,
                     textAlign: TextAlign.left,
                     onChanged: (value) {
                       //Do something with the user input.
                       // email = value;
                       setState(() {
                         price=value;
-                        print(value);
-                        print(price);
                       });
                     },
                     decoration: kProductFieldDecoration.copyWith(
