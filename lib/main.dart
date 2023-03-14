@@ -88,7 +88,7 @@ class _MyAppState extends State<MyApp> {
         scaffoldBackgroundColor: kbase,
         textTheme: GoogleFonts.openSansTextTheme(Theme.of(context).textTheme),
       ),
-      initialRoute: HomeScreen.id,
+      initialRoute: SplashScreen.id,
       routes: {
         SplashScreen.id: (context) => const SplashScreen(),
         OnboardScreen.id: (context) => const OnboardScreen(),
