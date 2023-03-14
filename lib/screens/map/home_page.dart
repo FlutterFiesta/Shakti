@@ -103,13 +103,13 @@ class _HomePageState extends ConsumerState<HomePage> {
   void getCurrentLocation() async {
     Location location = Location();
     location.getLocation().then(
-          (location) {
+      (location) {
         currentLocation = location;
       },
     );
     GoogleMapController googleMapController = await _controller.future;
     location.onLocationChanged.listen(
-          (newLoc) {
+      (newLoc) {
         currentLocation = newLoc;
         googleMapController.animateCamera(
           CameraUpdate.newCameraPosition(
@@ -165,7 +165,7 @@ class _HomePageState extends ConsumerState<HomePage> {
 
     if (types.contains('restaurants'))
       markerIcon =
-      await getBytesFromAsset('assets/mapicons/restaurants.png', 75);
+          await getBytesFromAsset('assets/mapicons/restaurants.png', 75);
     else if (types.contains('food'))
       markerIcon = await getBytesFromAsset('assets/mapicons/food.png', 75);
     else if (types.contains('school'))
@@ -176,10 +176,10 @@ class _HomePageState extends ConsumerState<HomePage> {
       markerIcon = await getBytesFromAsset('assets/mapicons/hotels.png', 75);
     else if (types.contains('store'))
       markerIcon =
-      await getBytesFromAsset('assets/mapicons/retail-stores.png', 75);
+          await getBytesFromAsset('assets/mapicons/retail-stores.png', 75);
     else if (types.contains('locality'))
       markerIcon =
-      await getBytesFromAsset('assets/mapicons/local-services.png', 75);
+          await getBytesFromAsset('assets/mapicons/local-services.png', 75);
     else
       markerIcon = await getBytesFromAsset('assets/mapicons/places.png', 75);
 
@@ -204,13 +204,14 @@ class _HomePageState extends ConsumerState<HomePage> {
         .buffer
         .asUint8List();
   }
+
   BitmapDescriptor markerIcon = BitmapDescriptor.defaultMarker;
 
   void addCustomIcon() {
     BitmapDescriptor.fromAssetImage(
-        const ImageConfiguration(), "assets/pin.png")
+            const ImageConfiguration(), "assets/pin.png")
         .then(
-          (icon) {
+      (icon) {
         setState(() {
           markerIcon = icon;
         });
@@ -243,11 +244,11 @@ class _HomePageState extends ConsumerState<HomePage> {
   void fetchImage() async {
     if (_pageController.page !=
         null) if (allFavoritePlaces[_pageController.page!.toInt()]
-    ['photos'] !=
+            ['photos'] !=
         null) {
       setState(() {
         placeImg = allFavoritePlaces[_pageController.page!.toInt()]['photos'][0]
-        ['photo_reference'];
+            ['photo_reference'];
       });
     } else {
       placeImg = '';
@@ -284,10 +285,10 @@ class _HomePageState extends ConsumerState<HomePage> {
                         },
                         icon: markerIcon,
                       ),
-
                       Marker(
                         markerId: const MarkerId("marker2"),
-                        position: const LatLng(37.415768808487435, -122.08440050482749),
+                        position: const LatLng(
+                            37.415768808487435, -122.08440050482749),
                       ),
                     },
                     polylines: _polylines,
@@ -308,517 +309,517 @@ class _HomePageState extends ConsumerState<HomePage> {
                 ),
                 searchToggle
                     ? Padding(
-                  padding: EdgeInsets.fromLTRB(15.0, 40.0, 15.0, 5.0),
-                  child: Column(children: [
-                    Container(
-                      height: 50.0,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10.0),
-                        color: Colors.white,
-                      ),
-                      child: TextFormField(
-                        controller: searchController,
-                        decoration: InputDecoration(
-                            contentPadding: EdgeInsets.symmetric(
-                                horizontal: 20.0, vertical: 15.0),
-                            border: InputBorder.none,
-                            hintText: 'Search',
-                            suffixIcon: IconButton(
-                                onPressed: () {
-                                  setState(() {
-                                    searchToggle = false;
-
-                                    searchController.text = '';
-                                    _markers = {};
-                                    if (searchFlag.searchToggle)
-                                      searchFlag.toggleSearch();
-                                  });
-                                },
-                                icon: Icon(Icons.close))),
-                        onChanged: (value) {
-                          if (_debounce?.isActive ?? false)
-                            _debounce?.cancel();
-                          _debounce = Timer(Duration(milliseconds: 700),
-                                  () async {
-                                if (value.length > 2) {
-                                  if (!searchFlag.searchToggle) {
-                                    searchFlag.toggleSearch();
-                                    _markers = {};
-                                  }
-
-                                  List<AutoCompleteResult> searchResults =
-                                  await MapServices().searchPlaces(value);
-
-                                  allSearchResults.setResults(searchResults);
-                                } else {
-                                  List<AutoCompleteResult> emptyList = [];
-                                  allSearchResults.setResults(emptyList);
-                                }
-                              });
-                        },
-                      ),
-                    )
-                  ]),
-                )
-                    : Container(),
-                searchFlag.searchToggle
-                    ? allSearchResults.allReturnedResults.length != 0
-                    ? Positioned(
-                    top: 100.0,
-                    left: 15.0,
-                    child: Container(
-                      height: 200.0,
-                      width: screenWidth - 30.0,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10.0),
-                        color: Colors.white.withOpacity(0.7),
-                      ),
-                      child: ListView(
-                        children: [
-                          ...allSearchResults.allReturnedResults
-                              .map((e) => buildListItem(e, searchFlag))
-                        ],
-                      ),
-                    ))
-                    : Positioned(
-                    top: 100.0,
-                    left: 15.0,
-                    child: Container(
-                      height: 200.0,
-                      width: screenWidth - 30.0,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10.0),
-                        color: Colors.white.withOpacity(0.7),
-                      ),
-                      child: Center(
+                        padding: EdgeInsets.fromLTRB(15.0, 40.0, 15.0, 5.0),
                         child: Column(children: [
-                          Text('No results to show',
-                              style: TextStyle(
-                                  fontFamily: 'WorkSans',
-                                  fontWeight: FontWeight.w400)),
-                          SizedBox(height: 5.0),
                           Container(
-                            width: 125.0,
-                            child: ElevatedButton(
-                              onPressed: () {
-                                searchFlag.toggleSearch();
+                            height: 50.0,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10.0),
+                              color: Colors.white,
+                            ),
+                            child: TextFormField(
+                              controller: searchController,
+                              decoration: InputDecoration(
+                                  contentPadding: EdgeInsets.symmetric(
+                                      horizontal: 20.0, vertical: 15.0),
+                                  border: InputBorder.none,
+                                  hintText: 'Search',
+                                  suffixIcon: IconButton(
+                                      onPressed: () {
+                                        setState(() {
+                                          searchToggle = false;
+
+                                          searchController.text = '';
+                                          _markers = {};
+                                          if (searchFlag.searchToggle)
+                                            searchFlag.toggleSearch();
+                                        });
+                                      },
+                                      icon: Icon(Icons.close))),
+                              onChanged: (value) {
+                                if (_debounce?.isActive ?? false)
+                                  _debounce?.cancel();
+                                _debounce = Timer(Duration(milliseconds: 700),
+                                    () async {
+                                  if (value.length > 2) {
+                                    if (!searchFlag.searchToggle) {
+                                      searchFlag.toggleSearch();
+                                      _markers = {};
+                                    }
+
+                                    List<AutoCompleteResult> searchResults =
+                                        await MapServices().searchPlaces(value);
+
+                                    allSearchResults.setResults(searchResults);
+                                  } else {
+                                    List<AutoCompleteResult> emptyList = [];
+                                    allSearchResults.setResults(emptyList);
+                                  }
+                                });
                               },
-                              child: Center(
-                                child: Text(
-                                  'Close this',
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontFamily: 'WorkSans',
-                                      fontWeight: FontWeight.w300),
-                                ),
-                              ),
                             ),
                           )
                         ]),
-                      ),
-                    ))
+                      )
                     : Container(),
-                getDirections
-                    ? Padding(
-                  padding: EdgeInsets.fromLTRB(15.0, 40.0, 15.0, 5),
-                  child: Column(children: [
-                    Container(
-                      height: 50.0,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10.0),
-                        color: Colors.white,
-                      ),
-                      child: TextFormField(
-                        controller: _originController,
-                        decoration: InputDecoration(
-                            contentPadding: EdgeInsets.symmetric(
-                                horizontal: 20.0, vertical: 15.0),
-                            border: InputBorder.none,
-                            hintText: 'Origin'),
-                      ),
-                    ),
-                    SizedBox(height: 3.0),
-                    Container(
-                      height: 50.0,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10.0),
-                        color: Colors.white,
-                      ),
-                      child: TextFormField(
-                        controller: _destinationController,
-                        decoration: InputDecoration(
-                            contentPadding: EdgeInsets.symmetric(
-                                horizontal: 20.0, vertical: 15.0),
-                            border: InputBorder.none,
-                            hintText: 'Destination',
-                            suffixIcon: Container(
-                                width: 96.0,
-                                child: Row(
-                                  children: [
-                                    IconButton(
-                                        onPressed: () async {
-                                          var directions =
-                                          await MapServices()
-                                              .getDirections(
-                                              _originController
-                                                  .text,
-                                              _destinationController
-                                                  .text);
-                                          _markers = {};
-                                          _polylines = {};
-                                          gotoPlace(
-                                              directions['start_location']
-                                              ['lat'],
-                                              directions['start_location']
-                                              ['lng'],
-                                              directions['end_location']
-                                              ['lat'],
-                                              directions['end_location']
-                                              ['lng'],
-                                              directions['bounds_ne'],
-                                              directions['bounds_sw']);
-                                          _setPolyline(directions[
-                                          'polyline_decoded']);
-                                        },
-                                        icon: Icon(Icons.search)),
-                                    IconButton(
-                                        onPressed: () {
-                                          setState(() {
-                                            getDirections = false;
-                                            _originController.text = '';
-                                            _destinationController.text =
-                                            '';
-                                            _markers = {};
-                                            _polylines = {};
-                                          });
-                                        },
-                                        icon: Icon(Icons.close))
-                                  ],
-                                ))),
-                      ),
-                    )
-                  ]),
-                )
-                    : Container(),
-                radiusSlider
-                    ? Padding(
-                  padding: EdgeInsets.fromLTRB(15.0, 30.0, 15.0, 0.0),
-                  child: Container(
-                    height: 50.0,
-                    color: Colors.black.withOpacity(0.2),
-                    child: Row(
-                      children: [
-                        Expanded(
-                            child: Slider(
-                                max: 7000.0,
-                                min: 1000.0,
-                                value: radiusValue,
-                                onChanged: (newVal) {
-                                  radiusValue = newVal;
-                                  pressedNear = false;
-                                  _setCircle(tappedPoint);
-                                })),
-                        !pressedNear
-                            ? IconButton(
-                            onPressed: () {
-                              if (_debounce?.isActive ?? false)
-                                _debounce?.cancel();
-                              _debounce = Timer(Duration(seconds: 2),
-                                      () async {
-                                    var placesResult = await MapServices()
-                                        .getPlaceDetails(tappedPoint,
-                                        radiusValue.toInt());
-
-                                    List<dynamic> placesWithin =
-                                    placesResult['results'] as List;
-
-                                    allFavoritePlaces = placesWithin;
-
-                                    tokenKey =
-                                        placesResult['next_page_token'] ??
-                                            'none';
-                                    _markers = {};
-                                    placesWithin.forEach((element) {
-                                      _setNearMarker(
-                                        LatLng(
-                                            element['geometry']
-                                            ['location']['lat'],
-                                            element['geometry']
-                                            ['location']['lng']),
-                                        element['name'],
-                                        element['types'],
-                                        element['business_status'] ??
-                                            'not available',
-                                      );
-                                    });
-                                    _markersDupe = _markers;
-                                    pressedNear = true;
-                                  });
-                            },
-                            icon: Icon(
-                              Icons.near_me,
-                              color: Colors.blue,
-                            ))
-                            : IconButton(
-                            onPressed: () {
-                              if (_debounce?.isActive ?? false)
-                                _debounce?.cancel();
-                              _debounce = Timer(Duration(seconds: 2),
-                                      () async {
-                                    if (tokenKey != 'none') {
-                                      var placesResult =
-                                      await MapServices()
-                                          .getMorePlaceDetails(
-                                          tokenKey);
-
-                                      List<dynamic> placesWithin =
-                                      placesResult['results'] as List;
-
-                                      allFavoritePlaces
-                                          .addAll(placesWithin);
-
-                                      tokenKey = placesResult[
-                                      'next_page_token'] ??
-                                          'none';
-
-                                      placesWithin.forEach((element) {
-                                        _setNearMarker(
-                                          LatLng(
-                                              element['geometry']
-                                              ['location']['lat'],
-                                              element['geometry']
-                                              ['location']['lng']),
-                                          element['name'],
-                                          element['types'],
-                                          element['business_status'] ??
-                                              'not available',
-                                        );
-                                      });
-                                    } else {
-                                      print('Thats all folks!!');
-                                    }
-                                  });
-                            },
-                            icon: Icon(Icons.more_time,
-                                color: Colors.blue)),
-                        IconButton(
-                            onPressed: () {
-                              setState(() {
-                                radiusSlider = false;
-                                pressedNear = false;
-                                cardTapped = false;
-                                radiusValue = 3000.0;
-                                _circles = {};
-                                _markers = {};
-                                allFavoritePlaces = [];
-                              });
-                            },
-                            icon: Icon(Icons.close, color: Colors.red))
-                      ],
-                    ),
-                  ),
-                )
-                    : Container(),
-                pressedNear
-                    ? Positioned(
-                    bottom: 20.0,
-                    child: Container(
-                      height: 200.0,
-                      width: MediaQuery.of(context).size.width,
-                      child: PageView.builder(
-                          controller: _pageController,
-                          itemCount: allFavoritePlaces.length,
-                          itemBuilder: (BuildContext context, int index) {
-                            return _nearbyPlacesList(index);
-                          }),
-                    ))
-                    : Container(),
-                cardTapped
-                    ? Positioned(
-                    top: 100.0,
-                    left: 15.0,
-                    child: FlipCard(
-                      front: Container(
-                        height: 250.0,
-                        width: 175.0,
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius:
-                            BorderRadius.all(Radius.circular(8.0))),
-                        child: SingleChildScrollView(
-                          child: Column(children: [
-                            Container(
-                              height: 150.0,
-                              width: 175.0,
+                searchFlag.searchToggle
+                    ? allSearchResults.allReturnedResults.length != 0
+                        ? Positioned(
+                            top: 100.0,
+                            left: 15.0,
+                            child: Container(
+                              height: 200.0,
+                              width: screenWidth - 30.0,
                               decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.only(
-                                    topLeft: Radius.circular(8.0),
-                                    topRight: Radius.circular(8.0),
-                                  ),
-                                  image: DecorationImage(
-                                      image: NetworkImage(placeImg != ''
-                                          ? 'https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photo_reference=$placeImg&key=$key'
-                                          : 'https://pic.onlinewebfonts.com/svg/img_546302.png'),
-                                      fit: BoxFit.cover)),
-                            ),
-                            Container(
-                              padding: EdgeInsets.all(7.0),
-                              width: 175.0,
-                              child: Row(
-                                crossAxisAlignment:
-                                CrossAxisAlignment.start,
+                                borderRadius: BorderRadius.circular(10.0),
+                                color: Colors.white.withOpacity(0.7),
+                              ),
+                              child: ListView(
                                 children: [
-                                  Text(
-                                    'Address: ',
-                                    style: TextStyle(
-                                        fontFamily: 'WorkSans',
-                                        fontSize: 12.0,
-                                        fontWeight: FontWeight.w500),
-                                  ),
-                                  Container(
-                                      width: 105.0,
-                                      child: Text(
-                                        tappedPlaceDetail[
-                                        'formatted_address'] ??
-                                            'none given',
-                                        style: TextStyle(
-                                            fontFamily: 'WorkSans',
-                                            fontSize: 11.0,
-                                            fontWeight: FontWeight.w400),
-                                      ))
+                                  ...allSearchResults.allReturnedResults
+                                      .map((e) => buildListItem(e, searchFlag))
                                 ],
                               ),
-                            ),
-                            Container(
-                              padding:
-                              EdgeInsets.fromLTRB(7.0, 0.0, 7.0, 0.0),
-                              width: 175.0,
-                              child: Row(
-                                crossAxisAlignment:
-                                CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    'Contact: ',
-                                    style: TextStyle(
-                                        fontFamily: 'WorkSans',
-                                        fontSize: 12.0,
-                                        fontWeight: FontWeight.w500),
-                                  ),
-                                  Container(
-                                      width: 105.0,
-                                      child: Text(
-                                        tappedPlaceDetail[
-                                        'formatted_phone_number'] ??
-                                            'none given',
-                                        style: TextStyle(
-                                            fontFamily: 'WorkSans',
-                                            fontSize: 11.0,
-                                            fontWeight: FontWeight.w400),
-                                      ))
-                                ],
+                            ))
+                        : Positioned(
+                            top: 100.0,
+                            left: 15.0,
+                            child: Container(
+                              height: 200.0,
+                              width: screenWidth - 30.0,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10.0),
+                                color: Colors.white.withOpacity(0.7),
                               ),
-                            ),
-                          ]),
-                        ),
-                      ),
-                      back: Container(
-                        height: 300.0,
-                        width: 225.0,
-                        decoration: BoxDecoration(
-                            color: Colors.white.withOpacity(0.95),
-                            borderRadius: BorderRadius.circular(8.0)),
-                        child: Column(
-                          children: [
-                            Padding(
-                              padding: EdgeInsets.all(8.0),
-                              child: Row(
-                                mainAxisAlignment:
-                                MainAxisAlignment.spaceEvenly,
-                                children: [
-                                  GestureDetector(
-                                    onTap: () {
-                                      setState(() {
-                                        isReviews = true;
-                                        isPhotos = false;
-                                      });
-                                    },
-                                    child: AnimatedContainer(
-                                      duration: Duration(milliseconds: 700),
-                                      curve: Curves.easeIn,
-                                      padding: EdgeInsets.fromLTRB(
-                                          7.0, 4.0, 7.0, 4.0),
-                                      decoration: BoxDecoration(
-                                          borderRadius:
-                                          BorderRadius.circular(11.0),
-                                          color: isReviews
-                                              ? Colors.green.shade300
-                                              : Colors.white),
-                                      child: Text(
-                                        'Reviews',
-                                        style: TextStyle(
-                                            color: isReviews
-                                                ? Colors.white
-                                                : Colors.black87,
-                                            fontFamily: 'WorkSans',
-                                            fontSize: 12.0,
-                                            fontWeight: FontWeight.w500),
-                                      ),
-                                    ),
-                                  ),
-                                  GestureDetector(
-                                    onTap: () {
-                                      setState(() {
-                                        isReviews = false;
-                                        isPhotos = true;
-                                      });
-                                    },
-                                    child: AnimatedContainer(
-                                      duration: Duration(milliseconds: 700),
-                                      curve: Curves.easeIn,
-                                      padding: EdgeInsets.fromLTRB(
-                                          7.0, 4.0, 7.0, 4.0),
-                                      decoration: BoxDecoration(
-                                          borderRadius:
-                                          BorderRadius.circular(11.0),
-                                          color: isPhotos
-                                              ? Colors.green.shade300
-                                              : Colors.white),
-                                      child: Text(
-                                        'Photos',
-                                        style: TextStyle(
-                                            color: isPhotos
-                                                ? Colors.white
-                                                : Colors.black87,
-                                            fontFamily: 'WorkSans',
-                                            fontSize: 12.0,
-                                            fontWeight: FontWeight.w500),
+                              child: Center(
+                                child: Column(children: [
+                                  Text('No results to show',
+                                      style: TextStyle(
+                                          fontFamily: 'WorkSans',
+                                          fontWeight: FontWeight.w400)),
+                                  SizedBox(height: 5.0),
+                                  Container(
+                                    width: 125.0,
+                                    child: ElevatedButton(
+                                      onPressed: () {
+                                        searchFlag.toggleSearch();
+                                      },
+                                      child: Center(
+                                        child: Text(
+                                          'Close this',
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontFamily: 'WorkSans',
+                                              fontWeight: FontWeight.w300),
+                                        ),
                                       ),
                                     ),
                                   )
-                                ],
+                                ]),
                               ),
+                            ))
+                    : Container(),
+                getDirections
+                    ? Padding(
+                        padding: EdgeInsets.fromLTRB(15.0, 40.0, 15.0, 5),
+                        child: Column(children: [
+                          Container(
+                            height: 50.0,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10.0),
+                              color: Colors.white,
                             ),
-                            Container(
-                              height: 250.0,
-                              child: isReviews
-                                  ? ListView(
-                                children: [
-                                  if (isReviews &&
-                                      tappedPlaceDetail['reviews'] !=
-                                          null)
-                                    ...tappedPlaceDetail['reviews']!
-                                        .map((e) {
-                                      return _buildReviewItem(e);
-                                    })
-                                ],
-                              )
-                                  : _buildPhotoGallery(
-                                  tappedPlaceDetail['photos'] ?? []),
-                            )
-                          ],
+                            child: TextFormField(
+                              controller: _originController,
+                              decoration: InputDecoration(
+                                  contentPadding: EdgeInsets.symmetric(
+                                      horizontal: 20.0, vertical: 15.0),
+                                  border: InputBorder.none,
+                                  hintText: 'Origin'),
+                            ),
+                          ),
+                          SizedBox(height: 3.0),
+                          Container(
+                            height: 50.0,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10.0),
+                              color: Colors.white,
+                            ),
+                            child: TextFormField(
+                              controller: _destinationController,
+                              decoration: InputDecoration(
+                                  contentPadding: EdgeInsets.symmetric(
+                                      horizontal: 20.0, vertical: 15.0),
+                                  border: InputBorder.none,
+                                  hintText: 'Destination',
+                                  suffixIcon: Container(
+                                      width: 96.0,
+                                      child: Row(
+                                        children: [
+                                          IconButton(
+                                              onPressed: () async {
+                                                var directions =
+                                                    await MapServices()
+                                                        .getDirections(
+                                                            _originController
+                                                                .text,
+                                                            _destinationController
+                                                                .text);
+                                                _markers = {};
+                                                _polylines = {};
+                                                gotoPlace(
+                                                    directions['start_location']
+                                                        ['lat'],
+                                                    directions['start_location']
+                                                        ['lng'],
+                                                    directions['end_location']
+                                                        ['lat'],
+                                                    directions['end_location']
+                                                        ['lng'],
+                                                    directions['bounds_ne'],
+                                                    directions['bounds_sw']);
+                                                _setPolyline(directions[
+                                                    'polyline_decoded']);
+                                              },
+                                              icon: Icon(Icons.search)),
+                                          IconButton(
+                                              onPressed: () {
+                                                setState(() {
+                                                  getDirections = false;
+                                                  _originController.text = '';
+                                                  _destinationController.text =
+                                                      '';
+                                                  _markers = {};
+                                                  _polylines = {};
+                                                });
+                                              },
+                                              icon: Icon(Icons.close))
+                                        ],
+                                      ))),
+                            ),
+                          )
+                        ]),
+                      )
+                    : Container(),
+                radiusSlider
+                    ? Padding(
+                        padding: EdgeInsets.fromLTRB(15.0, 30.0, 15.0, 0.0),
+                        child: Container(
+                          height: 50.0,
+                          color: Colors.black.withOpacity(0.2),
+                          child: Row(
+                            children: [
+                              Expanded(
+                                  child: Slider(
+                                      max: 7000.0,
+                                      min: 1000.0,
+                                      value: radiusValue,
+                                      onChanged: (newVal) {
+                                        radiusValue = newVal;
+                                        pressedNear = false;
+                                        _setCircle(tappedPoint);
+                                      })),
+                              !pressedNear
+                                  ? IconButton(
+                                      onPressed: () {
+                                        if (_debounce?.isActive ?? false)
+                                          _debounce?.cancel();
+                                        _debounce = Timer(Duration(seconds: 2),
+                                            () async {
+                                          var placesResult = await MapServices()
+                                              .getPlaceDetails(tappedPoint,
+                                                  radiusValue.toInt());
+
+                                          List<dynamic> placesWithin =
+                                              placesResult['results'] as List;
+
+                                          allFavoritePlaces = placesWithin;
+
+                                          tokenKey =
+                                              placesResult['next_page_token'] ??
+                                                  'none';
+                                          _markers = {};
+                                          placesWithin.forEach((element) {
+                                            _setNearMarker(
+                                              LatLng(
+                                                  element['geometry']
+                                                      ['location']['lat'],
+                                                  element['geometry']
+                                                      ['location']['lng']),
+                                              element['name'],
+                                              element['types'],
+                                              element['business_status'] ??
+                                                  'not available',
+                                            );
+                                          });
+                                          _markersDupe = _markers;
+                                          pressedNear = true;
+                                        });
+                                      },
+                                      icon: Icon(
+                                        Icons.near_me,
+                                        color: Colors.blue,
+                                      ))
+                                  : IconButton(
+                                      onPressed: () {
+                                        if (_debounce?.isActive ?? false)
+                                          _debounce?.cancel();
+                                        _debounce = Timer(Duration(seconds: 2),
+                                            () async {
+                                          if (tokenKey != 'none') {
+                                            var placesResult =
+                                                await MapServices()
+                                                    .getMorePlaceDetails(
+                                                        tokenKey);
+
+                                            List<dynamic> placesWithin =
+                                                placesResult['results'] as List;
+
+                                            allFavoritePlaces
+                                                .addAll(placesWithin);
+
+                                            tokenKey = placesResult[
+                                                    'next_page_token'] ??
+                                                'none';
+
+                                            placesWithin.forEach((element) {
+                                              _setNearMarker(
+                                                LatLng(
+                                                    element['geometry']
+                                                        ['location']['lat'],
+                                                    element['geometry']
+                                                        ['location']['lng']),
+                                                element['name'],
+                                                element['types'],
+                                                element['business_status'] ??
+                                                    'not available',
+                                              );
+                                            });
+                                          } else {
+                                            print('Thats all folks!!');
+                                          }
+                                        });
+                                      },
+                                      icon: Icon(Icons.more_time,
+                                          color: Colors.blue)),
+                              IconButton(
+                                  onPressed: () {
+                                    setState(() {
+                                      radiusSlider = false;
+                                      pressedNear = false;
+                                      cardTapped = false;
+                                      radiusValue = 3000.0;
+                                      _circles = {};
+                                      _markers = {};
+                                      allFavoritePlaces = [];
+                                    });
+                                  },
+                                  icon: Icon(Icons.close, color: Colors.red))
+                            ],
+                          ),
                         ),
-                      ),
-                    ))
+                      )
+                    : Container(),
+                pressedNear
+                    ? Positioned(
+                        bottom: 20.0,
+                        child: Container(
+                          height: 200.0,
+                          width: MediaQuery.of(context).size.width,
+                          child: PageView.builder(
+                              controller: _pageController,
+                              itemCount: allFavoritePlaces.length,
+                              itemBuilder: (BuildContext context, int index) {
+                                return _nearbyPlacesList(index);
+                              }),
+                        ))
+                    : Container(),
+                cardTapped
+                    ? Positioned(
+                        top: 100.0,
+                        left: 15.0,
+                        child: FlipCard(
+                          front: Container(
+                            height: 250.0,
+                            width: 175.0,
+                            decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(8.0))),
+                            child: SingleChildScrollView(
+                              child: Column(children: [
+                                Container(
+                                  height: 150.0,
+                                  width: 175.0,
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.only(
+                                        topLeft: Radius.circular(8.0),
+                                        topRight: Radius.circular(8.0),
+                                      ),
+                                      image: DecorationImage(
+                                          image: NetworkImage(placeImg != ''
+                                              ? 'https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photo_reference=$placeImg&key=$key'
+                                              : 'https://pic.onlinewebfonts.com/svg/img_546302.png'),
+                                          fit: BoxFit.cover)),
+                                ),
+                                Container(
+                                  padding: EdgeInsets.all(7.0),
+                                  width: 175.0,
+                                  child: Row(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        'Address: ',
+                                        style: TextStyle(
+                                            fontFamily: 'WorkSans',
+                                            fontSize: 12.0,
+                                            fontWeight: FontWeight.w500),
+                                      ),
+                                      Container(
+                                          width: 105.0,
+                                          child: Text(
+                                            tappedPlaceDetail[
+                                                    'formatted_address'] ??
+                                                'none given',
+                                            style: TextStyle(
+                                                fontFamily: 'WorkSans',
+                                                fontSize: 11.0,
+                                                fontWeight: FontWeight.w400),
+                                          ))
+                                    ],
+                                  ),
+                                ),
+                                Container(
+                                  padding:
+                                      EdgeInsets.fromLTRB(7.0, 0.0, 7.0, 0.0),
+                                  width: 175.0,
+                                  child: Row(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        'Contact: ',
+                                        style: TextStyle(
+                                            fontFamily: 'WorkSans',
+                                            fontSize: 12.0,
+                                            fontWeight: FontWeight.w500),
+                                      ),
+                                      Container(
+                                          width: 105.0,
+                                          child: Text(
+                                            tappedPlaceDetail[
+                                                    'formatted_phone_number'] ??
+                                                'none given',
+                                            style: TextStyle(
+                                                fontFamily: 'WorkSans',
+                                                fontSize: 11.0,
+                                                fontWeight: FontWeight.w400),
+                                          ))
+                                    ],
+                                  ),
+                                ),
+                              ]),
+                            ),
+                          ),
+                          back: Container(
+                            height: 300.0,
+                            width: 225.0,
+                            decoration: BoxDecoration(
+                                color: Colors.white.withOpacity(0.95),
+                                borderRadius: BorderRadius.circular(8.0)),
+                            child: Column(
+                              children: [
+                                Padding(
+                                  padding: EdgeInsets.all(8.0),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                      GestureDetector(
+                                        onTap: () {
+                                          setState(() {
+                                            isReviews = true;
+                                            isPhotos = false;
+                                          });
+                                        },
+                                        child: AnimatedContainer(
+                                          duration: Duration(milliseconds: 700),
+                                          curve: Curves.easeIn,
+                                          padding: EdgeInsets.fromLTRB(
+                                              7.0, 4.0, 7.0, 4.0),
+                                          decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(11.0),
+                                              color: isReviews
+                                                  ? Colors.green.shade300
+                                                  : Colors.white),
+                                          child: Text(
+                                            'Reviews',
+                                            style: TextStyle(
+                                                color: isReviews
+                                                    ? Colors.white
+                                                    : Colors.black87,
+                                                fontFamily: 'WorkSans',
+                                                fontSize: 12.0,
+                                                fontWeight: FontWeight.w500),
+                                          ),
+                                        ),
+                                      ),
+                                      GestureDetector(
+                                        onTap: () {
+                                          setState(() {
+                                            isReviews = false;
+                                            isPhotos = true;
+                                          });
+                                        },
+                                        child: AnimatedContainer(
+                                          duration: Duration(milliseconds: 700),
+                                          curve: Curves.easeIn,
+                                          padding: EdgeInsets.fromLTRB(
+                                              7.0, 4.0, 7.0, 4.0),
+                                          decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(11.0),
+                                              color: isPhotos
+                                                  ? Colors.green.shade300
+                                                  : Colors.white),
+                                          child: Text(
+                                            'Photos',
+                                            style: TextStyle(
+                                                color: isPhotos
+                                                    ? Colors.white
+                                                    : Colors.black87,
+                                                fontFamily: 'WorkSans',
+                                                fontSize: 12.0,
+                                                fontWeight: FontWeight.w500),
+                                          ),
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                                Container(
+                                  height: 250.0,
+                                  child: isReviews
+                                      ? ListView(
+                                          children: [
+                                            if (isReviews &&
+                                                tappedPlaceDetail['reviews'] !=
+                                                    null)
+                                              ...tappedPlaceDetail['reviews']!
+                                                  .map((e) {
+                                                return _buildReviewItem(e);
+                                              })
+                                          ],
+                                        )
+                                      : _buildPhotoGallery(
+                                          tappedPlaceDetail['photos'] ?? []),
+                                )
+                              ],
+                            ),
+                          ),
+                        ))
                     : Container()
               ],
             )
@@ -907,7 +908,7 @@ class _HomePageState extends ConsumerState<HomePage> {
                   valueLabelVisibility: true,
                   animationDuration: Duration(milliseconds: 1000),
                   valueLabelPadding:
-                  const EdgeInsets.symmetric(vertical: 1, horizontal: 4),
+                      const EdgeInsets.symmetric(vertical: 1, horizontal: 4),
                   valueLabelMargin: const EdgeInsets.only(right: 4),
                   starOffColor: const Color(0xffe7e8ea),
                   starColor: Colors.yellow,
@@ -1058,10 +1059,10 @@ class _HomePageState extends ConsumerState<HomePage> {
     controller.animateCamera(CameraUpdate.newCameraPosition(CameraPosition(
         target: LatLng(
             allFavoritePlaces[_pageController.page!.toInt()]['geometry']
-            ['location']['lat'] +
+                    ['location']['lat'] +
                 0.0125,
             allFavoritePlaces[_pageController.page!.toInt()]['geometry']
-            ['location']['lng'] +
+                    ['location']['lng'] +
                 0.005),
         zoom: 14.0,
         bearing: 45.0,
@@ -1121,30 +1122,30 @@ class _HomePageState extends ConsumerState<HomePage> {
                     children: [
                       _pageController.position.haveDimensions
                           ? _pageController.page!.toInt() == index
-                          ? Container(
-                        height: 90.0,
-                        width: 90.0,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.only(
-                              bottomLeft: Radius.circular(10.0),
-                              topLeft: Radius.circular(10.0),
-                            ),
-                            image: DecorationImage(
-                                image: NetworkImage(placeImg != ''
-                                    ? 'https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photo_reference=$placeImg&key=$key'
-                                    : 'https://pic.onlinewebfonts.com/svg/img_546302.png'),
-                                fit: BoxFit.cover)),
-                      )
-                          : Container(
-                        height: 90.0,
-                        width: 20.0,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.only(
-                              bottomLeft: Radius.circular(10.0),
-                              topLeft: Radius.circular(10.0),
-                            ),
-                            color: Colors.blue),
-                      )
+                              ? Container(
+                                  height: 90.0,
+                                  width: 90.0,
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.only(
+                                        bottomLeft: Radius.circular(10.0),
+                                        topLeft: Radius.circular(10.0),
+                                      ),
+                                      image: DecorationImage(
+                                          image: NetworkImage(placeImg != ''
+                                              ? 'https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photo_reference=$placeImg&key=$key'
+                                              : 'https://pic.onlinewebfonts.com/svg/img_546302.png'),
+                                          fit: BoxFit.cover)),
+                                )
+                              : Container(
+                                  height: 90.0,
+                                  width: 20.0,
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.only(
+                                        bottomLeft: Radius.circular(10.0),
+                                        topLeft: Radius.circular(10.0),
+                                      ),
+                                      color: Colors.blue),
+                                )
                           : Container(),
                       SizedBox(width: 5.0),
                       Column(
@@ -1161,8 +1162,8 @@ class _HomePageState extends ConsumerState<HomePage> {
                           ),
                           RatingStars(
                             value: allFavoritePlaces[index]['rating']
-                                .runtimeType ==
-                                int
+                                        .runtimeType ==
+                                    int
                                 ? allFavoritePlaces[index]['rating'] * 1.0
                                 : allFavoritePlaces[index]['rating'] ?? 0.0,
                             starCount: 5,
@@ -1193,8 +1194,8 @@ class _HomePageState extends ConsumerState<HomePage> {
                                   'none',
                               style: TextStyle(
                                   color: allFavoritePlaces[index]
-                                  ['business_status'] ==
-                                      'OPERATIONAL'
+                                              ['business_status'] ==
+                                          'OPERATIONAL'
                                       ? Colors.green
                                       : Colors.red,
                                   fontSize: 11.0,
