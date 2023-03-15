@@ -5,9 +5,9 @@ import 'package:power_she_pre/constants.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
-import '../components/AlertBox.dart';
+import '../../components/AlertBox.dart';
 import 'package:power_she_pre/components/AppBarHome.dart';
-import '../components/BottomBar.dart';
+import '../../components/BottomBar.dart';
 import 'package:sidebarx/sidebarx.dart';
 
 class StoreScreen extends StatefulWidget {
@@ -43,9 +43,9 @@ class _StoreScreenState extends State<StoreScreen> {
     //     .where('sell_id', isNotEqualTo: userId).snapshots());
   }
   void getDoc() async {
-    final docref = await _firestore.collection("details").doc(userId).get();
+    final docref = await _firestore.collection("users").doc(userId).get();
     setState(() {
-      userName = docref['Name'];
+      userName = docref['fullName'];
       // print(userName);
       // print(userId);
     });
@@ -112,7 +112,7 @@ class _StoreScreenState extends State<StoreScreen> {
                                       child: Card(
                                         elevation: 10,
                                         shadowColor: Colors.black,
-                                        color: kbase,
+                                        color: Colors.white,
                                         child: SizedBox(
                                           // width: MediaQuery.of(context)
                                           //     .size

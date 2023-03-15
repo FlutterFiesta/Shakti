@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:power_she_pre/constants.dart';
 
-import '../components/AppBarHome.dart';
+import '../../components/AppBarHome.dart';
 import 'new_product.dart';
 
 class MyProducts extends StatefulWidget {
