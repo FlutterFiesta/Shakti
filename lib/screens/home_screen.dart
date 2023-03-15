@@ -10,9 +10,9 @@ import 'package:geocoding/geocoding.dart';
 import 'package:power_she_pre/screens/Safety/contactModel.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:power_she_pre/screens/my_products.dart';
+import 'package:power_she_pre/screens/seller_buyer/my_products.dart';
 import 'package:power_she_pre/screens/splash.dart';
-import 'package:power_she_pre/screens/store.dart';
+import 'package:power_she_pre/screens/seller_buyer/store.dart';
 import 'dart:async';
 import 'package:power_she_pre/screens/welcome_screen.dart';
 import 'package:shake/shake.dart';
@@ -21,7 +21,6 @@ import '../components/AppBarHome.dart';
 import '../components/appBarInit.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 import '../components/BottomBar.dart';
-import 'orders.dart';
 
 import 'package:power_she_pre/screens/opr_screen.dart';
 
@@ -315,7 +314,7 @@ class _HomeScreenState extends State<HomeScreen> {
         );
         // Do stuff on phone shake
       },
-      minimumShakeCount: 4,
+      minimumShakeCount: 1,
       shakeSlopTimeMS: 500,
       shakeCountResetTime: 3000,
       shakeThresholdGravity: 2.7,

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:power_she_pre/screens/Safety/mainScreen.dart';
 import 'package:power_she_pre/screens/Tracker/TrackerPage.dart';
 // import 'package:power_she_pre/Ptracker/mainScreenPeriod.dart';
-import 'package:power_she_pre/screens/orders.dart';
+import 'package:power_she_pre/screens/seller_buyer/orders.dart';
 import 'package:power_she_pre/screens/welcome_screen.dart';
 import 'package:sidebarx/sidebarx.dart';
 import 'package:power_she_pre/constants.dart';
@@ -10,7 +10,7 @@ import 'package:power_she_pre/screens/user_profile.dart';
 import 'package:power_she_pre/screens/ChatBotSupport/mainScreen.dart';
 import 'package:power_she_pre/screens/group_chat/groupsHomeScreen.dart';
 
-import '../screens/my_products.dart';
+import '../screens/seller_buyer/my_products.dart';
 
 class EndDrawer extends StatelessWidget {
   const EndDrawer({super.key});

@@ -4,7 +4,7 @@ import 'package:power_she_pre/screens/home_screen.dart';
 import 'package:power_she_pre/screens/map/location.dart';
 import '../screens/opr_screen.dart';
 import '../screens/safety_screen.dart';
-import '../screens/store.dart';
+import '../screens/seller_buyer/store.dart';
 
 class BottomBar extends StatelessWidget {
   const BottomBar({Key? key}) : super(key: key);
@@ -155,7 +155,7 @@ class BottomBar extends StatelessWidget {
                     backgroundColor: kdblue,
                     child: CircleAvatar(
                       radius: 35,
-                      backgroundImage: AssetImage('images/safety.png'),
+                      backgroundImage: AssetImage('images/Safety.png'),
                     )),
               ),
             ),

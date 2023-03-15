@@ -215,8 +215,8 @@ class _NewProductState extends State<NewProduct> {
         imagePath = results.files.single.path;
         imageName = results.files.single.name;
 
-        print(imageName);
-        print(imagePath);
+        // print(imageName);
+        // print(imagePath);
       });
     }
   }
