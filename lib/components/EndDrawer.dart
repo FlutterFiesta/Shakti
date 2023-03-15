@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:power_she_pre/screens/Safety/mainScreen.dart';
 import 'package:power_she_pre/screens/Tracker/TrackerPage.dart';
-import 'package:power_she_pre/screens/seller_buyer/orders.dart';
+// import 'package:power_she_pre/Ptracker/mainScreenPeriod.dart';
+import 'package:power_she_pre/screens/orders.dart';
 import 'package:power_she_pre/screens/welcome_screen.dart';
 import 'package:sidebarx/sidebarx.dart';
 import 'package:power_she_pre/constants.dart';
-import '../screens/seller_buyer/my_products.dart';
 import 'package:power_she_pre/screens/user_profile.dart';
 import 'package:power_she_pre/screens/ChatBotSupport/mainScreen.dart';
 import 'package:power_she_pre/screens/group_chat/groupsHomeScreen.dart';
+
+import '../screens/my_products.dart';
 
 class EndDrawer extends StatelessWidget {
   const EndDrawer({super.key});
@@ -41,18 +44,23 @@ class EndDrawer extends StatelessWidget {
             onTap: () {
               Navigator.pushNamed(context, UserProfile.id);
             }),
-        // SidebarXItem(
-        //     icon: Icons.girl_rounded,
-        //     label: 'My Body',
-        //     onTap: () {
-        //       Navigator.pushNamed(context, mainChatScreen.id);
-        //     }),
-
         SidebarXItem(
             icon: Icons.shopping_cart_rounded,
             label: 'My Orders',
             onTap: () {
               Navigator.pushNamed(context, OrderScreen.id);
+            }),
+        SidebarXItem(
+            icon: Icons.water_drop,
+            label: 'Tracker',
+            onTap: () {
+              Navigator.pushNamed(context, TrackerPage.id);
+            }),
+        SidebarXItem(
+            icon: Icons.call_end,
+            label: 'safteyCall',
+            onTap: () {
+              Navigator.pushNamed(context, AddContactsPage.id);
             }),
         SidebarXItem(
             icon: Icons.sell,
@@ -72,13 +80,6 @@ class EndDrawer extends StatelessWidget {
             onTap: () {
               Navigator.pushNamed(context, mainChatScreen.id);
             }),
-        SidebarXItem(
-            icon:Icons.water_drop,
-            label:'Tracker',
-            onTap:(){
-              Navigator.pushNamed(context, TrackerPage.id);
-            }
-        ),
         SidebarXItem(
           icon: Icons.logout_rounded,
           label: 'Logout',

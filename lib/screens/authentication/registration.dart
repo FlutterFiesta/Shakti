@@ -31,6 +31,9 @@ class _RegisterationScreenState extends State<RegisterationScreen> {
   late String name;
   late String phoneNumber;
   late String safety;
+  // late int menstrualLength;
+  // late int periodLength;
+  // late List<DateTime> lastMenstruation;
   CountryCode countryCode = CountryCode(name: "IN", dialCode: '+91');
   bool spinner = false;
   @override

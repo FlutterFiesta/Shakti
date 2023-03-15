@@ -1,10 +1,10 @@
-import'package:flutter/material.dart';
-import'package:power_she_pre/constants.dart';
+import 'package:flutter/material.dart';
+import 'package:power_she_pre/constants.dart';
 import 'package:power_she_pre/screens/home_screen.dart';
 import 'package:power_she_pre/screens/map/location.dart';
 import '../screens/opr_screen.dart';
 import '../screens/safety_screen.dart';
-import '../screens/seller_buyer/store.dart';
+import '../screens/store.dart';
 
 class BottomBar extends StatelessWidget {
   const BottomBar({Key? key}) : super(key: key);
@@ -33,8 +33,6 @@ class BottomBar extends StatelessWidget {
                         MaterialButton(
                           minWidth: 40,
                           onPressed: () {
-
-
                             Navigator.pushNamed(context, HomeScreen.id);
                           },
                           child: Column(
@@ -115,7 +113,7 @@ class BottomBar extends StatelessWidget {
                         MaterialButton(
                           minWidth: 40,
                           onPressed: () {
-                            Navigator.push(context,MaterialPageRoute(builder: (context) => Location()));
+                            Navigator.pushNamed(context, Location.id);
                           },
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -167,5 +165,3 @@ class BottomBar extends StatelessWidget {
     );
   }
 }
-
-

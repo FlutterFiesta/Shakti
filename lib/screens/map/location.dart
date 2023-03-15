@@ -12,31 +12,30 @@ class Location extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-    backgroundColor: kbase,
-    appBar: AppBar(
-    backgroundColor: kpink,
-    title: Padding(
-    padding: const EdgeInsets.only(right: 0),
-    child: Center(
-    child: Row(
-    mainAxisAlignment: MainAxisAlignment.center,
-    children: [
-    Image.asset(
-    'images/logo.png',
-    fit: BoxFit.contain,
-    height: 32,
-    ),
-    Container(
-    padding: const EdgeInsets.all(8.0), child: Text('PowerShe'))
-    ],
-
-    ),
-    ),
-    ),
-    ),
-    endDrawer:EndDrawer(),
-    bottomNavigationBar: BottomBar(),
-    body: HomePage(),
+      backgroundColor: kbase,
+      appBar: AppBar(
+        backgroundColor: kpink,
+        title: Padding(
+          padding: const EdgeInsets.only(right: 0),
+          child: Center(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Image.asset(
+                  'images/logo.png',
+                  fit: BoxFit.contain,
+                  height: 32,
+                ),
+                Container(
+                    padding: const EdgeInsets.all(8.0), child: Text('PowerShe'))
+              ],
+            ),
+          ),
+        ),
+      ),
+      endDrawer: EndDrawer(),
+      bottomNavigationBar: BottomBar(),
+      body: HomePage(),
     );
   }
 }
@@ -47,7 +46,6 @@ title: 'Flutter Demo',
       theme: ThemeData(),
       home: HomePage(),
  */
-
 
 /*
 class SplashScreenLocation extends StatefulWidget {
