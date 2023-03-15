@@ -79,14 +79,8 @@ class EndDrawer extends StatelessWidget {
               Navigator.pushNamed(context, groupsHome.id);
             }),
         SidebarXItem(
-            icon: Icons.chat_bubble,
-            label: 'ChatSupport',
-            onTap: () {
-              Navigator.pushNamed(context, mainChatScreen.id);
-            }),
-        SidebarXItem(
             icon: Icons.person,
-            label: 'Oganizations',
+            label: 'Organizations',
             onTap: () {
               Navigator.push(
                     context,
@@ -94,7 +88,7 @@ class EndDrawer extends StatelessWidget {
             }),
         SidebarXItem(
             icon: Icons.self_improvement_rounded,
-            label: 'My Body',
+            label: 'Self Care',
             onTap: () {
               Navigator.push(
                     context,

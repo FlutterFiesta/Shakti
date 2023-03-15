@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:power_she_pre/screens/ChatBotSupport/mainScreen.dart';
 import 'package:sqflite/sqflite.dart';
 import '../../components/AppBarHome.dart';
 import '../../components/BottomBar.dart';
@@ -124,6 +125,29 @@ class _AddContactsPageState extends State<AddContactsPage> {
               ],
             )),
       ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            popUpDialog(context);
+          },
+          elevation: 0,
+          backgroundColor: Theme.of(context).primaryColor,
+          child: const Icon(
+            Icons.chat_bubble,
+            color: Colors.white,
+            size: 30,
+          ),
+        )
     );
+  }
+
+  popUpDialog(BuildContext context) {
+    showDialog(
+        barrierDismissible: false,
+        context: context,
+        builder: (context) {
+          return StatefulBuilder(builder: ((context, setState) {
+            return mainChatScreen();
+          }));
+        });
   }
 }

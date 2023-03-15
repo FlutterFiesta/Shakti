@@ -27,7 +27,7 @@ Future<void> _launchUrl() async {
   @override
   Widget build(BuildContext context) {
     return Card(
-      margin: EdgeInsets.all(30.0),
+      margin: EdgeInsets.all(20.0),
       elevation: 10,
       shadowColor: Colors.black,
       color: Colors.white,
@@ -65,7 +65,8 @@ Future<void> _launchUrl() async {
                 alignment: Alignment.topLeft,
                 child: Text(
                   subText,
-                  textAlign: TextAlign.justify,
+                  style: const TextStyle(fontSize: 15),
+                  textAlign: TextAlign.left,
                 ),
               ),
               SizedBox(
@@ -73,7 +74,7 @@ Future<void> _launchUrl() async {
               ),
               MaterialButton(
                 onPressed: _launchUrl,
-                color: Colors.blue[900],
+                color: kdblue,
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Text(

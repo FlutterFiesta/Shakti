@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:power_she_pre/components/AppBarHome.dart';
 import 'package:power_she_pre/constants.dart';
+import 'package:power_she_pre/screens/ChatBotSupport/mainScreen.dart';
 import '../../components/BottomBar.dart';
 import '../../components/EndDrawer.dart';
 import 'package:image_picker/image_picker.dart';
@@ -198,7 +199,30 @@ class _NewProductState extends State<NewProduct> {
           ),
         ),
       ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            popUpDialog(context);
+          },
+          elevation: 0,
+          backgroundColor: Theme.of(context).primaryColor,
+          child: const Icon(
+            Icons.chat_bubble,
+            color: Colors.white,
+            size: 30,
+          ),
+        )
     );
+  }
+
+  popUpDialog(BuildContext context) {
+    showDialog(
+        barrierDismissible: false,
+        context: context,
+        builder: (context) {
+          return StatefulBuilder(builder: ((context, setState) {
+            return mainChatScreen();
+          }));
+        });
   }
 
   _getFromGallery() async {

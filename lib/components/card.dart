@@ -29,7 +29,7 @@ Future<void> _launchUrl() async {
   @override
   Widget build(BuildContext context) {
     return Card(
-      margin: EdgeInsets.all(30.0),
+      margin: EdgeInsets.only(top: 30.0, left: 30.0, right: 30.0),
       elevation: 10,
       shadowColor: Colors.black,
       color: Colors.white,
@@ -79,7 +79,7 @@ Future<void> _launchUrl() async {
                 ), // Container
               ), //Text
               SizedBox(
-                height: 5,
+                height: 10,
               ),
               Align(
                   alignment: Alignment.centerLeft,
@@ -99,7 +99,7 @@ Future<void> _launchUrl() async {
                 ),
               ),
               SizedBox(
-                height: 5,
+                height: 10,
               ),
               MaterialButton(
                 onPressed: _launchUrl,

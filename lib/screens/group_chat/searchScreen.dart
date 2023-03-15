@@ -6,6 +6,7 @@ import 'package:power_she_pre/screens/service/database_service.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import '../../components/BottomBar.dart';
 import 'package:power_she_pre/screens/group_chat/widget/widget.dart';
 
 class SearchPage extends StatefulWidget {
@@ -60,11 +61,16 @@ class _SearchPageState extends State<SearchPage> {
               fontSize: 2, fontWeight: FontWeight.bold, color: Colors.white),
         ),
       ),
+      bottomNavigationBar: BottomBar(),
       body: Column(
         children: [
           Container(
-            color: Theme.of(context).primaryColor,
+            margin: new EdgeInsets.symmetric(horizontal: 10.0, vertical: 20.0),
             padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+            decoration: BoxDecoration(
+                color: Theme.of(context).primaryColor,
+                borderRadius: BorderRadius.all(Radius.circular(20))
+            ),
             child: Row(
               children: [
                 Expanded(

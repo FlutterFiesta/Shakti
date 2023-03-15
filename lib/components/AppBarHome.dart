@@ -3,7 +3,6 @@ import 'package:power_she_pre/constants.dart';
 
 class AppBarHome extends StatelessWidget with PreferredSizeWidget {
   //const AppBarHome({Key? key}) : super(key: key);
-
   final String heading;
 
   AppBarHome({

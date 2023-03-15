@@ -67,7 +67,36 @@ class _groupsHomeState extends State<groupsHome> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBarHome(heading: 'Community'),
+      appBar: AppBar(
+        actions: [
+          IconButton(
+              onPressed: () {
+                Navigator.pushNamed(context, SearchPage.id);
+              },
+              icon: const Icon(
+                Icons.search,
+              ))
+        ],
+        backgroundColor: kpink,
+        title: Padding(
+          padding: const EdgeInsets.only(right: 40),
+          child: Center(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Image.asset(
+                  'images/logo.png',
+                  fit: BoxFit.contain,
+                  height: 32,
+                ),
+                Container(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text('Communities'))
+              ],
+            ),
+          ),
+        ),
+      ),
       endDrawer: EndDrawer(),
       bottomNavigationBar: BottomBar(),
       backgroundColor: kbase,
@@ -174,7 +203,7 @@ class _groupsHomeState extends State<groupsHome> {
         if (snapshot.hasData) {
           if (snapshot.data['groups'] != null) {
             if (snapshot.data['groups'].length != 0) {
-              return ListView.builder(
+              return ListView.separated(
                 itemCount: snapshot.data['groups'].length,
                 itemBuilder: (context, index) {
                   int reverseIndex = snapshot.data['groups'].length - index - 1;
@@ -183,6 +212,9 @@ class _groupsHomeState extends State<groupsHome> {
                       groupName: getName(snapshot.data['groups'][reverseIndex]),
                       userName: snapshot.data['fullName']);
                 },
+                separatorBuilder: (context, index) {
+                  return Divider(color: Colors.grey);
+                  },
               );
             } else {
               return noGroupWidget();

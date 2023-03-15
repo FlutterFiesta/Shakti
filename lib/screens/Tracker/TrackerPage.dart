@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:power_she_pre/constants.dart';
+import 'package:power_she_pre/screens/ChatBotSupport/mainScreen.dart';
 import 'package:table_calendar/table_calendar.dart';
 import '../../components/AppBarHome.dart';
 import '../../components/BottomBar.dart';
@@ -358,6 +359,29 @@ class _TrackerPageState extends State<TrackerPage> {
           ),
         ),
       ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            popUpDialog(context);
+          },
+          elevation: 0,
+          backgroundColor: Theme.of(context).primaryColor,
+          child: const Icon(
+            Icons.chat_bubble,
+            color: Colors.white,
+            size: 30,
+          ),
+        )
     );
+  }
+
+  popUpDialog(BuildContext context) {
+    showDialog(
+        barrierDismissible: false,
+        context: context,
+        builder: (context) {
+          return StatefulBuilder(builder: ((context, setState) {
+            return mainChatScreen();
+          }));
+        });
   }
 }

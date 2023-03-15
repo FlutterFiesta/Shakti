@@ -12,7 +12,7 @@ class BottomBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 90,
+      height: 60,
       child: Stack(
         children: [
           Align(
@@ -53,33 +53,30 @@ class BottomBar extends StatelessWidget {
                             ],
                           ),
                         ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 13.0),
-                          child: MaterialButton(
-                            minWidth: 40,
-                            onPressed: () {
-                              //   currentScreen = HomeScreen();
-                              //   currentTab = 0;
-                              // });
-                              Navigator.pushNamed(context, StoreScreen.id);
-                            },
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: const [
-                                Icon(
-                                  Icons.storefront,
+                        MaterialButton(
+                          minWidth: 40,
+                          onPressed: () {
+                            //   currentScreen = HomeScreen();
+                            //   currentTab = 0;
+                            // });
+                            Navigator.pushNamed(context, StoreScreen.id);
+                          },
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: const [
+                              Icon(
+                                Icons.storefront,
+                                color: kpink,
+                                size: 20,
+                              ),
+                              Text(
+                                'Store',
+                                style: TextStyle(
                                   color: kpink,
-                                  size: 20,
+                                  fontSize: 12,
                                 ),
-                                Text(
-                                  'Store',
-                                  style: TextStyle(
-                                    color: kpink,
-                                    fontSize: 12,
-                                  ),
-                                )
-                              ],
-                            ),
+                              )
+                            ],
                           ),
                         ),
                       ],
@@ -137,26 +134,6 @@ class BottomBar extends StatelessWidget {
                     ),
                   ],
                 ),
-              ),
-            ),
-          ),
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: Padding(
-              padding: const EdgeInsets.fromLTRB(0, 0, 0, 30),
-              child: SizedBox(
-                width: 68,
-                height: 68,
-                child: FloatingActionButton(
-                    clipBehavior: Clip.none,
-                    onPressed: () {
-                      Navigator.pushNamed(context, SafetyScreen.id);
-                    },
-                    backgroundColor: kdblue,
-                    child: CircleAvatar(
-                      radius: 35,
-                      //backgroundImage: AssetImage('images/Safety.png'),
-                    )),
               ),
             ),
           ),

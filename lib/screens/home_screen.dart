@@ -2,6 +2,7 @@ import 'package:background_sms/background_sms.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:power_she_pre/screens/ChatBotSupport/mainScreen.dart';
 import 'package:power_she_pre/screens/Safety/db_services.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:power_she_pre/components/EndDrawer.dart';
@@ -335,8 +336,8 @@ class _HomeScreenState extends State<HomeScreen> {
               child: Column(
             children: [
               ExpansionTile(
-                  title: Text("Business"),
-                  leading: Icon(Icons.business_rounded), //add icon
+                  title: Text("Business", style: TextStyle(color: kdblue)),
+                  leading: Icon(Icons.business_rounded, color: kdblue,), //add icon
                   //childrenPadding: EdgeInsets.only(left:10), //children padding
                   children: [
                     SizedBox(
@@ -421,8 +422,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ]),
               ExpansionTile(
-                  title: Text("Safety"),
-                  leading: Icon(Icons.safety_check_rounded), //add icon
+                  title: Text("Safety", style: TextStyle(color: kdblue)),
+                  leading: Icon(Icons.safety_check_rounded, color: kdblue), //add icon
                   //childrenPadding: EdgeInsets.only(left:10), //children padding
                   children: [
                     SizedBox(
@@ -504,8 +505,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ]),
               ExpansionTile(
-                  title: Text("Health"),
-                  leading: Icon(Icons.health_and_safety_rounded), //add icon
+                  title: Text("Health", style: TextStyle(color: kdblue)),
+                  leading: Icon(Icons.health_and_safety_rounded, color: kdblue), //add icon
                   //childrenPadding: EdgeInsets.only(left:10), //children padding
                   children: [
                     SizedBox(
@@ -587,8 +588,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ]),
               ExpansionTile(
-                  title: Text("Personality"),
-                  leading: Icon(Icons.person_rounded), //add icon
+                  title: Text("Personality", style: TextStyle(color: kdblue)),
+                  leading: Icon(Icons.person_rounded, color: kdblue), //add icon
                   //childrenPadding: EdgeInsets.only(left:10), //children padding
                   children: [
                     SizedBox(
@@ -673,8 +674,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ]),
               ExpansionTile(
-                  title: Text("Parenting"),
-                  leading: Icon(Icons.home), //add icon
+                  title: Text("Parenting", style: TextStyle(color: kdblue)),
+                  leading: Icon(Icons.home, color: kdblue,), //add icon
                   //childrenPadding: EdgeInsets.only(left:10), //children padding
                   children: [
                     SizedBox(
@@ -759,8 +760,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ]),
               ExpansionTile(
-                  title: Text("Financial Management"),
-                  leading: Icon(Icons.attach_money_rounded), //add icon
+                  title: Text("Financial Management", style: TextStyle(color: kdblue)),
+                  leading: Icon(Icons.attach_money_rounded, color: kdblue), //add icon
                   //childrenPadding: EdgeInsets.only(left:10), //children padding
                   children: [
                     SizedBox(
@@ -845,8 +846,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ]),
               ExpansionTile(
-                  title: Text("Women Empowerment"),
-                  leading: Icon(Icons.female_rounded), //add icon
+                  title: Text("Women Empowerment", style: TextStyle(color: kdblue)),
+                  leading: Icon(Icons.female_rounded, color: kdblue), //add icon
                   //childrenPadding: EdgeInsets.only(left:10), //children padding
                   children: [
                     SizedBox(
@@ -934,6 +935,29 @@ class _HomeScreenState extends State<HomeScreen> {
           )),
         ),
         endDrawer: EndDrawer(),
-        bottomNavigationBar: BottomBar());
+        bottomNavigationBar: BottomBar(),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            popUpDialog(context);
+          },
+          elevation: 0,
+          backgroundColor: Theme.of(context).primaryColor,
+          child: const Icon(
+            Icons.chat_bubble,
+            color: Colors.white,
+            size: 30,
+          ),
+        ));
+  }
+
+  popUpDialog(BuildContext context) {
+    showDialog(
+        barrierDismissible: false,
+        context: context,
+        builder: (context) {
+          return StatefulBuilder(builder: ((context, setState) {
+            return mainChatScreen();
+          }));
+        });
   }
 }

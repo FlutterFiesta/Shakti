@@ -4,6 +4,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:power_she_pre/constants.dart';
+import 'package:power_she_pre/screens/ChatBotSupport/mainScreen.dart';
 import '../../components/BottomBar.dart';
 import '../../components/EndDrawer.dart';
 import '../../components/AppBarHome.dart';
@@ -174,7 +175,7 @@ class _MyProductsState extends State<MyProducts> {
                                                             documents[index][
                                                                 'product_name'],
                                                             style: TextStyle(
-                                                                fontSize: 18)),
+                                                                fontSize: 16)),
                                                         Text(
                                                             "₹" +
                                                                 documents[index]
@@ -512,6 +513,29 @@ class _MyProductsState extends State<MyProducts> {
           ),
         ),
       ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            popUpDialog(context);
+          },
+          elevation: 0,
+          backgroundColor: Theme.of(context).primaryColor,
+          child: const Icon(
+            Icons.chat_bubble,
+            color: Colors.white,
+            size: 30,
+          ),
+        )
     );
+  }
+
+  popUpDialog(BuildContext context) {
+    showDialog(
+        barrierDismissible: false,
+        context: context,
+        builder: (context) {
+          return StatefulBuilder(builder: ((context, setState) {
+            return mainChatScreen();
+          }));
+        });
   }
 }

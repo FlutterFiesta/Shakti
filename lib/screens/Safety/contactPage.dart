@@ -115,13 +115,17 @@ class _ContactsPageState extends State<ContactsPage> {
           : SafeArea(
               child: Column(
                 children: [
-                  Padding(
+                  Container(
+                    margin: const EdgeInsets.only(top: 15.0, left: 5.0, right: 5.0),
                     padding: const EdgeInsets.all(8.0),
                     child: TextField(
                       autofocus: true,
                       controller: searchController,
                       decoration: InputDecoration(
-                          labelText: "search contact",
+                          labelText: "Search Contact",
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10.0),
+                          ),
                           prefixIcon: Icon(Icons.search)),
                     ),
                   ),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:power_she_pre/components/AppBarHome.dart';
 import 'package:power_she_pre/components/AppButton.dart';
 import 'package:power_she_pre/constants.dart';
+import 'package:power_she_pre/screens/ChatBotSupport/mainScreen.dart';
 import '../../components/BottomBar.dart';
 import '../../components/EndDrawer.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -394,7 +395,30 @@ class _OrderScreenState extends State<OrderScreen> {
           ),
         ),
       ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            popUpDialog(context);
+          },
+          elevation: 0,
+          backgroundColor: Theme.of(context).primaryColor,
+          child: const Icon(
+            Icons.chat_bubble,
+            color: Colors.white,
+            size: 30,
+          ),
+        )
     );
+  }
+
+  popUpDialog(BuildContext context) {
+    showDialog(
+        barrierDismissible: false,
+        context: context,
+        builder: (context) {
+          return StatefulBuilder(builder: ((context, setState) {
+            return mainChatScreen();
+          }));
+        });
   }
 
   String getText(bool o, bool c, bool d) {

@@ -5,6 +5,7 @@ import 'package:power_she_pre/constants.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
+import 'package:power_she_pre/screens/ChatBotSupport/mainScreen.dart';
 import '../../components/AlertBox.dart';
 import 'package:power_she_pre/components/AppBarHome.dart';
 import '../../components/BottomBar.dart';
@@ -200,7 +201,8 @@ class _StoreScreenState extends State<StoreScreen> {
                                                             .width,
                                                     height: 230,
                                                     decoration: BoxDecoration(
-                                                      color: Colors.grey,
+                                                      color: kbase,
+                                                      border: Border.all(width: 2, color: kdblue),
                                                       image: DecorationImage(
                                                         fit: BoxFit.contain,
                                                         image: NetworkImage(
@@ -288,7 +290,30 @@ class _StoreScreenState extends State<StoreScreen> {
           ),
         ),
       ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            popUpDialog(context);
+          },
+          elevation: 0,
+          backgroundColor: Theme.of(context).primaryColor,
+          child: const Icon(
+            Icons.chat_bubble,
+            color: Colors.white,
+            size: 30,
+          ),
+        )
     );
+  }
+
+  popUpDialog(BuildContext context) {
+    showDialog(
+        barrierDismissible: false,
+        context: context,
+        builder: (context) {
+          return StatefulBuilder(builder: ((context, setState) {
+            return mainChatScreen();
+          }));
+        });
   }
 
   // getName(String id) {

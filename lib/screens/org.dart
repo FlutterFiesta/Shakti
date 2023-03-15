@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:power_she_pre/components/EndDrawer.dart';
 import 'package:power_she_pre/components/orgCard.dart';
 import 'package:power_she_pre/constants.dart';
+import 'package:power_she_pre/screens/ChatBotSupport/mainScreen.dart';
 import '../components/AppBarHome.dart';
 import '../components/BottomBar.dart';
 
@@ -16,7 +17,7 @@ class Org extends StatelessWidget {
    "subText" : "The United Nations Entity for Gender Equality and the Empowerment of Women (UN Women) is the UN agency dedicated to gender equality."}, 
    {
     "url":"https://www.hofna.org/#:~:text=HOFNA%20is%20a%20not%2Dfor,%2D%20learn%20more%20%2D",
-   "mainText": "Hope for needy association(HOFNA)",
+   "mainText": "Hope for needy association (HOFNA)",
    "location" : "Ghana Street Nkwen, Bamenda",
    "subText" : "HOFNA is a not-for-profit organization with a mission to strengthen the leadership, power, and voices of susceptible women and girls from disadvantaged communities and develop them into self-reliant and socially conscious leaders."},
    ];
@@ -89,7 +90,30 @@ class Org extends StatelessWidget {
           ),
 
         ],),
-      )
+      ),
+          floatingActionButton: FloatingActionButton(
+            onPressed: () {
+              popUpDialog(context);
+            },
+            elevation: 0,
+            backgroundColor: Theme.of(context).primaryColor,
+            child: const Icon(
+              Icons.chat_bubble,
+              color: Colors.white,
+              size: 30,
+            ),
+          )
     ));
+  }
+
+  popUpDialog(BuildContext context) {
+    showDialog(
+        barrierDismissible: false,
+        context: context,
+        builder: (context) {
+          return StatefulBuilder(builder: ((context, setState) {
+            return mainChatScreen();
+          }));
+        });
   }
 }

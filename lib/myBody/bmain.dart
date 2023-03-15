@@ -4,6 +4,7 @@ import 'package:power_she_pre/constants.dart';
 import 'package:power_she_pre/myBody/healthIssues.dart';
 import 'package:power_she_pre/myBody/menstruation.dart';
 import 'package:power_she_pre/myBody/products.dart';
+import 'package:power_she_pre/screens/ChatBotSupport/mainScreen.dart';
 
 import '../components/AppBarHome.dart';
 import '../components/BottomBar.dart';
@@ -233,9 +234,32 @@ class _BHomeScreenState extends State<BHomeScreen> {
                 ),
               ],),
           ),
+          floatingActionButton: FloatingActionButton(
+            onPressed: () {
+              popUpDialog(context);
+            },
+            elevation: 0,
+            backgroundColor: Theme.of(context).primaryColor,
+            child: const Icon(
+              Icons.chat_bubble,
+              color: Colors.white,
+              size: 30,
+            ),
+          ),
           endDrawer: EndDrawer(),
           bottomNavigationBar: BottomBar(),
         ),
     );
+  }
+
+  popUpDialog(BuildContext context) {
+    showDialog(
+        barrierDismissible: false,
+        context: context,
+        builder: (context) {
+          return StatefulBuilder(builder: ((context, setState) {
+            return mainChatScreen();
+          }));
+        });
   }
 }
