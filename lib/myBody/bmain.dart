@@ -24,7 +24,7 @@ class _BHomeScreenState extends State<BHomeScreen> {
       child: Scaffold(
           backgroundColor: kbase,
           ////extendBodyBehindAppBar: true,
-          appBar: AppBarHome(),
+          appBar: AppBarHome(heading: 'Self Care'),
           body: Center(
             child: ListView(
               padding: const EdgeInsets.all(30),

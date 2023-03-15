@@ -14,7 +14,7 @@ class Products extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBarHome(),
+      appBar: AppBarHome(heading: 'Products'),
       endDrawer: EndDrawer(),
       bottomNavigationBar: BottomBar(),
       body: StreamBuilder(
