@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:power_she_pre/components/AppBarHome.dart';
 import 'package:power_she_pre/components/AppButton.dart';
 import 'package:power_she_pre/constants.dart';
+import '../../components/BottomBar.dart';
+import '../../components/EndDrawer.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
@@ -53,9 +55,11 @@ class _OrderScreenState extends State<OrderScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: klblue,
-      appBar: AppBarHome(),
-      bottomNavigationBar: BottomAppBar(),
+      backgroundColor: kbase,
+      appBar: AppBarHome(heading: 'My Orders'),
+      endDrawer: EndDrawer(),
+      bottomNavigationBar: BottomBar(),
+     // bottomNavigationBar: BottomAppBar(),
       body: ModalProgressHUD(
         inAsyncCall: spinner,
         progressIndicator: const CircularProgressIndicator(
@@ -395,11 +399,11 @@ class _OrderScreenState extends State<OrderScreen> {
 
   String getText(bool o, bool c, bool d) {
     if(d){
-      return 'delivered';
+      return 'Delivered';
     }else if(c){
-      return 'confirmed';
+      return 'Confirmed';
     }else{
-      return 'ordered';
+      return 'Ordered';
     }
   }
 }

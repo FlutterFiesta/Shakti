@@ -34,7 +34,7 @@ class WelcomeScreen extends StatelessWidget {
                             child: Padding(
                               padding: EdgeInsets.only(top: 250),
                               child: Text(
-                                "PowerShe",
+                                "Shakti",
                                 style: TextStyle(
                                   fontSize: 45,
                                   color: kdblue,
@@ -70,7 +70,7 @@ class WelcomeScreen extends StatelessWidget {
                               padding: EdgeInsets.fromLTRB(0, 6, 6, 6),
                               child: Center(
                                 child: Text(
-                                  "Power She",
+                                  "Shakti",
                                   style: TextStyle(
                                     color: Colors.black45,
                                     fontSize: 18,

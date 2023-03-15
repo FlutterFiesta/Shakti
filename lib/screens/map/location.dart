@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-
-import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:url_launcher/url_launcher.dart';
-
+import '../../components/AppBarHome.dart';
+import '../../components/BottomBar.dart';
+import '../../components/EndDrawer.dart';
 import 'package:power_she_pre/screens/map/BusStationCard.dart';
 import 'package:power_she_pre/screens/map/HospitalCard.dart';
 import 'package:power_she_pre/screens/map/PharmacyCard.dart';
@@ -23,6 +23,9 @@ class _LocationState extends State<Location> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBarHome(heading: 'Location'),
+      endDrawer: EndDrawer(),
+      bottomNavigationBar: BottomBar(),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(8.0),

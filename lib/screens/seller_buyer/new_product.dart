@@ -4,10 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:power_she_pre/components/AppBarHome.dart';
 import 'package:power_she_pre/constants.dart';
+import '../../components/BottomBar.dart';
+import '../../components/EndDrawer.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:power_she_pre/storage.dart';
+
 class NewProduct extends StatefulWidget {
   static const String id = "new_product";
   const NewProduct({Key? key}) : super(key: key);
@@ -21,14 +24,14 @@ class _NewProductState extends State<NewProduct> {
   final _auth = FirebaseAuth.instance;
   final _firestore = FirebaseFirestore.instance;
   late User loggedInUser;
-  String userId='';
-  String userName='';
+  String userId = '';
+  String userName = '';
   bool spinner = false;
-  int currVal=0;
-  String Bio='';
-  String p_name='';
-  String p_id='';
-  String price='';
+  int currVal = 0;
+  String Bio = '';
+  String p_name = '';
+  String p_id = '';
+  String price = '';
   var imagePath;
   var imageName;
   String imageUrl = "";
@@ -49,6 +52,7 @@ class _NewProductState extends State<NewProduct> {
       getDoc();
     }
   }
+
   void getDoc() async {
     print(userId);
     final docref = await _firestore.collection("users").doc(userId).get();
@@ -57,10 +61,13 @@ class _NewProductState extends State<NewProduct> {
       print(userName);
     });
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBarHome(),
+      appBar: AppBarHome(heading: 'New Product'),
+      endDrawer: EndDrawer(),
+      bottomNavigationBar: BottomBar(),
       body: SafeArea(
         child: ModalProgressHUD(
           inAsyncCall: spinner,
@@ -79,11 +86,11 @@ class _NewProductState extends State<NewProduct> {
                       //Do something with the user input.
                       // email = value;
                       setState(() {
-                        p_name=value;
+                        p_name = value;
                       });
                     },
                     decoration: kProductFieldDecoration.copyWith(
-                        hintText: 'e.g. Jewellery',labelText: 'Product Name'),
+                        hintText: 'e.g. Jewellery', labelText: 'Product Name'),
                   ),
                 ),
                 Padding(
@@ -95,14 +102,15 @@ class _NewProductState extends State<NewProduct> {
                       //Do something with the user input.
                       // email = value;
                       setState(() {
-                        Bio=value;
+                        Bio = value;
                       });
                     },
                     style: TextStyle(fontSize: 15),
                     maxLines: 5,
                     minLines: 3,
                     decoration: kProductFieldDecoration.copyWith(
-                        hintText: 'Describe your Product here',labelText: 'About the Product'),
+                        hintText: 'Describe your Product here',
+                        labelText: 'About the Product'),
                   ),
                 ),
                 Padding(
@@ -114,88 +122,77 @@ class _NewProductState extends State<NewProduct> {
                       //Do something with the user input.
                       // email = value;
                       setState(() {
-                        price=value;
+                        price = value;
                       });
                     },
                     decoration: kProductFieldDecoration.copyWith(
-                        hintText: 'e.g. 499',labelText: 'Price (in INR)'),
+                        hintText: 'e.g. 499', labelText: 'Price (in INR)'),
                   ),
                 ),
                 TextButton(
-
-                    onPressed: ()async{
-
-                  setState(() {
-                    spinner=true;
-                  });
-                  _getFromGallery();
-
-                setState(() {
-                  spinner=false;
-                });
-                }, child:Text('Upload Image')),
-
-                TextButton(
-                  style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all<Color>(kpink)
-                  ),
                     onPressed: () async {
-                  setState(
-                          () {
-                        spinner =
-                        true;
+                      setState(() {
+                        spinner = true;
                       });
-                  print(imagePath+" "+imageName);
-                  await storage.uploadFile(
-                      imagePath, imageName);
-                  downurl =
-                  await storage.downloadUrl(imageName);
-                  setState(() {
-                    imageUrl=downurl;
-                  });
-                  await _firestore.collection('store').add({
-                    'Bio':Bio,
-                    'buy_id':"",
-                    'buyer_name':"",
-                    'confirm':false,
-                    'delivered':false,
-                    'image':imageUrl,
-                    'order_now':false,
-                    'price':price,
-                    'product_id':p_id,
-                    'product_name':p_name,
-                    'sell_id':userId,
-                    'seller_name':userName
+                      _getFromGallery();
 
-                  }).then((value) async {
-                    setState(
-                            () {
-                          spinner =
-                          true;
+                      setState(() {
+                        spinner = false;
+                      });
+                    },
+                    child: Text(
+                      'Upload Image',
+                      style: TextStyle(color: kdblue),
+                    )),
+                TextButton(
+                    style: ButtonStyle(
+                        backgroundColor:
+                            MaterialStateProperty.all<Color>(kpink)),
+                    onPressed: () async {
+                      setState(() {
+                        spinner = true;
+                      });
+                      print(imagePath + " " + imageName);
+                      await storage.uploadFile(imagePath, imageName);
+                      downurl = await storage.downloadUrl(imageName);
+                      setState(() {
+                        imageUrl = downurl;
+                      });
+                      await _firestore.collection('store').add({
+                        'Bio': Bio,
+                        'buy_id': "",
+                        'buyer_name': "",
+                        'confirm': false,
+                        'delivered': false,
+                        'image': imageUrl,
+                        'order_now': false,
+                        'price': price,
+                        'product_id': p_id,
+                        'product_name': p_name,
+                        'sell_id': userId,
+                        'seller_name': userName
+                      }).then((value) async {
+                        setState(() {
+                          spinner = true;
                         });
-                    await _firestore
-                        .collection(
-                        'store')
-                        .doc(value
-                            .id)
-                        .update(
-                        {
+                        await _firestore
+                            .collection('store')
+                            .doc(value.id)
+                            .update({
                           'product_id': value.id,
                         });
-                    setState(
-                            () {
-                          spinner =
-                          false;
+                        setState(() {
+                          spinner = false;
                         });
-
-
-                  }).catchError((error) {});
-                  setState(
-                          () {
-                        spinner =
-                        false;
+                      }).catchError((error) {});
+                      setState(() {
+                        spinner = false;
                       });
-                }, child: Text('Save',style: TextStyle(color:Colors.white),)),
+                    },
+                    child: Text(
+                      'Save',
+                      style: TextStyle(color: Colors.white),
+                    )),
               ],
             ),
           ),
@@ -203,6 +200,7 @@ class _NewProductState extends State<NewProduct> {
       ),
     );
   }
+
   _getFromGallery() async {
     final results = await FilePicker.platform.pickFiles(
       allowMultiple: false,
@@ -221,4 +219,3 @@ class _NewProductState extends State<NewProduct> {
     }
   }
 }
-

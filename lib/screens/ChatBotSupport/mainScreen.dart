@@ -1,6 +1,9 @@
 import 'package:dialog_flowtter/dialog_flowtter.dart';
 import 'package:flutter/material.dart';
 import 'package:power_she_pre/constants.dart';
+import '../../components/AppBarHome.dart';
+import '../../components/BottomBar.dart';
+import '../../components/EndDrawer.dart';
 import 'package:power_she_pre/screens/ChatBotSupport/messageScreen.dart';
 
 class mainChatScreen extends StatefulWidget {
@@ -26,27 +29,8 @@ class _mainChatScreenState extends State<mainChatScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: kpink,
-        title: Padding(
-          padding: const EdgeInsets.only(right: 40),
-          child: Center(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Image.asset(
-                  'images/logo.png',
-                  fit: BoxFit.contain,
-                  height: 32,
-                ),
-                Container(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text('ChatBot Support'))
-              ],
-            ),
-          ),
-        ),
-      ),
+      appBar: AppBarHome(heading: 'Chat Support'),
+      endDrawer: EndDrawer(),
       body: Container(
         child: Column(
           children: [

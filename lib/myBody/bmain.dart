@@ -20,7 +20,7 @@ class _BHomeScreenState extends State<BHomeScreen> {
     return Scaffold(
         backgroundColor: kbase,
         ////extendBodyBehindAppBar: true,
-        appBar: AppBarHome(),
+        appBar: AppBarHome(heading: 'Shakti',),
         body: Container(),
         endDrawer: EndDrawer(),
         bottomNavigationBar: BottomBar());

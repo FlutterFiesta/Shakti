@@ -23,7 +23,7 @@ class EndDrawer extends StatelessWidget {
         selectedItemDecoration: BoxDecoration(color: kpink),
         // padding: EdgeInsets.all(20),
         width: 200,
-        decoration: BoxDecoration(color: klblue),
+        decoration: BoxDecoration(color: kbase),
         textStyle: TextStyle(
           fontSize: 20,
           color: kdblue,
@@ -58,7 +58,7 @@ class EndDrawer extends StatelessWidget {
             }),
         SidebarXItem(
             icon: Icons.call_end,
-            label: 'safteyCall',
+            label: 'Safety Call',
             onTap: () {
               Navigator.pushNamed(context, AddContactsPage.id);
             }),

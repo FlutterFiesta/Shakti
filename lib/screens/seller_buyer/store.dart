@@ -53,8 +53,8 @@ class _StoreScreenState extends State<StoreScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: klblue,
-      appBar: AppBarHome(),
+      backgroundColor: kbase,
+      appBar: AppBarHome(heading: 'Store'),
       endDrawer:EndDrawer(),
       bottomNavigationBar: BottomBar(),
       body: ModalProgressHUD(
@@ -256,7 +256,7 @@ class _StoreScreenState extends State<StoreScreen> {
                                                         style: TextStyle(
                                                             color: kbase),
                                                       ),
-                                                      color:documents[index]['order_now']? Colors.grey:Colors.green,
+                                                      color:documents[index]['order_now']? Colors.grey: kdblue,
                                                     )
                                                   ],
                                                 ),
