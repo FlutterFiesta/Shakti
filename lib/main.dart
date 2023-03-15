@@ -5,6 +5,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/services.dart';
 import 'package:power_she_pre/constants.dart';
 import 'package:power_she_pre/screens/ChatBotSupport/mainScreen.dart';
+import 'package:power_she_pre/screens/Tracker/TrackerInfo.dart';
 import 'package:power_she_pre/screens/gender_auth/selfie_upload.dart';
 import 'package:power_she_pre/screens/group_chat/chat_page.dart';
 import 'package:power_she_pre/screens/group_chat/groupsHomeScreen.dart';
@@ -74,7 +75,8 @@ class MyApp extends StatelessWidget {
         mainChatScreen.id: (context) => const mainChatScreen(),
         groupsHome.id: (context) => const groupsHome(),
         SearchPage.id: (context) => const SearchPage(),
-        TrackerPage.id:(context)=>const TrackerPage()
+        TrackerPage.id:(context)=>const TrackerPage(),
+        TrackerInfo.id:(context)=>const TrackerInfo()
       },
     );
   }

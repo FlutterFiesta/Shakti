@@ -6,6 +6,7 @@ import '../../components/AppBarHome.dart';
 import '../../components/BottomBar.dart';
 import '../../components/EndDrawer.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
+import 'TrackerInfo.dart';
 
 class TrackerPage extends StatefulWidget {
   static const String id="tracker_screen";
@@ -20,7 +21,7 @@ class _TrackerPageState extends State<TrackerPage> {
   DateTime _focusedDay = DateTime.utc(2023, 02, 10);
   DateTime _selectedDay=DateTime.now();
   int periodLength= 28;
-  int menstrualLength=5;
+  int menstrualLength=3;
   var lastMenstruation= [DateTime.now()];
   int color=-1;
   final _auth = FirebaseAuth.instance;
@@ -51,8 +52,28 @@ class _TrackerPageState extends State<TrackerPage> {
   void getDoc() async {
     final docref = await _firestore.collection("users").doc(userId).get();
     setState(() {
-      if(!docref.data()!.containsKey('periodLength')){
-        print("Hello");
+      if(!docref.data()!.containsKey('periodLength') && !docref.data()!.containsKey('menstrualLength') && !docref.data()!.containsKey('lastMenstruation')){
+        _firestore
+            .collection(
+            'users')
+            .doc(
+            userId)
+            .update({
+          'periodLength': periodLength,
+          'menstrualLength':menstrualLength,
+          'lastMenstruation':lastMenstruation
+        });
+      }else{
+
+        periodLength=docref['periodLength'];
+        menstrualLength=docref['menstrualLength'];
+        var newList=docref['lastMenstruation'];
+        lastMenstruation=[];
+        for(var i=0;i<newList.length;i++){
+          var date = newList[i].toDate();
+          lastMenstruation.add(date);
+        }
+
       }
       userName = docref['fullName'];
       spinner=false;
@@ -228,8 +249,13 @@ class _TrackerPageState extends State<TrackerPage> {
     ),
     child: Padding(
     padding: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 8),
-    child: Text("${menstrualLength} days",style: TextStyle(fontSize: 20,
-    fontFamily: 'FredokaOne',color: Color.fromARGB(255, 255, 255, 255), ),),
+    child: GestureDetector(
+      onTap: (){
+        Navigator.pushNamed(context, TrackerInfo.id);
+      },
+      child: Text("${menstrualLength} days",style: TextStyle(fontSize: 20,
+      fontFamily: 'FredokaOne',color: Color.fromARGB(255, 255, 255, 255), ),),
+    ),
     ),
     )),
     ],
@@ -257,19 +283,20 @@ class _TrackerPageState extends State<TrackerPage> {
     ),
     child: Padding(
     padding: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 8),
-    child: Text("${periodLength} days",style: TextStyle(fontSize: 20, color: Color.fromARGB(255, 255, 255, 255), ),),
-    ),
-    )),
+    child: GestureDetector(onTap:(){Navigator.pushNamed(context, TrackerInfo.id);},
+      child: Text("${periodLength} days",style: TextStyle(fontSize: 20, color: Color.fromARGB(255, 255, 255, 255), ),)),
+      ),
+      )),
 
-    ],
-    ),
-    ),
-    Padding(
-    padding: EdgeInsets.only(left: 15.0, right: 15.0, top: 8.0, bottom: 8.0),
-    child: Row(
-    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-    children: [
-    Text("Last Menstruation :",style: TextStyle(fontSize: 20),),
+      ],
+      ),
+      ),
+      Padding(
+      padding: EdgeInsets.only(left: 15.0, right: 15.0, top: 8.0, bottom: 8.0),
+      child: Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+      Text("Last Menstruation :",style: TextStyle(fontSize: 20),),
     Spacer(flex:3,),
     Card(child: Container(
     decoration:BoxDecoration(
@@ -284,8 +311,13 @@ class _TrackerPageState extends State<TrackerPage> {
     ),
     child: Padding(
     padding: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 8),
-    child: Text(lastMenstruation.length==0?" ":'${lastMenstruation[lastMenstruation.length-1].day.toString()}/${lastMenstruation[lastMenstruation.length-1].month.toString()}/${lastMenstruation[lastMenstruation.length-1].year.toString()}',
-    style: TextStyle(fontSize: 20, color: Color.fromARGB(255, 255, 255, 255), ),),
+    child: GestureDetector(
+      onTap: (){
+        Navigator.pushNamed(context, TrackerInfo.id);
+      },
+      child: Text(lastMenstruation.length==0?" ":'${lastMenstruation[lastMenstruation.length-1].day.toString()}/${lastMenstruation[lastMenstruation.length-1].month.toString()}/${lastMenstruation[lastMenstruation.length-1].year.toString()}',
+      style: TextStyle(fontSize: 20, color: Color.fromARGB(255, 255, 255, 255), ),),
+    ),
     ),
     )),
     ],
