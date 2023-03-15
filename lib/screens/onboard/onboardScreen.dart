@@ -49,7 +49,7 @@ class _OnboardScreenState extends State<OnboardScreen> {
                 Navigator.pushNamed(context, WelcomeScreen.id);
               },
               child: Text(
-                "skip",
+                "Skip",
                 style: TextStyle(
                   color: currentIndex == 5 ? kbase : kpink,
                   fontWeight: FontWeight.bold,

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-const Color kpink = Color(0xFFEB455F);
-const Color kbase=Color(0xFFFCFFE7);
-const Color klblue=Color(0xFFBAD7E9);
-const Color kdblue=Color(0xFF2B3467);
+const Color kpink = Color(0xFFFF5C8D);
+const Color kbase = Color(0xFFfdfdfc);
+const Color klblue=Color(0xFFFFD3B6);
+const Color kdblue=Color(0xFF191825);
 
 const kTextFieldDecoration = InputDecoration(
   hintText: 'Enter value',

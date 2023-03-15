@@ -4,7 +4,8 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:power_she_pre/constants.dart';
-
+import '../../components/BottomBar.dart';
+import '../../components/EndDrawer.dart';
 import '../../components/AppBarHome.dart';
 import 'new_product.dart';
 
@@ -20,10 +21,10 @@ class _MyProductsState extends State<MyProducts> {
   final _auth = FirebaseAuth.instance;
   final _firestore = FirebaseFirestore.instance;
   late User loggedInUser;
-  String userId='';
-  String userName='';
+  String userId = '';
+  String userName = '';
   bool spinner = false;
-  int currVal=0;
+  int currVal = 0;
 
   @override
   void initState() {
@@ -43,9 +44,10 @@ class _MyProductsState extends State<MyProducts> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: klblue,
-      appBar: AppBarHome(),
-      bottomNavigationBar: BottomAppBar(),
+      backgroundColor: kbase,
+      appBar: AppBarHome(heading: 'My Products'),
+      endDrawer: EndDrawer(),
+      bottomNavigationBar: BottomBar(),
       body: ModalProgressHUD(
         inAsyncCall: spinner,
         progressIndicator: const CircularProgressIndicator(
@@ -55,38 +57,43 @@ class _MyProductsState extends State<MyProducts> {
           child: SafeArea(
             child: Column(
               children: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: MaterialButton(
-                onPressed: (){
-                  Navigator.pushNamed(context, NewProduct.id);
-                },
-                child: Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Icon(Icons.add_box_outlined,size: 18,color: Colors.white,),
-                      SizedBox(width: 7,),
-                      Text(
-                        'Add New Product',
-                        style: TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.white
-                        ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: MaterialButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, NewProduct.id);
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Icon(
+                            Icons.add_box_outlined,
+                            size: 18,
+                            color: Colors.white,
+                          ),
+                          SizedBox(
+                            width: 7,
+                          ),
+                          Text(
+                            'Add New Product',
+                            style: TextStyle(
+                                fontSize: 15,
+                                fontWeight: FontWeight.w600,
+                                color: Colors.white),
+                          ),
+                        ],
                       ),
-                    ],
+                    ),
+                    color: kdblue,
+                    minWidth: 150,
+                    elevation: 5.0,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
                   ),
                 ),
-                color: kdblue,
-                minWidth: 150,
-                elevation: 5.0,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
-                ),
-            ),
-              ),
                 FutureBuilder(
                   future: Future.value(_auth.currentUser!.uid),
                   builder: (context, futureSnapshot) {
@@ -104,7 +111,7 @@ class _MyProductsState extends State<MyProducts> {
                     // print(futureSnapshot.data);
                     return StreamBuilder<QuerySnapshot>(
 
-                      // <2> Pass `Stream<QuerySnapshot>` to stream
+                        // <2> Pass `Stream<QuerySnapshot>` to stream
                         stream: _firestore
                             .collection('store')
                             .where('sell_id', isEqualTo: futureSnapshot.data)
@@ -118,7 +125,7 @@ class _MyProductsState extends State<MyProducts> {
 
                             return SingleChildScrollView(
                               child: ListView.builder(
-                                // physics: NeverScrollableScrollPhysics(),
+                                  // physics: NeverScrollableScrollPhysics(),
                                   shrinkWrap: true,
                                   physics: NeverScrollableScrollPhysics(),
                                   itemCount: documents.length,
@@ -127,8 +134,8 @@ class _MyProductsState extends State<MyProducts> {
                                     return SizedBox(
                                       width: double.infinity,
                                       height:
-                                      MediaQuery.of(context).size.height *
-                                          0.3,
+                                          MediaQuery.of(context).size.height *
+                                              0.3,
                                       child: Card(
                                         elevation: 10,
                                         shadowColor: Colors.black,
@@ -136,32 +143,48 @@ class _MyProductsState extends State<MyProducts> {
                                         child: SizedBox(
                                           width: double.infinity,
                                           height: MediaQuery.of(context)
-                                              .size
-                                              .height *
+                                                  .size
+                                                  .height *
                                               0.3,
                                           child: Padding(
                                             padding: const EdgeInsets.all(20.0),
                                             child: Row(
                                               children: [
-                                                Container(height: 200,width: 130,
+                                                Container(
+                                                  height: 200,
+                                                  width: 130,
                                                   decoration: BoxDecoration(
-                                                      image:DecorationImage(image:NetworkImage(documents[index]['image']),fit: BoxFit.fill)
-                                                  ),
+                                                      image: DecorationImage(
+                                                          image: NetworkImage(
+                                                              documents[index]
+                                                                  ['image']),
+                                                          fit: BoxFit.fill)),
                                                 ),
                                                 SizedBox(
                                                   width: 10,
                                                 ),
                                                 Column(
-
                                                   children: [
                                                     Column(
-                                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .start,
                                                       children: [
-                                                        Text(documents[index]['product_name'],style:TextStyle(fontSize: 18)),
                                                         Text(
-                                                            "₹"+documents[index]['price'].toString(),
-                                                            style:TextStyle(fontStyle: FontStyle.italic)
-                                                        ),
+                                                            documents[index][
+                                                                'product_name'],
+                                                            style: TextStyle(
+                                                                fontSize: 18)),
+                                                        Text(
+                                                            "₹" +
+                                                                documents[index]
+                                                                        [
+                                                                        'price']
+                                                                    .toString(),
+                                                            style: TextStyle(
+                                                                fontStyle:
+                                                                    FontStyle
+                                                                        .italic)),
                                                         Column(
                                                           children: [
                                                             // TextButton(
@@ -178,230 +201,279 @@ class _MyProductsState extends State<MyProducts> {
                                                             SizedBox(
                                                               height: 30,
                                                             ),
-                                                            documents[index]['order_now']==false?
-                                                                TextButton(
-                                                                  style: ButtonStyle(
-                                                                    backgroundColor: MaterialStateProperty.all<Color>(kpink),
-                                                                    shape: MaterialStateProperty.all(
-                                                                      RoundedRectangleBorder(
-                                                                        borderRadius: BorderRadius.circular(30.0),
-                                                                        side: BorderSide(width: 2,),
-
+                                                            documents[index]
+                                                                        [
+                                                                        'order_now'] ==
+                                                                    false
+                                                                ? TextButton(
+                                                                    style:
+                                                                        ButtonStyle(
+                                                                      backgroundColor:
+                                                                          MaterialStateProperty.all<Color>(
+                                                                              kpink),
+                                                                      shape: MaterialStateProperty
+                                                                          .all(
+                                                                        RoundedRectangleBorder(
+                                                                          borderRadius:
+                                                                              BorderRadius.circular(30.0),
+                                                                          side:
+                                                                              BorderSide(
+                                                                            width:
+                                                                                2,
+                                                                          ),
+                                                                        ),
                                                                       ),
                                                                     ),
-                                                                  ),
-                                                                  onPressed: (){},
-                                                                  child:Container(
-                                                                    // color:Colors.grey,
-                                                                    padding:const EdgeInsets.symmetric(vertical: 2, horizontal: 10) ,
-                                                                    child: Text(
-                                                                      'In store',
-                                                                      style:TextStyle(color: Colors.white,fontSize: 13.0),
+                                                                    onPressed:
+                                                                        () {},
+                                                                    child:
+                                                                        Container(
+                                                                      // color:Colors.grey,
+                                                                      padding: const EdgeInsets
+                                                                              .symmetric(
+                                                                          vertical:
+                                                                              2,
+                                                                          horizontal:
+                                                                              10),
+                                                                      child:
+                                                                          Text(
+                                                                        'In store',
+                                                                        style: TextStyle(
+                                                                            color:
+                                                                                Colors.white,
+                                                                            fontSize: 13.0),
+                                                                      ),
+                                                                    ))
+                                                                : (documents[index]
+                                                                            [
+                                                                            'confirm'] &&
+                                                                        !documents[index]
+                                                                            [
+                                                                            'delivered'])
+                                                                    ? OutlinedButton(
+                                                                        onPressed:
+                                                                            () async {
+                                                                          setState(
+                                                                              () {
+                                                                            spinner =
+                                                                                true;
+                                                                          });
+                                                                          await _firestore
+                                                                              .collection('store')
+                                                                              .doc(documents[index].id)
+                                                                              .update({
+                                                                            'delivered':
+                                                                                true,
+                                                                          });
+                                                                          setState(
+                                                                              () {
+                                                                            spinner =
+                                                                                false;
+                                                                          });
+                                                                        },
+                                                                        child: Text(
+                                                                            'Confirm Delivery',
+                                                                            style:
+                                                                                TextStyle(color: Colors.red)))
+                                                                    : (documents[index]['delivered'])
+                                                                        ? OutlinedButton(
+                                                                            onPressed:
+                                                                                () {},
+                                                                            child:
+                                                                                Text('Delivered', style: TextStyle(color: Colors.white)),
+                                                                            style:
+                                                                                ButtonStyle(backgroundColor: MaterialStateProperty.all<Color>(Colors.green)),
+                                                                          )
+                                                                        : OutlinedButton(
+                                                                            onPressed:
+                                                                                () async {
+                                                                              setState(() {
+                                                                                spinner = true;
+                                                                              });
+                                                                              await _firestore.collection('store').doc(documents[index].id).update({
+                                                                                'confirm': true,
+                                                                              });
+                                                                              setState(() {
+                                                                                spinner = false;
+                                                                              });
+                                                                            },
+                                                                            child:
+                                                                                Text('Confirm  Order', style: TextStyle(color: Colors.orange)),
+                                                                          ),
+                                                            (documents[index][
+                                                                    'order_now'])
+                                                                ? TextButton(
+                                                                    onPressed:
+                                                                        () async {
+                                                                      final docref = await _firestore
+                                                                          .collection(
+                                                                              "details")
+                                                                          .doc(documents[index]
+                                                                              [
+                                                                              'buy_id'])
+                                                                          .get();
+                                                                      String
+                                                                          email =
+                                                                          docref[
+                                                                              'Email'];
+                                                                      String
+                                                                          phone =
+                                                                          docref[
+                                                                              'Phone'];
+                                                                      print(email +
+                                                                          " " +
+                                                                          phone);
+
+                                                                      showDialog<
+                                                                          void>(
+                                                                        context:
+                                                                            context,
+                                                                        barrierDismissible:
+                                                                            false,
+                                                                        builder:
+                                                                            (BuildContext
+                                                                                context) {
+                                                                          return AlertDialog(
+                                                                            title:
+                                                                                Text("Details of the buyer"),
+                                                                            content:
+                                                                                SingleChildScrollView(
+                                                                              child: ListBody(
+                                                                                children: <Widget>[
+                                                                                  Text('Email: \n' + email + '\n\n' + "Phone: \n" + phone),
+                                                                                ],
+                                                                              ),
+                                                                            ),
+                                                                            actions: <Widget>[
+                                                                              TextButton(
+                                                                                child: const Text(
+                                                                                  'Ok',
+                                                                                  style: TextStyle(
+                                                                                    fontSize: 18,
+                                                                                    color: kpink,
+                                                                                  ),
+                                                                                ),
+                                                                                onPressed: () {
+                                                                                  Navigator.of(context).pop();
+                                                                                },
+                                                                              ),
+                                                                            ],
+                                                                          );
+                                                                        },
+                                                                      );
+                                                                      // setState(() {
+                                                                      //   spinner = false;//
+                                                                      // });
+                                                                    },
+                                                                    child:
+                                                                        Container(
+                                                                      color:
+                                                                          kdblue,
+                                                                      padding: const EdgeInsets
+                                                                              .symmetric(
+                                                                          vertical:
+                                                                              5,
+                                                                          horizontal:
+                                                                              10),
+                                                                      child:
+                                                                          const Text(
+                                                                        'Contact',
+                                                                        style: TextStyle(
+                                                                            color:
+                                                                                Colors.white,
+                                                                            fontSize: 13.0),
+                                                                      ),
                                                                     ),
                                                                   )
-                                                                ):(documents[index]['confirm'] && !documents[index]['delivered'])?
-                                                                OutlinedButton(onPressed:() async {
-                                                                  setState(
-                                                                          () {
-                                                                        spinner =
-                                                                        true;
-                                                                      });
-                                                                  await _firestore
-                                                                      .collection(
-                                                                      'store')
-                                                                      .doc(
-                                                                      documents[index]
-                                                                          .id)
-                                                                      .update(
-                                                                      {
-                                                                        'delivered': true,
-                                                                      });
-                                                                  setState(
-                                                                          () {
-                                                                        spinner =
-                                                                        false;
-                                                                      });
-                                                                } , child: Text(
-                                                                  'Confirm Delivery',style: TextStyle(color: Colors.red
-                                                                ))):(documents[index]['delivered'])?
-                                                            OutlinedButton(onPressed:(){} , child: Text(
-                                                                'Delivered',style: TextStyle(color: Colors.white )),style: ButtonStyle(backgroundColor:MaterialStateProperty.all<Color>(Colors.green) ),):
-                                                            OutlinedButton(onPressed:() async {
-                                                              setState(
-                                                                      () {
-                                                                    spinner =
-                                                                    true;
-                                                                  });
-                                                              await _firestore
-                                                                  .collection(
-                                                                  'store')
-                                                                  .doc(
-                                                                  documents[index]
-                                                                      .id)
-                                                                  .update(
-                                                                  {
-                                                                    'confirm': true,
-                                                                  });
-                                                              setState(
-                                                                      () {
-                                                                    spinner =
-                                                                    false;
-                                                                  });
-                                                            } , child: Text(
-                                                              'Confirm  Order' ,style: TextStyle(color: Colors.orange)),)
-                                                            ,
-                                                            (documents[index]['order_now'])?TextButton(
-                                                              onPressed: () async{
-
-
-                                                                final docref = await _firestore.collection("details").doc(documents[index]['buy_id']).get();
-                                                                String email=docref['Email'];
-                                                                String phone=docref['Phone'];
-                                                                print(email+" "+phone);
-
-                                                                showDialog<void>(
-                                                                  context: context,
-                                                                  barrierDismissible:
-                                                                  false,
-                                                                  builder: (BuildContext
-                                                                  context) {
-                                                                    return AlertDialog(
-                                                                      title: Text(
-                                                                          "Details of the buyer"),
-                                                                      content:
-                                                                      SingleChildScrollView(
-                                                                        child: ListBody(
-                                                                          children: <
-                                                                              Widget>[
-                                                                            Text(
-                                                                                'Email: \n'+email+'\n\n'+"Phone: \n"+phone),
-                                                                          ],
-                                                                        ),
-                                                                      ),
-                                                                      actions: <Widget>[
-                                                                        TextButton(
-                                                                          child:
-                                                                          const Text(
-                                                                            'Ok',
-                                                                            style:
-                                                                            TextStyle(
-                                                                              fontSize:
-                                                                              18,
-                                                                              color:
-                                                                              kpink,
-                                                                            ),
-                                                                          ),
-                                                                          onPressed:
-                                                                              ()  {
-                                                                            Navigator.of(
-                                                                                context)
-                                                                                .pop();
-
-                                                                          },
-                                                                        ),
-                                                                      ],
-                                                                    );
-                                                                  },
-                                                                );
-                                                                // setState(() {
-                                                                //   spinner = false;//
-                                                                // });
-                                                              },
-                                                              child: Container(
-                                                                color: kdblue,
-                                                                padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-                                                                child: const Text(
-                                                                  'Contact',
-                                                                  style: TextStyle(color: Colors.white, fontSize: 13.0),
-                                                                ),
-                                                              ),
-                                                            ):TextButton(onPressed: (){}, child: Container())
+                                                                : TextButton(
+                                                                    onPressed:
+                                                                        () {},
+                                                                    child:
+                                                                        Container())
                                                           ],
                                                         )
-
-                                                      ],)
+                                                      ],
+                                                    )
                                                   ],
                                                 ),
                                                 Expanded(
                                                   flex: 2,
                                                   child: Column(
-                                                    crossAxisAlignment: CrossAxisAlignment.end,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment.end,
                                                     // mainAxisAlignment: MainAxisAlignment.end,
                                                     children: [
                                                       InkWell(
                                                         onTap: () {
-                                                            showDialog<void>(
-                                                              context: context,
-                                                              barrierDismissible:
-                                                              false,
-                                                              // user must tap button!
-                                                              builder: (
-                                                                  BuildContext
-                                                                  context) {
-                                                                return AlertDialog(
-                                                                  title: Text(
-                                                                      'Are you sure you want to delete this product?'),
-                                                                  content:
-                                                                  SingleChildScrollView(
-                                                                    child: ListBody(
-                                                                      children: const <
-                                                                          Widget>[
-                                                                        Text(
-                                                                            ''),
-                                                                      ],
-                                                                    ),
+                                                          showDialog<void>(
+                                                            context: context,
+                                                            barrierDismissible:
+                                                                false,
+                                                            // user must tap button!
+                                                            builder:
+                                                                (BuildContext
+                                                                    context) {
+                                                              return AlertDialog(
+                                                                title: Text(
+                                                                    'Are you sure you want to delete this product?'),
+                                                                content:
+                                                                    SingleChildScrollView(
+                                                                  child:
+                                                                      ListBody(
+                                                                    children: const <
+                                                                        Widget>[
+                                                                      Text(''),
+                                                                    ],
                                                                   ),
-                                                                  actions: <
-                                                                      Widget>[
-                                                                    TextButton(
-                                                                      child:
-                                                                      const Text(
-                                                                        'Yes',
-                                                                        style:
-                                                                        TextStyle(
-                                                                          fontSize:
-                                                                          18,
-                                                                          color:
-                                                                          kpink,
-                                                                        ),
+                                                                ),
+                                                                actions: <
+                                                                    Widget>[
+                                                                  TextButton(
+                                                                    child:
+                                                                        const Text(
+                                                                      'Yes',
+                                                                      style:
+                                                                          TextStyle(
+                                                                        fontSize:
+                                                                            18,
+                                                                        color:
+                                                                            kpink,
                                                                       ),
-                                                                      onPressed:
-                                                                          () async {
-                                                                        Navigator
-                                                                            .of(
-                                                                            context)
-                                                                            .pop();
-                                                                        setState(
-                                                                                () {
-                                                                              spinner =
-                                                                              true;
-                                                                            });
-                                                                        await _firestore.runTransaction(
-                                                                                (Transaction
-                                                                            myTransaction) async {
-                                                                              await myTransaction
-                                                                                  .delete(
-                                                                                  documents[index].reference);
-                                                                            });
-                                                                        FirebaseStorage
-                                                                            .instance
-                                                                            .refFromURL(documents[index]
-                                                                        [
-                                                                        'image'])
-                                                                            .delete();
-                                                                        setState(
-                                                                                () {
-                                                                              spinner =
-                                                                              false;
-                                                                            });
-                                                                      },
                                                                     ),
-                                                                  ],
-                                                                );
-                                                                ;
-                                                              },
-                                                            );
-
+                                                                    onPressed:
+                                                                        () async {
+                                                                      Navigator.of(
+                                                                              context)
+                                                                          .pop();
+                                                                      setState(
+                                                                          () {
+                                                                        spinner =
+                                                                            true;
+                                                                      });
+                                                                      await _firestore.runTransaction(
+                                                                          (Transaction
+                                                                              myTransaction) async {
+                                                                        await myTransaction
+                                                                            .delete(documents[index].reference);
+                                                                      });
+                                                                      FirebaseStorage
+                                                                          .instance
+                                                                          .refFromURL(documents[index]
+                                                                              [
+                                                                              'image'])
+                                                                          .delete();
+                                                                      setState(
+                                                                          () {
+                                                                        spinner =
+                                                                            false;
+                                                                      });
+                                                                    },
+                                                                  ),
+                                                                ],
+                                                              );
+                                                              ;
+                                                            },
+                                                          );
                                                         },
                                                         child: Icon(
                                                           Icons.delete,

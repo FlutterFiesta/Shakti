@@ -103,7 +103,7 @@ Future<void> _launchUrl() async {
               ),
               MaterialButton(
                 onPressed: _launchUrl,
-                color: Colors.blue[900],
+                color: kdblue,
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Text(

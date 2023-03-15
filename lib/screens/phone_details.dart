@@ -61,7 +61,7 @@ class _PhoneDetailsState extends State<PhoneDetails> {
                   height: 32,
                 ),
                 Container(
-                    padding: const EdgeInsets.all(8.0), child: Text('PowerShe'))
+                    padding: const EdgeInsets.all(8.0), child: Text('Shakti'))
               ],
             ),
           ),

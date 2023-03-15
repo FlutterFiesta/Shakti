@@ -19,7 +19,7 @@ class BottomBar extends StatelessWidget {
             alignment: Alignment.bottomCenter,
             child: BottomAppBar(
               clipBehavior: Clip.none,
-              color: kpink,
+              color: kbase,
               shape: CircularNotchedRectangle(),
               notchMargin: 10,
               child: Container(
@@ -40,13 +40,13 @@ class BottomBar extends StatelessWidget {
                             children: const [
                               Icon(
                                 Icons.videocam,
-                                color: Colors.white,
+                                color: kpink,
                                 size: 20,
                               ),
                               Text(
                                 'Tutorials',
                                 style: TextStyle(
-                                  color: Colors.white,
+                                  color: kpink,
                                   fontSize: 12,
                                 ),
                               )
@@ -68,13 +68,13 @@ class BottomBar extends StatelessWidget {
                               children: const [
                                 Icon(
                                   Icons.storefront,
-                                  color: Colors.white,
+                                  color: kpink,
                                   size: 20,
                                 ),
                                 Text(
                                   'Store',
                                   style: TextStyle(
-                                    color: Colors.white,
+                                    color: kpink,
                                     fontSize: 12,
                                   ),
                                 )
@@ -97,13 +97,13 @@ class BottomBar extends StatelessWidget {
                             children: const [
                               Icon(
                                 Icons.school,
-                                color: Colors.white,
+                                color: kpink,
                                 size: 20,
                               ),
                               Text(
                                 'Opportunities',
                                 style: TextStyle(
-                                  color: Colors.white,
+                                  color: kpink,
                                   fontSize: 12,
                                 ),
                               )
@@ -120,13 +120,13 @@ class BottomBar extends StatelessWidget {
                             children: const [
                               Icon(
                                 Icons.place,
-                                color: Colors.white,
+                                color: kpink,
                                 size: 20,
                               ),
                               Text(
                                 'Location',
                                 style: TextStyle(
-                                  color: Colors.white,
+                                  color: kpink,
                                   fontSize: 12,
                                 ),
                               )
@@ -155,7 +155,7 @@ class BottomBar extends StatelessWidget {
                     backgroundColor: kdblue,
                     child: CircleAvatar(
                       radius: 35,
-                      backgroundImage: AssetImage('images/Safety.png'),
+                      //backgroundImage: AssetImage('images/Safety.png'),
                     )),
               ),
             ),

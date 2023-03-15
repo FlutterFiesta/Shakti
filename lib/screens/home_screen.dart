@@ -306,7 +306,7 @@ class _HomeScreenState extends State<HomeScreen> {
     _getCurrentLocation();
     ShakeDetector detector = ShakeDetector.autoStart(
       onPhoneShake: () {
-        getAndSendSms();
+        //getAndSendSms();
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
             content: Text('Shake!'),
@@ -329,7 +329,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
         backgroundColor: kbase,
         ////extendBodyBehindAppBar: true,
-        appBar: AppBarHome(),
+        appBar: AppBarHome(heading: 'Tutorials'),
         body: SingleChildScrollView(
           child: Container(
               child: Column(

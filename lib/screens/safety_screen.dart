@@ -50,7 +50,7 @@ class _SafetyScreenState extends State<SafetyScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: kbase,
-      appBar: AppBarHome(),
+      appBar: AppBarHome(heading: 'Safety'),
       endDrawer: EndDrawer(),
       bottomNavigationBar: BottomBar(),
       body: ModalProgressHUD(

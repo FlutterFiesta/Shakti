@@ -4,8 +4,11 @@ import 'package:power_she_pre/screens/group_chat/searchScreen.dart';
 import 'package:power_she_pre/screens/group_chat/widget/widget.dart';
 import '../../constants.dart';
 import '../helper/helper_function.dart';
+import '../../components/BottomBar.dart';
+import '../../components/EndDrawer.dart';
 import '../service/auth_service.dart';
 import '../service/database_service.dart';
+import 'package:power_she_pre/components/AppBarHome.dart';
 import 'package:power_she_pre/screens/service/database_service.dart';
 import 'package:power_she_pre/screens/group_chat/widget/group_tile.dart';
 import 'package:power_she_pre/screens/helper/helper_function.dart';
@@ -64,36 +67,9 @@ class _groupsHomeState extends State<groupsHome> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        actions: [
-          IconButton(
-              onPressed: () {
-                Navigator.pushNamed(context, SearchPage.id);
-              },
-              icon: const Icon(
-                Icons.search,
-              ))
-        ],
-        backgroundColor: kpink,
-        title: Padding(
-          padding: const EdgeInsets.only(right: 40),
-          child: Center(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Image.asset(
-                  'images/logo.png',
-                  fit: BoxFit.contain,
-                  height: 32,
-                ),
-                Container(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text('Communities'))
-              ],
-            ),
-          ),
-        ),
-      ),
+      appBar: AppBarHome(heading: 'Community'),
+      endDrawer: EndDrawer(),
+      bottomNavigationBar: BottomBar(),
       backgroundColor: kbase,
       body: groupList(),
       floatingActionButton: FloatingActionButton(
