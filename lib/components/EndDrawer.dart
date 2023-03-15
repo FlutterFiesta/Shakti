@@ -8,6 +8,8 @@ import 'package:power_she_pre/screens/user_profile.dart';
 import 'package:power_she_pre/screens/ChatBotSupport/mainScreen.dart';
 import 'package:power_she_pre/screens/group_chat/groupsHomeScreen.dart';
 
+import '../screens/org.dart';
+
 class EndDrawer extends StatelessWidget {
   const EndDrawer({super.key});
 
@@ -70,6 +72,14 @@ class EndDrawer extends StatelessWidget {
             label: 'ChatSupport',
             onTap: () {
               Navigator.pushNamed(context, mainChatScreen.id);
+            }),
+        SidebarXItem(
+            icon: Icons.person,
+            label: 'Oganizations',
+            onTap: () {
+              Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Org()));
             }),
         SidebarXItem(
           icon: Icons.logout_rounded,

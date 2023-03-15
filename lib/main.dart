@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/services.dart';
 import 'package:power_she_pre/constants.dart';
+import 'package:power_she_pre/myBody/bmain.dart';
 import 'package:power_she_pre/screens/ChatBotSupport/mainScreen.dart';
 import 'package:power_she_pre/screens/gender_auth/selfie_upload.dart';
 import 'package:power_she_pre/screens/group_chat/chat_page.dart';
@@ -18,6 +19,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:power_she_pre/screens/course.dart';
 import 'package:power_she_pre/screens/home_screen.dart';
 import 'package:power_she_pre/screens/orders.dart';
+import 'package:power_she_pre/screens/org.dart';
 import 'package:power_she_pre/screens/safety_screen.dart';
 import 'package:power_she_pre/screens/splash.dart';
 import 'package:power_she_pre/screens/authentication/login.dart';
@@ -52,7 +54,7 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: kbase,
         textTheme: GoogleFonts.openSansTextTheme(Theme.of(context).textTheme),
       ),
-      initialRoute: SplashScreen.id,
+      initialRoute: BHomeScreen.id,
       routes: {
         SplashScreen.id: (context) => const SplashScreen(),
         OnboardScreen.id: (context) => const OnboardScreen(),
@@ -75,6 +77,7 @@ class MyApp extends StatelessWidget {
         mainChatScreen.id: (context) => const mainChatScreen(),
         groupsHome.id: (context) => const groupsHome(),
         SearchPage.id: (context) => const SearchPage(),
+        BHomeScreen.id: (context) => const BHomeScreen()
       },
     );
   }

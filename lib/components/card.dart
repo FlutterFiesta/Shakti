@@ -5,12 +5,6 @@ import 'package:power_she_pre/components/appBarInit.dart';
 import 'dart:io';
 import 'dart:async';
 import 'package:url_launcher/url_launcher.dart';
-// import 'package:step_progress_indicator/step_progress_indicator.dart';
-// import 'package:find_paws_engage/components/AlertBox.dart';
-// import 'package:card_swiper/card_swiper.dart';
-// import 'package:find_paws_engage/screens/InitialSetup/questions/question2.dart';
-// import 'package:firebase_auth/firebase_auth.dart';
-// import 'package:cloud_firestore/cloud_firestore.dart';
 
 class CardLayout extends StatelessWidget {
   final String url;

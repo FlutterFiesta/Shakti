@@ -18,17 +18,17 @@ dependencies:
   cloud_firestore: ^4.3.1
   firebase_auth: ^4.2.5
   firebase_core: ^2.4.1
-  google_fonts: ^3.0.1
+  google_fonts: ^4.0.3
   persistent_bottom_nav_bar_v2: ^4.2.6
   custom_line_indicator_bottom_navbar: ^0.0.8
   curved_nav_bar: ^0.0.2
-  sidebarx: ^0.14.0
+  sidebarx: ^0.15.0
   image_picker: ^0.8.6
   modal_progress_hud_nsn: ^0.3.0
   tflite: ^1.1.2
   file_picker: ^5.2.4
   get: ^4.6.5
-  country_code_picker: ^2.0.2
+  country_code_picker: ^3.0.0
   firebase_database: ^10.0.9
   url_launcher: ^6.1.7
   youtube_player_flutter: ^8.1.2
@@ -42,10 +42,11 @@ dependencies:
   fab_circular_menu: ^1.0.2
   flutter_polyline_points: ^1.0.0
   flutter_rating_stars: ^1.0.3+4
-  flip_card: ^0.6.0
+  flip_card: ^0.7.0
   flutter_dotenv: ^5.0.2
   step_progress_indicator: ^1.0.2
   location: ^4.4.0
+  flutter_slimy_card: ^1.0.2
 
 dev_dependencies:
   flutter_test:
