@@ -34,10 +34,12 @@ class _TrackerPageState extends State<TrackerPage> {
   @override
   void initState() {
     super.initState();
+    print("entered");
     setState(() {
       spinner = true;
     });
     final user = _auth.currentUser;
+    print(user);
     if (user != null) {
       setState(() {
         loggedInUser = user;
@@ -54,7 +56,7 @@ class _TrackerPageState extends State<TrackerPage> {
         print("Hello");
       }
       userName = docref['fullName'];
-
+      print(userName);
       spinner = false;
     });
     print(userId);
