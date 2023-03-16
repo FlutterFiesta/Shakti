@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:power_she_pre/screens/ChatBotSupport/mainScreen.dart';
@@ -5,6 +6,10 @@ import 'package:url_launcher/url_launcher.dart';
 import '../../components/AppBarHome.dart';
 import '../../components/BottomBar.dart';
 import '../../components/EndDrawer.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:provider/provider.dart';
+import 'package:geolocator/geolocator.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:power_she_pre/screens/map/BusStationCard.dart';
 import 'package:power_she_pre/screens/map/HospitalCard.dart';
 import 'package:power_she_pre/screens/map/PharmacyCard.dart';
@@ -20,6 +25,33 @@ class Location extends StatefulWidget {
 
 class _LocationState extends State<Location> {
   // const HomeScreen({super.key});
+  Completer<GoogleMapController> _controller = Completer();
+
+  static final CameraPosition _kGoogle = const CameraPosition(
+    target: LatLng(20.42796133580664, 80.885749655962),
+    zoom: 14.4746,
+  );
+
+  // on below line we have created the list of markers
+  final List<Marker> _markers = <Marker>[
+    Marker(
+        markerId: MarkerId('1'),
+        position: LatLng(20.42796133580664, 75.885749655962),
+        infoWindow: InfoWindow(
+          title: 'My Position',
+        )
+    ),
+  ];
+
+  // created method for getting user current location
+  Future<Position> getUserCurrentLocation() async {
+    await Geolocator.requestPermission().then((value){
+    }).onError((error, stackTrace) async {
+      await Geolocator.requestPermission();
+      print("ERROR"+error.toString());
+    });
+    return await Geolocator.getCurrentPosition();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -32,6 +64,28 @@ class _LocationState extends State<Location> {
           padding: const EdgeInsets.all(8.0),
           child: Column(
             children: [
+              SizedBox(
+                height: 550,
+                child: GoogleMap(
+                  // on below line setting camera position
+                  initialCameraPosition: _kGoogle,
+                  // on below line we are setting markers on the map
+                  markers: Set<Marker>.of(_markers),
+                  // on below line specifying map type.
+                  mapType: MapType.normal,
+                  // on below line setting user location enabled.
+                  myLocationEnabled: true,
+                  // on below line setting compass enabled.
+                  compassEnabled: true,
+                  // on below line specifying controller on map complete.
+                  onMapCreated: (GoogleMapController controller){
+                    _controller.complete(controller);
+                  },
+                ),
+              ),
+              SizedBox(
+                height: 8,
+              ),
               Expanded(
                 child: ListView(
                   shrinkWrap: true,
@@ -44,30 +98,37 @@ class _LocationState extends State<Location> {
           ),
         ),
       ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            popUpDialog(context);
-          },
-          elevation: 0,
-          backgroundColor: Theme.of(context).primaryColor,
-          child: const Icon(
-            Icons.chat_bubble,
-            color: Colors.white,
-            size: 30,
-          ),
-        )
-    );
-  }
+      floatingActionButton: FloatingActionButton(
+        onPressed: () async{
+          getUserCurrentLocation().then((value) async {
+            print(value.latitude.toString() +" "+value.longitude.toString());
 
-  popUpDialog(BuildContext context) {
-    showDialog(
-        barrierDismissible: false,
-        context: context,
-        builder: (context) {
-          return StatefulBuilder(builder: ((context, setState) {
-            return mainChatScreen();
-          }));
-        });
+            // marker added for current users location
+            _markers.add(
+                Marker(
+                  markerId: MarkerId("2"),
+                  position: LatLng(value.latitude, value.longitude),
+                  infoWindow: InfoWindow(
+                    title: 'My Current Location',
+                  ),
+                )
+            );
+
+            // specified current users location
+            CameraPosition cameraPosition = new CameraPosition(
+              target: LatLng(value.latitude, value.longitude),
+              zoom: 14,
+            );
+
+            final GoogleMapController controller = await _controller.future;
+            controller.animateCamera(CameraUpdate.newCameraPosition(cameraPosition));
+            setState(() {
+            });
+          });
+        },
+        child: Icon(Icons.local_activity),
+      ),
+    );
   }
 }
 
