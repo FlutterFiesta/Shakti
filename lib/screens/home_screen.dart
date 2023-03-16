@@ -307,7 +307,7 @@ class _HomeScreenState extends State<HomeScreen> {
     _getCurrentLocation();
     ShakeDetector detector = ShakeDetector.autoStart(
       onPhoneShake: () {
-        //getAndSendSms();
+        getAndSendSms();
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
             content: Text('Shake!'),
