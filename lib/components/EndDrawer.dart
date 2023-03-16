@@ -22,24 +22,55 @@ class EndDrawer extends StatelessWidget {
   Widget build(BuildContext context) {
     return SidebarX(
       controller: SidebarXController(selectedIndex: 0, extended: true),
+      showToggleButton: false,
       theme: SidebarXTheme(
-        selectedItemDecoration: BoxDecoration(color: kpink),
-        // padding: EdgeInsets.all(20),
-        width: 200,
-        decoration: BoxDecoration(color: kbase),
+        selectedItemDecoration: BoxDecoration(color: kpink, borderRadius: BorderRadius.circular(17.0)),
+        width: MediaQuery.of(context).size.width * 0.75,
+        decoration: BoxDecoration(
+            color: kbase,
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(20),
+              bottomLeft: Radius.circular(20),
+            )),
         textStyle: TextStyle(
-          fontSize: 20,
+          fontSize: 17,
           color: kdblue,
         ),
         selectedTextStyle: TextStyle(
-          fontSize: 20,
+          fontSize: 17,
           color: kbase,
         ),
-        selectedIconTheme: IconThemeData(color: kbase),
         iconTheme: IconThemeData(color: kdblue),
         selectedItemTextPadding: EdgeInsets.only(left: 20),
         itemTextPadding: EdgeInsets.only(left: 20),
       ),
+      headerBuilder: (context, extended){
+        return Padding(
+          padding: const EdgeInsets.all(10.0),
+          child: Column(
+            children: [
+              Icon(
+                Icons.account_circle,
+                size: 80,
+                color: kdblue,
+              ),
+              Text(
+                "User",
+                textAlign: TextAlign.center,
+                style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 17),
+              ),
+
+              SizedBox(
+                height: 10,
+              ),
+
+              Divider(
+                height: 2,
+              ),
+            ],
+          ),
+        );
+      },
       items: [
         SidebarXItem(
             icon: Icons.account_circle_rounded,
@@ -55,7 +86,7 @@ class EndDrawer extends StatelessWidget {
             }),
         SidebarXItem(
             icon: Icons.water_drop,
-            label: 'Tracker',
+            label: 'My Flow Tracker',
             onTap: () {
               Navigator.pushNamed(context, TrackerPage.id);
             }),
