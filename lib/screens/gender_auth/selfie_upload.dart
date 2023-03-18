@@ -13,8 +13,11 @@ import '../../components/appBarInit.dart';
 import '../onboard/onboardScreen.dart';
 import '../welcome_screen.dart';
 import 'package:file_picker/file_picker.dart';
-
+import 'package:firebase_storage/firebase_storage.dart';
 import 'get_gender.dart';
+import 'package:power_she_pre/storage.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class SelfieUpload extends StatefulWidget {
   static const String id = "selfie_upload_screen";
@@ -27,7 +30,32 @@ class SelfieUpload extends StatefulWidget {
 class _SelfieUploadState extends State<SelfieUpload> {
   var imageFile;
   String downurl = '';
+  String imageurl='';
   bool spinner = false;
+  Storage storage = Storage();
+  final _auth = FirebaseAuth.instance;
+  final _firestore = FirebaseFirestore.instance;
+  late User loggedInUser;
+  String userId = '';
+
+  @override
+  void initState() {
+    super.initState();
+    setState(() {
+      spinner = true;
+    });
+    final user = _auth.currentUser;
+    if (user != null) {
+      setState(() {
+        loggedInUser = user;
+        userId = user.uid;
+        spinner=false;
+        print(userId);
+      });
+    }
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
@@ -298,16 +326,19 @@ class _SelfieUploadState extends State<SelfieUpload> {
                                   //     },
                                   //   );
                                 } else {
-                                  // await storage.uploadFile(
-                                  //     imageFile.path, 'finder_image');
-                                  // downurl =
-                                  // await storage.downloadUrl('finder_image');
+                                  print("entered");
+                                  await storage.uploadFile(
+                                      imageFile.path, 'selfie');
+                                  downurl =
+                                  await storage.downloadUrl('selfie');
+                                  setState((){
+                                    imageurl=downurl;
+                                    spinner=true;
+                                  });
 
-                                  // Navigator.pushNamed(
-                                  //     context, FinderCheckList.id, arguments: {
-                                  //   'list': list,
-                                  //   'url': downurl
-                                  // });
+                                  _firestore.collection('users').doc(userId).update({
+                                    'url':imageurl
+                                  });
                                   Navigator.pushNamed(context, HomeScreen.id);
                                   setState(() {
                                     spinner = false;

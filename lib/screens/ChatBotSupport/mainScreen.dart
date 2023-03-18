@@ -29,7 +29,7 @@ class _mainChatScreenState extends State<mainChatScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBarHome(heading: 'Chat Support'),
+      appBar: AppBarHome(heading: 'Support'),
       endDrawer: EndDrawer(),
       body: Container(
         child: Column(
