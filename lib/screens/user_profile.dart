@@ -35,7 +35,7 @@ class _UserProfileState extends State<UserProfile> {
   String userEmail = '';
   String userPhone = '';
   String userSafety = '';
-
+  String url='';
   @override
   void initState() {
     // TODO: implement initState
@@ -61,6 +61,8 @@ class _UserProfileState extends State<UserProfile> {
       userEmail = docref['email'];
       userPhone = docref['phoneNumber'];
       userSafety = docref['safety'];
+      url=docref['url'];
+      print(url);
     });
   }
 
@@ -96,10 +98,15 @@ class _UserProfileState extends State<UserProfile> {
                       backgroundColor: Colors.black,
                       radius: 63,
                       child: CircleAvatar(
-                        backgroundImage: AssetImage('images/Profile.png'),
+                        backgroundImage: NetworkImage(url),
                         radius: 60,
                       ),
                     ),
+                    // CircleAvatar(
+                    //   backgroundImage:
+                    //   NetworkImage(url),
+                    //   radius:70,
+                    // ),
                     ListTile(
                       title: Padding(
                         padding:
