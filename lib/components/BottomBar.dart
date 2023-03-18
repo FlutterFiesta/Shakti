@@ -79,11 +79,6 @@ class BottomBar extends StatelessWidget {
                             ],
                           ),
                         ),
-                      ],
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: <Widget>[
                         MaterialButton(
                           minWidth: 40,
                           onPressed: () {
@@ -132,6 +127,57 @@ class BottomBar extends StatelessWidget {
                         ),
                       ],
                     ),
+                    // Row(
+                    //   mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    //   children: <Widget>[
+                    //     MaterialButton(
+                    //       minWidth: 40,
+                    //       onPressed: () {
+                    //         Navigator.pushNamed(context, OprScreen.id);
+                    //       },
+                    //       child: Column(
+                    //         mainAxisAlignment: MainAxisAlignment.center,
+                    //         children: const [
+                    //           Icon(
+                    //             Icons.school,
+                    //             color: kpink,
+                    //             size: 20,
+                    //           ),
+                    //           Text(
+                    //             'Opportunities',
+                    //             style: TextStyle(
+                    //               color: kpink,
+                    //               fontSize: 12,
+                    //             ),
+                    //           )
+                    //         ],
+                    //       ),
+                    //     ),
+                    //     MaterialButton(
+                    //       minWidth: 40,
+                    //       onPressed: () {
+                    //         Navigator.pushNamed(context, Location.id);
+                    //       },
+                    //       child: Column(
+                    //         mainAxisAlignment: MainAxisAlignment.center,
+                    //         children: const [
+                    //           Icon(
+                    //             Icons.place,
+                    //             color: kpink,
+                    //             size: 20,
+                    //           ),
+                    //           Text(
+                    //             'Location',
+                    //             style: TextStyle(
+                    //               color: kpink,
+                    //               fontSize: 12,
+                    //             ),
+                    //           )
+                    //         ],
+                    //       ),
+                    //     ),
+                    //   ],
+                    // ),
                   ],
                 ),
               ),
