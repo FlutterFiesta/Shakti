@@ -41,7 +41,7 @@ class Org extends StatelessWidget {
               ),
               Container(
                   padding: const EdgeInsets.all(8.0),
-                  child: Text("NGOs"))
+                  child: Text("NGOs", style: TextStyle(fontSize:17),))
             ],
           ),
         ),

@@ -87,7 +87,7 @@ class Menstruation extends StatelessWidget {
               ),
               Container(
                   padding: const EdgeInsets.all(8.0),
-                  child: Text('MENSTRUATION'))
+                  child: Text('Menstruation', style: TextStyle(fontSize:17),))
             ],
           ),
         ),

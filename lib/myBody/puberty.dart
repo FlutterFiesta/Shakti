@@ -29,7 +29,7 @@ class Puberty extends StatelessWidget {
               ),
               Container(
                   padding: const EdgeInsets.all(8.0),
-                  child: Text('PUBERTY'))
+                  child: Text('Puberty', style: TextStyle(fontSize:17),))
             ],
           ),
         ),

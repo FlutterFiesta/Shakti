@@ -5,6 +5,8 @@ import 'package:hexcolor/hexcolor.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:power_she_pre/constants.dart';
 import 'package:power_she_pre/screens/Tracker/TrackerPage.dart';
+import '../../components/AppBarHome.dart';
+import '../../components/EndDrawer.dart';
 import 'TrackerPage.dart';
 
 class TrackerInfo extends StatefulWidget {
@@ -62,177 +64,181 @@ class _TrackerInfoState extends State<TrackerInfo> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: ModalProgressHUD(
-        inAsyncCall: spinner,
-        progressIndicator: const CircularProgressIndicator(
-          color: kbase,
-        ),
-        child: SafeArea(
-          child: Container(
-            padding: EdgeInsets.all(20.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text('Update Menstrual Details',
-                    style:
-                        TextStyle(fontSize: 25, fontWeight: FontWeight.bold)),
-                SizedBox(
-                  height: 20,
-                ),
-                Card(
-                  shape: RoundedRectangleBorder(
-                      side: BorderSide(color: HexColor("#191825"), width: 2.0),
-                      borderRadius: BorderRadius.circular(10.0)),
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                        vertical: 8.0, horizontal: 15.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          "Menstrual Length",
-                          style: TextStyle(fontSize: 20),
-                        ),
-                        DropdownButton(
-                          style: TextStyle(color: Colors.black),
-                          // dropdownColor: Colors.purpleAccent[100],
-                          isDense: false,
-                          hint: Text('Select value'),
-                          value: mLength,
-                          onChanged: (newValue) {
-                            setState(() {
-                              mLength = newValue!;
-                            });
-                          },
-                          items: listItem.map((valueItem) {
-                            return DropdownMenuItem(
-                              value: valueItem,
-                              child: Text(
-                                "$valueItem days",
-                              ),
-                            );
-                          }).toList(),
-                        ),
-                      ],
-                    ),
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBarHome(heading: 'Tracker'),
+        endDrawer: EndDrawer(),
+        body: ModalProgressHUD(
+          inAsyncCall: spinner,
+          progressIndicator: const CircularProgressIndicator(
+            color: kbase,
+          ),
+          child: SafeArea(
+            child: Container(
+              padding: EdgeInsets.all(20.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text('Update Menstrual Details',
+                      style:
+                          TextStyle(fontSize: 25, fontWeight: FontWeight.bold)),
+                  SizedBox(
+                    height: 20,
                   ),
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                Card(
-                  shape: RoundedRectangleBorder(
-                      side: BorderSide(color: HexColor("#191825"), width: 2.0),
-                      borderRadius: BorderRadius.circular(10.0)),
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                        vertical: 8.0, horizontal: 15.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          "Period Length",
-                          style: TextStyle(fontSize: 20),
-                        ),
-                        DropdownButton(
-                          hint: Text('Select value'),
-                          value: pLength,
-                          onChanged: (newValue) {
-                            setState(() {
-                              pLength = newValue!;
-                            });
-                          },
-                          items: List.generate(10, (index) {
-                            var new_val = index + 25;
-                            return DropdownMenuItem(
-                              value: new_val,
-                              child: Text(
-                                "$new_val days",
-                              ),
-                            );
-                          }).toList(),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                SizedBox(height: 10),
-                Card(
-                  shape: RoundedRectangleBorder(
-                      side: BorderSide(color: HexColor("#191825"), width: 2.0),
-                      borderRadius: BorderRadius.circular(10.0)),
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                        vertical: 8.0, horizontal: 15.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Text(
-                          "Last Menstruation:",
-                          style: TextStyle(fontSize: 20),
-                        ),
-                        ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              primary: Color.fromRGBO(255, 92, 141, 1),
-                            ),
-                            child: Text(_dateTime == null
-                                ? '${DateTime.now().day.toString()}/${DateTime.now().month.toString()}/${DateTime.now().year.toString()}'
-                                : '${_dateTime.day.toString()}/${_dateTime.month.toString()}/${_dateTime.year.toString()}'),
-                            onPressed: () {
-                              showDatePicker(
-                                      context: context,
-                                      initialDate: _dateTime == null
-                                          ? DateTime.now()
-                                          : _dateTime,
-                                      firstDate: DateTime(2020),
-                                      lastDate: DateTime(2030))
-                                  .then((date) {
-                                setState(() {
-                                  _dateTime = date!;
-                                });
+                  Card(
+                    shape: RoundedRectangleBorder(
+                        side: BorderSide(color: HexColor("#191825"), width: 2.0),
+                        borderRadius: BorderRadius.circular(10.0)),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 8.0, horizontal: 15.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "Menstrual Length",
+                            style: TextStyle(fontSize: 20),
+                          ),
+                          DropdownButton(
+                            style: TextStyle(color: Colors.black),
+                            // dropdownColor: Colors.purpleAccent[100],
+                            isDense: false,
+                            hint: Text('Select value'),
+                            value: mLength,
+                            onChanged: (newValue) {
+                              setState(() {
+                                mLength = newValue!;
                               });
-                            }),
-                      ],
+                            },
+                            items: listItem.map((valueItem) {
+                              return DropdownMenuItem(
+                                value: valueItem,
+                                child: Text(
+                                  "$valueItem days",
+                                ),
+                              );
+                            }).toList(),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    primary: Color.fromRGBO(255, 92, 141, 1),
+                  SizedBox(
+                    height: 10,
                   ),
-                  onPressed: () {
-                    print(pLength);
-                    print(mLength);
-                    lastMenstruation.add(_dateTime);
-                    print(lastMenstruation);
-                    setState(() {
-                      spinner = true;
-                    });
-                    print(lastMenstruation);
-                    _firestore.collection('users').doc(userId).update({
-                      'periodLength': pLength,
-                      'menstrualLength': mLength,
-                      'lastMenstruation': lastMenstruation
-                    });
-
-                    setState(() {
-                      spinner = false;
-                    });
-                    Navigator.pushNamed(context, TrackerPage.id);
-                  },
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text(
-                      '  Save Changes  ',
-                      style: TextStyle(fontSize: 20),
+                  Card(
+                    shape: RoundedRectangleBorder(
+                        side: BorderSide(color: HexColor("#191825"), width: 2.0),
+                        borderRadius: BorderRadius.circular(10.0)),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 8.0, horizontal: 15.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "Period Length",
+                            style: TextStyle(fontSize: 20),
+                          ),
+                          DropdownButton(
+                            hint: Text('Select value'),
+                            value: pLength,
+                            onChanged: (newValue) {
+                              setState(() {
+                                pLength = newValue!;
+                              });
+                            },
+                            items: List.generate(10, (index) {
+                              var new_val = index + 25;
+                              return DropdownMenuItem(
+                                value: new_val,
+                                child: Text(
+                                  "$new_val days",
+                                ),
+                              );
+                            }).toList(),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
-                ),
-              ],
+                  SizedBox(height: 10),
+                  Card(
+                    shape: RoundedRectangleBorder(
+                        side: BorderSide(color: HexColor("#191825"), width: 2.0),
+                        borderRadius: BorderRadius.circular(10.0)),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 8.0, horizontal: 15.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Text(
+                            "Last Menstruation:",
+                            style: TextStyle(fontSize: 20),
+                          ),
+                          ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                primary: Color.fromRGBO(255, 92, 141, 1),
+                              ),
+                              child: Text(_dateTime == null
+                                  ? '${DateTime.now().day.toString()}/${DateTime.now().month.toString()}/${DateTime.now().year.toString()}'
+                                  : '${_dateTime.day.toString()}/${_dateTime.month.toString()}/${_dateTime.year.toString()}'),
+                              onPressed: () {
+                                showDatePicker(
+                                        context: context,
+                                        initialDate: _dateTime == null
+                                            ? DateTime.now()
+                                            : _dateTime,
+                                        firstDate: DateTime(2020),
+                                        lastDate: DateTime(2030))
+                                    .then((date) {
+                                  setState(() {
+                                    _dateTime = date!;
+                                  });
+                                });
+                              }),
+                        ],
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      primary: Color.fromRGBO(255, 92, 141, 1),
+                    ),
+                    onPressed: () {
+                      print(pLength);
+                      print(mLength);
+                      lastMenstruation.add(_dateTime);
+                      print(lastMenstruation);
+                      setState(() {
+                        spinner = true;
+                      });
+                      print(lastMenstruation);
+                      _firestore.collection('users').doc(userId).update({
+                        'periodLength': pLength,
+                        'menstrualLength': mLength,
+                        'lastMenstruation': lastMenstruation
+                      });
+    
+                      setState(() {
+                        spinner = false;
+                      });
+                      Navigator.pushNamed(context, TrackerPage.id);
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        '  Save Changes  ',
+                        style: TextStyle(fontSize: 20),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ),

@@ -40,6 +40,7 @@ class EndDrawer extends StatelessWidget {
           fontSize: 17,
           color: kbase,
         ),
+        selectedIconTheme: IconThemeData(color: kbase),
         iconTheme: IconThemeData(color: kdblue),
         selectedItemTextPadding: EdgeInsets.only(left: 20),
         itemTextPadding: EdgeInsets.only(left: 20),

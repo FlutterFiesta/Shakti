@@ -327,627 +327,629 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        backgroundColor: kbase,
-        ////extendBodyBehindAppBar: true,
-        appBar: AppBarHome(heading: 'Tutorials'),
-        body: SingleChildScrollView(
-          child: Container(
-              child: Column(
-            children: [
-              ExpansionTile(
-                  title: Text("Business", style: TextStyle(color: kdblue)),
-                  leading: Icon(Icons.business_rounded, color: kdblue,), //add icon
-                  //childrenPadding: EdgeInsets.only(left:10), //children padding
-                  children: [
-                    SizedBox(
-                      height: 550,
-                      child: ListView.separated(
-                        itemBuilder: (context, index) {
-                          return Padding(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 10.0, vertical: 5.0),
-                            child: Card(
-                              margin: EdgeInsets.symmetric(
-                                  horizontal: 20.0, vertical: 10.0),
-                              elevation: 10,
-                              shadowColor: Colors.black,
-                              color: Colors.white,
-                              child: SizedBox(
-                                width: 200,
-                                //height: 360,
-                                child: Padding(
-                                  padding: const EdgeInsets.all(10.0),
-                                  child: Column(
-                                    children: [
-                                      //CircleAvatar
-                                      //SizedBox
-                                      //Text
-                                      SizedBox(
-                                        height: 10,
-                                      ),
-
-                                      ClipRRect(
-                                        borderRadius: BorderRadius.circular(5),
-                                        child: Container(
-                                          width:
-                                              MediaQuery.of(context).size.width,
-                                          height: 200,
-                                          child: YoutubePlayer(
-                                            key: ObjectKey(_business[index]),
-                                            controller: _business[index],
-                                            actionsPadding:
-                                                const EdgeInsets.only(
-                                                    left: 16.0),
-                                            bottomActions: [
-                                              CurrentPosition(),
-                                              const SizedBox(width: 10.0),
-                                              ProgressBar(isExpanded: true),
-                                              const SizedBox(width: 10.0),
-                                              RemainingDuration(),
-                                              FullScreenButton(),
-                                            ],
-                                          ),
-                                        ), // Container
-                                      ), //Text
-                                      SizedBox(
-                                        height: 15,
-                                      ),
-                                      Align(
-                                          alignment: Alignment.centerLeft,
-                                          child: Padding(
-                                            padding: const EdgeInsets.fromLTRB(
-                                                0, 0, 0, 6),
-                                            child: Text(
-                                              _businessTitle[index],
-                                              textAlign: TextAlign.center,
-                                              overflow: TextOverflow.ellipsis,
-                                              style: const TextStyle(
-                                                  fontFamily: 'Lustria',
-                                                  color: kdblue,
-                                                  fontWeight: FontWeight.bold),
+    return SafeArea(
+      child: Scaffold(
+          backgroundColor: kbase,
+          ////extendBodyBehindAppBar: true,
+          appBar: AppBarHome(heading: 'Tutorials'),
+          body: SingleChildScrollView(
+            child: Container(
+                child: Column(
+              children: [
+                ExpansionTile(
+                    title: Text("Business", style: TextStyle(color: kdblue)),
+                    leading: Icon(Icons.business_rounded, color: kdblue,), //add icon
+                    //childrenPadding: EdgeInsets.only(left:10), //children padding
+                    children: [
+                      SizedBox(
+                        height: 550,
+                        child: ListView.separated(
+                          itemBuilder: (context, index) {
+                            return Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 10.0, vertical: 5.0),
+                              child: Card(
+                                margin: EdgeInsets.symmetric(
+                                    horizontal: 20.0, vertical: 10.0),
+                                elevation: 10,
+                                shadowColor: Colors.black,
+                                color: Colors.white,
+                                child: SizedBox(
+                                  width: 200,
+                                  //height: 360,
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(10.0),
+                                    child: Column(
+                                      children: [
+                                        //CircleAvatar
+                                        //SizedBox
+                                        //Text
+                                        SizedBox(
+                                          height: 10,
+                                        ),
+    
+                                        ClipRRect(
+                                          borderRadius: BorderRadius.circular(5),
+                                          child: Container(
+                                            width:
+                                                MediaQuery.of(context).size.width,
+                                            height: 200,
+                                            child: YoutubePlayer(
+                                              key: ObjectKey(_business[index]),
+                                              controller: _business[index],
+                                              actionsPadding:
+                                                  const EdgeInsets.only(
+                                                      left: 16.0),
+                                              bottomActions: [
+                                                CurrentPosition(),
+                                                const SizedBox(width: 10.0),
+                                                ProgressBar(isExpanded: true),
+                                                const SizedBox(width: 10.0),
+                                                RemainingDuration(),
+                                                FullScreenButton(),
+                                              ],
                                             ),
-                                          )),
-                                    ],
-                                  ), //Column
-                                ), //Padding
+                                          ), // Container
+                                        ), //Text
+                                        SizedBox(
+                                          height: 15,
+                                        ),
+                                        Align(
+                                            alignment: Alignment.centerLeft,
+                                            child: Padding(
+                                              padding: const EdgeInsets.fromLTRB(
+                                                  0, 0, 0, 6),
+                                              child: Text(
+                                                _businessTitle[index],
+                                                textAlign: TextAlign.center,
+                                                overflow: TextOverflow.ellipsis,
+                                                style: const TextStyle(
+                                                    fontFamily: 'Lustria',
+                                                    color: kdblue,
+                                                    fontWeight: FontWeight.bold),
+                                              ),
+                                            )),
+                                      ],
+                                    ), //Column
+                                  ), //Padding
+                                ),
                               ),
-                            ),
-                          );
-                        },
-                        itemCount: _business.length,
-                        separatorBuilder: (context, _) =>
-                            const SizedBox(height: 1.0),
+                            );
+                          },
+                          itemCount: _business.length,
+                          separatorBuilder: (context, _) =>
+                              const SizedBox(height: 1.0),
+                        ),
                       ),
-                    ),
-                  ]),
-              ExpansionTile(
-                  title: Text("Safety", style: TextStyle(color: kdblue)),
-                  leading: Icon(Icons.safety_check_rounded, color: kdblue), //add icon
-                  //childrenPadding: EdgeInsets.only(left:10), //children padding
-                  children: [
-                    SizedBox(
-                      height: 550,
-                      child: ListView.separated(
-                        itemBuilder: (context, index) {
-                          return Padding(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 10.0, vertical: 5.0),
-                            child: Card(
-                              margin: EdgeInsets.symmetric(
-                                  horizontal: 20.0, vertical: 10.0),
-                              elevation: 10,
-                              shadowColor: Colors.black,
-                              color: Colors.white,
-                              child: SizedBox(
-                                width: 200,
-                                // height: 360,
-                                child: Padding(
-                                  padding: const EdgeInsets.all(15.0),
-                                  child: Column(
-                                    children: [
-                                      SizedBox(
-                                        height: 10,
-                                      ),
-
-                                      ClipRRect(
-                                        borderRadius: BorderRadius.circular(5),
-                                        child: Container(
-                                          width:
-                                              MediaQuery.of(context).size.width,
-                                          height: 150,
-                                          child: YoutubePlayer(
-                                            key: ObjectKey(_safety[index]),
-                                            controller: _safety[index],
-                                            actionsPadding:
-                                                const EdgeInsets.only(
-                                                    left: 16.0),
-                                            bottomActions: [
-                                              CurrentPosition(),
-                                              const SizedBox(width: 10.0),
-                                              ProgressBar(isExpanded: true),
-                                              const SizedBox(width: 10.0),
-                                              RemainingDuration(),
-                                              FullScreenButton(),
-                                            ],
-                                          ),
-                                        ), // Container
-                                      ), //Text
-                                      SizedBox(
-                                        height: 15,
-                                      ),
-                                      Align(
-                                          alignment: Alignment.centerLeft,
-                                          child: Padding(
-                                            padding: const EdgeInsets.fromLTRB(
-                                                0, 0, 0, 6),
-                                            child: Text(
-                                              _safetyTitle[index],
-                                              textAlign: TextAlign.center,
-                                              overflow: TextOverflow.ellipsis,
-                                              style: const TextStyle(
-                                                  fontFamily: 'Lustria',
-                                                  color: kdblue,
-                                                  fontWeight: FontWeight.bold),
+                    ]),
+                ExpansionTile(
+                    title: Text("Safety", style: TextStyle(color: kdblue)),
+                    leading: Icon(Icons.safety_check_rounded, color: kdblue), //add icon
+                    //childrenPadding: EdgeInsets.only(left:10), //children padding
+                    children: [
+                      SizedBox(
+                        height: 550,
+                        child: ListView.separated(
+                          itemBuilder: (context, index) {
+                            return Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 10.0, vertical: 5.0),
+                              child: Card(
+                                margin: EdgeInsets.symmetric(
+                                    horizontal: 20.0, vertical: 10.0),
+                                elevation: 10,
+                                shadowColor: Colors.black,
+                                color: Colors.white,
+                                child: SizedBox(
+                                  width: 200,
+                                  // height: 360,
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(15.0),
+                                    child: Column(
+                                      children: [
+                                        SizedBox(
+                                          height: 10,
+                                        ),
+    
+                                        ClipRRect(
+                                          borderRadius: BorderRadius.circular(5),
+                                          child: Container(
+                                            width:
+                                                MediaQuery.of(context).size.width,
+                                            height: 150,
+                                            child: YoutubePlayer(
+                                              key: ObjectKey(_safety[index]),
+                                              controller: _safety[index],
+                                              actionsPadding:
+                                                  const EdgeInsets.only(
+                                                      left: 16.0),
+                                              bottomActions: [
+                                                CurrentPosition(),
+                                                const SizedBox(width: 10.0),
+                                                ProgressBar(isExpanded: true),
+                                                const SizedBox(width: 10.0),
+                                                RemainingDuration(),
+                                                FullScreenButton(),
+                                              ],
                                             ),
-                                          )),
-                                    ],
-                                  ), //Column
-                                ), //Padding
+                                          ), // Container
+                                        ), //Text
+                                        SizedBox(
+                                          height: 15,
+                                        ),
+                                        Align(
+                                            alignment: Alignment.centerLeft,
+                                            child: Padding(
+                                              padding: const EdgeInsets.fromLTRB(
+                                                  0, 0, 0, 6),
+                                              child: Text(
+                                                _safetyTitle[index],
+                                                textAlign: TextAlign.center,
+                                                overflow: TextOverflow.ellipsis,
+                                                style: const TextStyle(
+                                                    fontFamily: 'Lustria',
+                                                    color: kdblue,
+                                                    fontWeight: FontWeight.bold),
+                                              ),
+                                            )),
+                                      ],
+                                    ), //Column
+                                  ), //Padding
+                                ),
                               ),
-                            ),
-                          );
-                        },
-                        itemCount: _safety.length,
-                        separatorBuilder: (context, _) =>
-                            const SizedBox(height: 1.0),
+                            );
+                          },
+                          itemCount: _safety.length,
+                          separatorBuilder: (context, _) =>
+                              const SizedBox(height: 1.0),
+                        ),
                       ),
-                    ),
-                  ]),
-              ExpansionTile(
-                  title: Text("Health", style: TextStyle(color: kdblue)),
-                  leading: Icon(Icons.health_and_safety_rounded, color: kdblue), //add icon
-                  //childrenPadding: EdgeInsets.only(left:10), //children padding
-                  children: [
-                    SizedBox(
-                      height: 550,
-                      child: ListView.separated(
-                        itemBuilder: (context, index) {
-                          return Padding(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 10.0, vertical: 5.0),
-                            child: Card(
-                              margin: EdgeInsets.symmetric(
-                                  horizontal: 20.0, vertical: 10.0),
-                              elevation: 10,
-                              shadowColor: Colors.black,
-                              color: Colors.white,
-                              child: SizedBox(
-                                width: 200,
-                                // height: 360,
-                                child: Padding(
-                                  padding: const EdgeInsets.all(15.0),
-                                  child: Column(
-                                    children: [
-                                      SizedBox(
-                                        height: 10,
-                                      ),
-
-                                      ClipRRect(
-                                        borderRadius: BorderRadius.circular(5),
-                                        child: Container(
-                                          width:
-                                              MediaQuery.of(context).size.width,
-                                          height: 150,
-                                          child: YoutubePlayer(
-                                            key: ObjectKey(_health[index]),
-                                            controller: _health[index],
-                                            actionsPadding:
-                                                const EdgeInsets.only(
-                                                    left: 16.0),
-                                            bottomActions: [
-                                              CurrentPosition(),
-                                              const SizedBox(width: 10.0),
-                                              ProgressBar(isExpanded: true),
-                                              const SizedBox(width: 10.0),
-                                              RemainingDuration(),
-                                              FullScreenButton(),
-                                            ],
-                                          ),
-                                        ), // Container
-                                      ), //Text
-                                      SizedBox(
-                                        height: 15,
-                                      ),
-                                      Align(
-                                          alignment: Alignment.centerLeft,
-                                          child: Padding(
-                                            padding: const EdgeInsets.fromLTRB(
-                                                0, 0, 0, 6),
-                                            child: Text(
-                                              _healthTitle[index],
-                                              textAlign: TextAlign.center,
-                                              overflow: TextOverflow.ellipsis,
-                                              style: const TextStyle(
-                                                  fontFamily: 'Lustria',
-                                                  color: kdblue,
-                                                  fontWeight: FontWeight.bold),
+                    ]),
+                ExpansionTile(
+                    title: Text("Health", style: TextStyle(color: kdblue)),
+                    leading: Icon(Icons.health_and_safety_rounded, color: kdblue), //add icon
+                    //childrenPadding: EdgeInsets.only(left:10), //children padding
+                    children: [
+                      SizedBox(
+                        height: 550,
+                        child: ListView.separated(
+                          itemBuilder: (context, index) {
+                            return Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 10.0, vertical: 5.0),
+                              child: Card(
+                                margin: EdgeInsets.symmetric(
+                                    horizontal: 20.0, vertical: 10.0),
+                                elevation: 10,
+                                shadowColor: Colors.black,
+                                color: Colors.white,
+                                child: SizedBox(
+                                  width: 200,
+                                  // height: 360,
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(15.0),
+                                    child: Column(
+                                      children: [
+                                        SizedBox(
+                                          height: 10,
+                                        ),
+    
+                                        ClipRRect(
+                                          borderRadius: BorderRadius.circular(5),
+                                          child: Container(
+                                            width:
+                                                MediaQuery.of(context).size.width,
+                                            height: 150,
+                                            child: YoutubePlayer(
+                                              key: ObjectKey(_health[index]),
+                                              controller: _health[index],
+                                              actionsPadding:
+                                                  const EdgeInsets.only(
+                                                      left: 16.0),
+                                              bottomActions: [
+                                                CurrentPosition(),
+                                                const SizedBox(width: 10.0),
+                                                ProgressBar(isExpanded: true),
+                                                const SizedBox(width: 10.0),
+                                                RemainingDuration(),
+                                                FullScreenButton(),
+                                              ],
                                             ),
-                                          )),
-                                    ],
-                                  ), //Column
-                                ), //Padding
+                                          ), // Container
+                                        ), //Text
+                                        SizedBox(
+                                          height: 15,
+                                        ),
+                                        Align(
+                                            alignment: Alignment.centerLeft,
+                                            child: Padding(
+                                              padding: const EdgeInsets.fromLTRB(
+                                                  0, 0, 0, 6),
+                                              child: Text(
+                                                _healthTitle[index],
+                                                textAlign: TextAlign.center,
+                                                overflow: TextOverflow.ellipsis,
+                                                style: const TextStyle(
+                                                    fontFamily: 'Lustria',
+                                                    color: kdblue,
+                                                    fontWeight: FontWeight.bold),
+                                              ),
+                                            )),
+                                      ],
+                                    ), //Column
+                                  ), //Padding
+                                ),
                               ),
-                            ),
-                          );
-                        },
-                        itemCount: _health.length,
-                        separatorBuilder: (context, _) =>
-                            const SizedBox(height: 1.0),
+                            );
+                          },
+                          itemCount: _health.length,
+                          separatorBuilder: (context, _) =>
+                              const SizedBox(height: 1.0),
+                        ),
                       ),
-                    ),
-                  ]),
-              ExpansionTile(
-                  title: Text("Personality", style: TextStyle(color: kdblue)),
-                  leading: Icon(Icons.person_rounded, color: kdblue), //add icon
-                  //childrenPadding: EdgeInsets.only(left:10), //children padding
-                  children: [
-                    SizedBox(
-                      height: 550,
-                      child: ListView.separated(
-                        itemBuilder: (context, index) {
-                          return Padding(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 10.0, vertical: 5.0),
-                            child: Card(
-                              margin: EdgeInsets.symmetric(
-                                  horizontal: 20.0, vertical: 10.0),
-                              elevation: 10,
-                              shadowColor: Colors.black,
-                              color: Colors.white,
-                              child: SizedBox(
-                                width: 200,
-                                // height: 360,
-                                child: Padding(
-                                  padding: const EdgeInsets.all(15.0),
-                                  child: Column(
-                                    children: [
-                                      //CircleAvatar
-                                      //SizedBox
-                                      //Text
-                                      SizedBox(
-                                        height: 10,
-                                      ),
-
-                                      ClipRRect(
-                                        borderRadius: BorderRadius.circular(5),
-                                        child: Container(
-                                          width:
-                                              MediaQuery.of(context).size.width,
-                                          height: 150,
-                                          child: YoutubePlayer(
-                                            key: ObjectKey(_personality[index]),
-                                            controller: _personality[index],
-                                            actionsPadding:
-                                                const EdgeInsets.only(
-                                                    left: 16.0),
-                                            bottomActions: [
-                                              CurrentPosition(),
-                                              const SizedBox(width: 10.0),
-                                              ProgressBar(isExpanded: true),
-                                              const SizedBox(width: 10.0),
-                                              RemainingDuration(),
-                                              FullScreenButton(),
-                                            ],
-                                          ),
-                                        ), // Container
-                                      ), //Text
-                                      SizedBox(
-                                        height: 15,
-                                      ),
-                                      Align(
-                                          alignment: Alignment.centerLeft,
-                                          child: Padding(
-                                            padding: const EdgeInsets.fromLTRB(
-                                                0, 0, 0, 6),
-                                            child: Text(
-                                              _personalityTitle[index],
-                                              textAlign: TextAlign.center,
-                                              overflow: TextOverflow.ellipsis,
-                                              style: const TextStyle(
-                                                  fontFamily: 'Lustria',
-                                                  color: kdblue,
-                                                  fontWeight: FontWeight.bold),
+                    ]),
+                ExpansionTile(
+                    title: Text("Personality", style: TextStyle(color: kdblue)),
+                    leading: Icon(Icons.person_rounded, color: kdblue), //add icon
+                    //childrenPadding: EdgeInsets.only(left:10), //children padding
+                    children: [
+                      SizedBox(
+                        height: 550,
+                        child: ListView.separated(
+                          itemBuilder: (context, index) {
+                            return Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 10.0, vertical: 5.0),
+                              child: Card(
+                                margin: EdgeInsets.symmetric(
+                                    horizontal: 20.0, vertical: 10.0),
+                                elevation: 10,
+                                shadowColor: Colors.black,
+                                color: Colors.white,
+                                child: SizedBox(
+                                  width: 200,
+                                  // height: 360,
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(15.0),
+                                    child: Column(
+                                      children: [
+                                        //CircleAvatar
+                                        //SizedBox
+                                        //Text
+                                        SizedBox(
+                                          height: 10,
+                                        ),
+    
+                                        ClipRRect(
+                                          borderRadius: BorderRadius.circular(5),
+                                          child: Container(
+                                            width:
+                                                MediaQuery.of(context).size.width,
+                                            height: 150,
+                                            child: YoutubePlayer(
+                                              key: ObjectKey(_personality[index]),
+                                              controller: _personality[index],
+                                              actionsPadding:
+                                                  const EdgeInsets.only(
+                                                      left: 16.0),
+                                              bottomActions: [
+                                                CurrentPosition(),
+                                                const SizedBox(width: 10.0),
+                                                ProgressBar(isExpanded: true),
+                                                const SizedBox(width: 10.0),
+                                                RemainingDuration(),
+                                                FullScreenButton(),
+                                              ],
                                             ),
-                                          )),
-                                    ],
-                                  ), //Column
-                                ), //Padding
+                                          ), // Container
+                                        ), //Text
+                                        SizedBox(
+                                          height: 15,
+                                        ),
+                                        Align(
+                                            alignment: Alignment.centerLeft,
+                                            child: Padding(
+                                              padding: const EdgeInsets.fromLTRB(
+                                                  0, 0, 0, 6),
+                                              child: Text(
+                                                _personalityTitle[index],
+                                                textAlign: TextAlign.center,
+                                                overflow: TextOverflow.ellipsis,
+                                                style: const TextStyle(
+                                                    fontFamily: 'Lustria',
+                                                    color: kdblue,
+                                                    fontWeight: FontWeight.bold),
+                                              ),
+                                            )),
+                                      ],
+                                    ), //Column
+                                  ), //Padding
+                                ),
                               ),
-                            ),
-                          );
-                        },
-                        itemCount: _personality.length,
-                        separatorBuilder: (context, _) =>
-                            const SizedBox(height: 1.0),
+                            );
+                          },
+                          itemCount: _personality.length,
+                          separatorBuilder: (context, _) =>
+                              const SizedBox(height: 1.0),
+                        ),
                       ),
-                    ),
-                  ]),
-              ExpansionTile(
-                  title: Text("Parenting", style: TextStyle(color: kdblue)),
-                  leading: Icon(Icons.home, color: kdblue,), //add icon
-                  //childrenPadding: EdgeInsets.only(left:10), //children padding
-                  children: [
-                    SizedBox(
-                      height: 550,
-                      child: ListView.separated(
-                        itemBuilder: (context, index) {
-                          return Padding(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 10.0, vertical: 5.0),
-                            child: Card(
-                              margin: EdgeInsets.symmetric(
-                                  horizontal: 20.0, vertical: 10.0),
-                              elevation: 10,
-                              shadowColor: Colors.black,
-                              color: Colors.white,
-                              child: SizedBox(
-                                width: 200,
-                                // height: 360,
-                                child: Padding(
-                                  padding: const EdgeInsets.all(15.0),
-                                  child: Column(
-                                    children: [
-                                      //CircleAvatar
-                                      //SizedBox
-                                      //Text
-                                      SizedBox(
-                                        height: 10,
-                                      ),
-
-                                      ClipRRect(
-                                        borderRadius: BorderRadius.circular(5),
-                                        child: Container(
-                                          width:
-                                              MediaQuery.of(context).size.width,
-                                          height: 150,
-                                          child: YoutubePlayer(
-                                            key: ObjectKey(_parenting[index]),
-                                            controller: _parenting[index],
-                                            actionsPadding:
-                                                const EdgeInsets.only(
-                                                    left: 16.0),
-                                            bottomActions: [
-                                              CurrentPosition(),
-                                              const SizedBox(width: 10.0),
-                                              ProgressBar(isExpanded: true),
-                                              const SizedBox(width: 10.0),
-                                              RemainingDuration(),
-                                              FullScreenButton(),
-                                            ],
-                                          ),
-                                        ), // Container
-                                      ), //Text
-                                      SizedBox(
-                                        height: 15,
-                                      ),
-                                      Align(
-                                          alignment: Alignment.centerLeft,
-                                          child: Padding(
-                                            padding: const EdgeInsets.fromLTRB(
-                                                0, 0, 0, 6),
-                                            child: Text(
-                                              _parentingTitle[index],
-                                              textAlign: TextAlign.center,
-                                              overflow: TextOverflow.ellipsis,
-                                              style: const TextStyle(
-                                                  fontFamily: 'Lustria',
-                                                  color: kdblue,
-                                                  fontWeight: FontWeight.bold),
+                    ]),
+                ExpansionTile(
+                    title: Text("Parenting", style: TextStyle(color: kdblue)),
+                    leading: Icon(Icons.home, color: kdblue,), //add icon
+                    //childrenPadding: EdgeInsets.only(left:10), //children padding
+                    children: [
+                      SizedBox(
+                        height: 550,
+                        child: ListView.separated(
+                          itemBuilder: (context, index) {
+                            return Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 10.0, vertical: 5.0),
+                              child: Card(
+                                margin: EdgeInsets.symmetric(
+                                    horizontal: 20.0, vertical: 10.0),
+                                elevation: 10,
+                                shadowColor: Colors.black,
+                                color: Colors.white,
+                                child: SizedBox(
+                                  width: 200,
+                                  // height: 360,
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(15.0),
+                                    child: Column(
+                                      children: [
+                                        //CircleAvatar
+                                        //SizedBox
+                                        //Text
+                                        SizedBox(
+                                          height: 10,
+                                        ),
+    
+                                        ClipRRect(
+                                          borderRadius: BorderRadius.circular(5),
+                                          child: Container(
+                                            width:
+                                                MediaQuery.of(context).size.width,
+                                            height: 150,
+                                            child: YoutubePlayer(
+                                              key: ObjectKey(_parenting[index]),
+                                              controller: _parenting[index],
+                                              actionsPadding:
+                                                  const EdgeInsets.only(
+                                                      left: 16.0),
+                                              bottomActions: [
+                                                CurrentPosition(),
+                                                const SizedBox(width: 10.0),
+                                                ProgressBar(isExpanded: true),
+                                                const SizedBox(width: 10.0),
+                                                RemainingDuration(),
+                                                FullScreenButton(),
+                                              ],
                                             ),
-                                          )),
-                                    ],
-                                  ), //Column
-                                ), //Padding
+                                          ), // Container
+                                        ), //Text
+                                        SizedBox(
+                                          height: 15,
+                                        ),
+                                        Align(
+                                            alignment: Alignment.centerLeft,
+                                            child: Padding(
+                                              padding: const EdgeInsets.fromLTRB(
+                                                  0, 0, 0, 6),
+                                              child: Text(
+                                                _parentingTitle[index],
+                                                textAlign: TextAlign.center,
+                                                overflow: TextOverflow.ellipsis,
+                                                style: const TextStyle(
+                                                    fontFamily: 'Lustria',
+                                                    color: kdblue,
+                                                    fontWeight: FontWeight.bold),
+                                              ),
+                                            )),
+                                      ],
+                                    ), //Column
+                                  ), //Padding
+                                ),
                               ),
-                            ),
-                          );
-                        },
-                        itemCount: _parenting.length,
-                        separatorBuilder: (context, _) =>
-                            const SizedBox(height: 1.0),
+                            );
+                          },
+                          itemCount: _parenting.length,
+                          separatorBuilder: (context, _) =>
+                              const SizedBox(height: 1.0),
+                        ),
                       ),
-                    ),
-                  ]),
-              ExpansionTile(
-                  title: Text("Financial Management", style: TextStyle(color: kdblue)),
-                  leading: Icon(Icons.attach_money_rounded, color: kdblue), //add icon
-                  //childrenPadding: EdgeInsets.only(left:10), //children padding
-                  children: [
-                    SizedBox(
-                      height: 550,
-                      child: ListView.separated(
-                        itemBuilder: (context, index) {
-                          return Padding(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 10.0, vertical: 5.0),
-                            child: Card(
-                              margin: EdgeInsets.symmetric(
-                                  horizontal: 20.0, vertical: 10.0),
-                              elevation: 10,
-                              shadowColor: Colors.black,
-                              color: Colors.white,
-                              child: SizedBox(
-                                width: 200,
-                                // height: 360,
-                                child: Padding(
-                                  padding: const EdgeInsets.all(15.0),
-                                  child: Column(
-                                    children: [
-                                      //CircleAvatar
-                                      //SizedBox
-                                      //Text
-                                      SizedBox(
-                                        height: 10,
-                                      ),
-
-                                      ClipRRect(
-                                        borderRadius: BorderRadius.circular(5),
-                                        child: Container(
-                                          width:
-                                              MediaQuery.of(context).size.width,
-                                          height: 150,
-                                          child: YoutubePlayer(
-                                            key: ObjectKey(_finance[index]),
-                                            controller: _finance[index],
-                                            actionsPadding:
-                                                const EdgeInsets.only(
-                                                    left: 16.0),
-                                            bottomActions: [
-                                              CurrentPosition(),
-                                              const SizedBox(width: 10.0),
-                                              ProgressBar(isExpanded: true),
-                                              const SizedBox(width: 10.0),
-                                              RemainingDuration(),
-                                              FullScreenButton(),
-                                            ],
-                                          ),
-                                        ), // Container
-                                      ), //Text
-                                      SizedBox(
-                                        height: 15,
-                                      ),
-                                      Align(
-                                          alignment: Alignment.centerLeft,
-                                          child: Padding(
-                                            padding: const EdgeInsets.fromLTRB(
-                                                0, 0, 0, 6),
-                                            child: Text(
-                                              _financeTitle[index],
-                                              textAlign: TextAlign.center,
-                                              overflow: TextOverflow.ellipsis,
-                                              style: const TextStyle(
-                                                  fontFamily: 'Lustria',
-                                                  color: kdblue,
-                                                  fontWeight: FontWeight.bold),
+                    ]),
+                ExpansionTile(
+                    title: Text("Financial Management", style: TextStyle(color: kdblue)),
+                    leading: Icon(Icons.attach_money_rounded, color: kdblue), //add icon
+                    //childrenPadding: EdgeInsets.only(left:10), //children padding
+                    children: [
+                      SizedBox(
+                        height: 550,
+                        child: ListView.separated(
+                          itemBuilder: (context, index) {
+                            return Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 10.0, vertical: 5.0),
+                              child: Card(
+                                margin: EdgeInsets.symmetric(
+                                    horizontal: 20.0, vertical: 10.0),
+                                elevation: 10,
+                                shadowColor: Colors.black,
+                                color: Colors.white,
+                                child: SizedBox(
+                                  width: 200,
+                                  // height: 360,
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(15.0),
+                                    child: Column(
+                                      children: [
+                                        //CircleAvatar
+                                        //SizedBox
+                                        //Text
+                                        SizedBox(
+                                          height: 10,
+                                        ),
+    
+                                        ClipRRect(
+                                          borderRadius: BorderRadius.circular(5),
+                                          child: Container(
+                                            width:
+                                                MediaQuery.of(context).size.width,
+                                            height: 150,
+                                            child: YoutubePlayer(
+                                              key: ObjectKey(_finance[index]),
+                                              controller: _finance[index],
+                                              actionsPadding:
+                                                  const EdgeInsets.only(
+                                                      left: 16.0),
+                                              bottomActions: [
+                                                CurrentPosition(),
+                                                const SizedBox(width: 10.0),
+                                                ProgressBar(isExpanded: true),
+                                                const SizedBox(width: 10.0),
+                                                RemainingDuration(),
+                                                FullScreenButton(),
+                                              ],
                                             ),
-                                          )),
-                                    ],
-                                  ), //Column
-                                ), //Padding
+                                          ), // Container
+                                        ), //Text
+                                        SizedBox(
+                                          height: 15,
+                                        ),
+                                        Align(
+                                            alignment: Alignment.centerLeft,
+                                            child: Padding(
+                                              padding: const EdgeInsets.fromLTRB(
+                                                  0, 0, 0, 6),
+                                              child: Text(
+                                                _financeTitle[index],
+                                                textAlign: TextAlign.center,
+                                                overflow: TextOverflow.ellipsis,
+                                                style: const TextStyle(
+                                                    fontFamily: 'Lustria',
+                                                    color: kdblue,
+                                                    fontWeight: FontWeight.bold),
+                                              ),
+                                            )),
+                                      ],
+                                    ), //Column
+                                  ), //Padding
+                                ),
                               ),
-                            ),
-                          );
-                        },
-                        itemCount: _finance.length,
-                        separatorBuilder: (context, _) =>
-                            const SizedBox(height: 1.0),
+                            );
+                          },
+                          itemCount: _finance.length,
+                          separatorBuilder: (context, _) =>
+                              const SizedBox(height: 1.0),
+                        ),
                       ),
-                    ),
-                  ]),
-              ExpansionTile(
-                  title: Text("Women Empowerment", style: TextStyle(color: kdblue)),
-                  leading: Icon(Icons.female_rounded, color: kdblue), //add icon
-                  //childrenPadding: EdgeInsets.only(left:10), //children padding
-                  children: [
-                    SizedBox(
-                      height: 550,
-                      child: ListView.separated(
-                        itemBuilder: (context, index) {
-                          return Padding(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 10.0, vertical: 5.0),
-                            child: Card(
-                              margin: EdgeInsets.symmetric(
-                                  horizontal: 20.0, vertical: 10.0),
-                              elevation: 10,
-                              shadowColor: Colors.black,
-                              color: Colors.white,
-                              child: SizedBox(
-                                width: 200,
-                                // height: 360,
-                                child: Padding(
-                                  padding: const EdgeInsets.all(15.0),
-                                  child: Column(
-                                    children: [
-                                      //CircleAvatar
-                                      //SizedBox
-                                      //Text
-                                      SizedBox(
-                                        height: 10,
-                                      ),
-
-                                      ClipRRect(
-                                        borderRadius: BorderRadius.circular(5),
-                                        child: Container(
-                                          width:
-                                              MediaQuery.of(context).size.width,
-                                          height: 150,
-                                          child: YoutubePlayer(
-                                            key: ObjectKey(_empower[index]),
-                                            controller: _empower[index],
-                                            actionsPadding:
-                                                const EdgeInsets.only(
-                                                    left: 16.0),
-                                            bottomActions: [
-                                              CurrentPosition(),
-                                              const SizedBox(width: 10.0),
-                                              ProgressBar(isExpanded: true),
-                                              const SizedBox(width: 10.0),
-                                              RemainingDuration(),
-                                              FullScreenButton(),
-                                            ],
-                                          ),
-                                        ), // Container
-                                      ), //Text
-                                      SizedBox(
-                                        height: 15,
-                                      ),
-                                      Align(
-                                          alignment: Alignment.centerLeft,
-                                          child: Padding(
-                                            padding: const EdgeInsets.fromLTRB(
-                                                0, 0, 0, 6),
-                                            child: Text(
-                                              _empowerTitle[index],
-                                              textAlign: TextAlign.center,
-                                              overflow: TextOverflow.ellipsis,
-                                              style: const TextStyle(
-                                                  fontFamily: 'Lustria',
-                                                  color: kdblue,
-                                                  fontWeight: FontWeight.bold),
+                    ]),
+                ExpansionTile(
+                    title: Text("Women Empowerment", style: TextStyle(color: kdblue)),
+                    leading: Icon(Icons.female_rounded, color: kdblue), //add icon
+                    //childrenPadding: EdgeInsets.only(left:10), //children padding
+                    children: [
+                      SizedBox(
+                        height: 550,
+                        child: ListView.separated(
+                          itemBuilder: (context, index) {
+                            return Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 10.0, vertical: 5.0),
+                              child: Card(
+                                margin: EdgeInsets.symmetric(
+                                    horizontal: 20.0, vertical: 10.0),
+                                elevation: 10,
+                                shadowColor: Colors.black,
+                                color: Colors.white,
+                                child: SizedBox(
+                                  width: 200,
+                                  // height: 360,
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(15.0),
+                                    child: Column(
+                                      children: [
+                                        //CircleAvatar
+                                        //SizedBox
+                                        //Text
+                                        SizedBox(
+                                          height: 10,
+                                        ),
+    
+                                        ClipRRect(
+                                          borderRadius: BorderRadius.circular(5),
+                                          child: Container(
+                                            width:
+                                                MediaQuery.of(context).size.width,
+                                            height: 150,
+                                            child: YoutubePlayer(
+                                              key: ObjectKey(_empower[index]),
+                                              controller: _empower[index],
+                                              actionsPadding:
+                                                  const EdgeInsets.only(
+                                                      left: 16.0),
+                                              bottomActions: [
+                                                CurrentPosition(),
+                                                const SizedBox(width: 10.0),
+                                                ProgressBar(isExpanded: true),
+                                                const SizedBox(width: 10.0),
+                                                RemainingDuration(),
+                                                FullScreenButton(),
+                                              ],
                                             ),
-                                          )),
-                                    ],
-                                  ), //Column
-                                ), //Padding
+                                          ), // Container
+                                        ), //Text
+                                        SizedBox(
+                                          height: 15,
+                                        ),
+                                        Align(
+                                            alignment: Alignment.centerLeft,
+                                            child: Padding(
+                                              padding: const EdgeInsets.fromLTRB(
+                                                  0, 0, 0, 6),
+                                              child: Text(
+                                                _empowerTitle[index],
+                                                textAlign: TextAlign.center,
+                                                overflow: TextOverflow.ellipsis,
+                                                style: const TextStyle(
+                                                    fontFamily: 'Lustria',
+                                                    color: kdblue,
+                                                    fontWeight: FontWeight.bold),
+                                              ),
+                                            )),
+                                      ],
+                                    ), //Column
+                                  ), //Padding
+                                ),
                               ),
-                            ),
-                          );
-                        },
-                        itemCount: _empower.length,
-                        separatorBuilder: (context, _) =>
-                            const SizedBox(height: 1.0),
+                            );
+                          },
+                          itemCount: _empower.length,
+                          separatorBuilder: (context, _) =>
+                              const SizedBox(height: 1.0),
+                        ),
                       ),
-                    ),
-                  ]),
-            ],
-          )),
-        ),
-        endDrawer: EndDrawer(),
-        bottomNavigationBar: BottomBar(),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            popUpDialog(context);
-          },
-          elevation: 0,
-          backgroundColor: Theme.of(context).primaryColor,
-          child: const Icon(
-            Icons.chat_bubble,
-            color: Colors.white,
-            size: 30,
+                    ]),
+              ],
+            )),
           ),
-        ));
+          endDrawer: EndDrawer(),
+          bottomNavigationBar: BottomBar(),
+          floatingActionButton: FloatingActionButton(
+            onPressed: () {
+              popUpDialog(context);
+            },
+            elevation: 0,
+            backgroundColor: Theme.of(context).primaryColor,
+            child: const Icon(
+              Icons.chat_bubble,
+              color: Colors.white,
+              size: 30,
+            ),
+          )),
+    );
   }
 
   popUpDialog(BuildContext context) {

@@ -25,53 +25,55 @@ class OprScreen extends StatefulWidget {
 class _OprScreenState extends State<OprScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: kbase,
-      appBar: AppBarHome(heading: 'Opportunity'),
-      endDrawer: EndDrawer(),
-      bottomNavigationBar: BottomBar(),
-      body: Scaffold(
-        body: StreamBuilder(
-          stream: FirebaseFirestore.instance
-              .collection('opportunities')
-              .snapshots(),
-          builder:
-              (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-            if (!snapshot.hasData) {
-              return Center(
-                child: CircularProgressIndicator(),
-              );
-            } else {
-              return Container(
-                color: kbase,
-                child: ListView(
-                  children: snapshot.data!.docs.map((document) {
-                    return Container(
-                      child: CardLayout(
-                          url: document['url'],
-                          imageUrl: document['imageUrl'],
-                          subText: document['subText'],
-                          mainText: document['mainText']),
-                    );
-                  }).toList(),
-                ),
-              );
-            }
-          },
-        ),
-      ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            popUpDialog(context);
-          },
-          elevation: 0,
-          backgroundColor: Theme.of(context).primaryColor,
-          child: const Icon(
-            Icons.chat_bubble,
-            color: Colors.white,
-            size: 30,
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: kbase,
+        appBar: AppBarHome(heading: 'Opportunities'),
+        endDrawer: EndDrawer(),
+        bottomNavigationBar: BottomBar(),
+        body: Scaffold(
+          body: StreamBuilder(
+            stream: FirebaseFirestore.instance
+                .collection('opportunities')
+                .snapshots(),
+            builder:
+                (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+              if (!snapshot.hasData) {
+                return Center(
+                  child: CircularProgressIndicator(),
+                );
+              } else {
+                return Container(
+                  color: kbase,
+                  child: ListView(
+                    children: snapshot.data!.docs.map((document) {
+                      return Container(
+                        child: CardLayout(
+                            url: document['url'],
+                            imageUrl: document['imageUrl'],
+                            subText: document['subText'],
+                            mainText: document['mainText']),
+                      );
+                    }).toList(),
+                  ),
+                );
+              }
+            },
           ),
-        )
+        ),
+          floatingActionButton: FloatingActionButton(
+            onPressed: () {
+              popUpDialog(context);
+            },
+            elevation: 0,
+            backgroundColor: Theme.of(context).primaryColor,
+            child: const Icon(
+              Icons.chat_bubble,
+              color: Colors.white,
+              size: 30,
+            ),
+          )
+      ),
     );
   }
 

@@ -211,8 +211,7 @@ class _UserProfileState extends State<UserProfile> {
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
                             border: Border.all(
-                              color:
-                              Color.fromARGB(255, 21, 101, 192),
+                              color:kpink,
                               width: 1,
                             ),
                           ),
@@ -330,8 +329,7 @@ class _UserProfileState extends State<UserProfile> {
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
                             border: Border.all(
-                              color:
-                              Color.fromARGB(255, 21, 101, 192),
+                              color:kpink,
                               width: 1,
                             ),
                           ),
@@ -407,8 +405,7 @@ class _UserProfileState extends State<UserProfile> {
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
                             border: Border.all(
-                              color:
-                              Color.fromARGB(255, 21, 101, 192),
+                              color:kpink,
                               width: 1,
                             ),
                           ),

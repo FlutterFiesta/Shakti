@@ -29,14 +29,16 @@ class _CourseState extends State<Course> {
 
     @override
     Widget build(BuildContext context) {
-      return Scaffold(
-        appBar: AppBar(
-          title: Text('Example'),
+      return SafeArea(
+        child: Scaffold(
+          appBar: AppBar(
+            title: Text('Example'),
+          ),
+          body: Center(
+            child: Text('New'),
+          ),
+          // bottomNavigationBar: bottomBar(selectedIndex: _selectedIndex,),
         ),
-        body: Center(
-          child: Text('New'),
-        ),
-        // bottomNavigationBar: bottomBar(selectedIndex: _selectedIndex,),
       );
     }
   }

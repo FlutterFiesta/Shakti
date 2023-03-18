@@ -81,7 +81,7 @@ final List<dynamic> health_ans = [
               ),
               Container(
                   padding: const EdgeInsets.all(8.0),
-                  child: Text('HEALTH ISSUES'))
+                  child: Text('Health Issues', style: TextStyle(fontSize:17),))
             ],
           ),
         ),

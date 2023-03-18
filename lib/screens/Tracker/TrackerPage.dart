@@ -80,297 +80,299 @@ class _TrackerPageState extends State<TrackerPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBarHome(heading: 'Tracker'),
-      endDrawer: EndDrawer(),
-      bottomNavigationBar: BottomBar(),
-      body: ModalProgressHUD(
-        inAsyncCall: spinner,
-        progressIndicator: CircularProgressIndicator(
-          color: kpink,
-        ),
-        child: SafeArea(
-          child: SingleChildScrollView(
-            child: Column(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Padding(
-                  padding: EdgeInsets.only(
-                      left: 8.0, right: 8.0, top: 0.0, bottom: 0),
-                  child: TableCalendar(
-                    calendarStyle: CalendarStyle(
-                      isTodayHighlighted: true,
-                    ),
-                    calendarBuilders: CalendarBuilders(
-                      markerBuilder: (context, date, event) {
-                        if (event.isNotEmpty) {
-                          color++;
-                          int a = 1, b = 1;
-                          if (color == 0) {
-                            a = 300;
-                            b = 300;
-                          } else if (color == 1) {
-                            a = 300;
-                            b = 200;
-                          } else if (color == 2) {
-                            a = 300;
-                            b = 100;
-                          } else if (color == 3) {
-                            a = 300;
-                            b = 50;
-                          } else if (color == 4) {
-                            a = 200;
-                            b = 50;
-                          } else if (color == 5) {
-                            a = 100;
-                            b = 50;
-                          } else {
-                            a = 50;
-                            b = 50;
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBarHome(heading: 'Tracker'),
+        endDrawer: EndDrawer(),
+        bottomNavigationBar: BottomBar(),
+        body: ModalProgressHUD(
+          inAsyncCall: spinner,
+          progressIndicator: CircularProgressIndicator(
+            color: kpink,
+          ),
+          child: SafeArea(
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Padding(
+                    padding: EdgeInsets.only(
+                        left: 8.0, right: 8.0, top: 0.0, bottom: 0),
+                    child: TableCalendar(
+                      calendarStyle: CalendarStyle(
+                        isTodayHighlighted: true,
+                      ),
+                      calendarBuilders: CalendarBuilders(
+                        markerBuilder: (context, date, event) {
+                          if (event.isNotEmpty) {
+                            color++;
+                            int a = 1, b = 1;
+                            if (color == 0) {
+                              a = 300;
+                              b = 300;
+                            } else if (color == 1) {
+                              a = 300;
+                              b = 200;
+                            } else if (color == 2) {
+                              a = 300;
+                              b = 100;
+                            } else if (color == 3) {
+                              a = 300;
+                              b = 50;
+                            } else if (color == 4) {
+                              a = 200;
+                              b = 50;
+                            } else if (color == 5) {
+                              a = 100;
+                              b = 50;
+                            } else {
+                              a = 50;
+                              b = 50;
+                            }
+                            // int s = (code-f)%4;
+                            return Container(
+                                decoration: BoxDecoration(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(10)),
+                                    gradient: LinearGradient(colors: [
+                                      Color.fromRGBO(235, 66, 103, 1),
+                                      Color.fromRGBO(245, 120, 130, 1),
+                                    ])),
+                                margin: const EdgeInsets.all(4.0),
+                                alignment: Alignment.center,
+                                child: Text(
+                                  date.day.toString(),
+                                  style: TextStyle(
+                                      color: Color.fromARGB(255, 255, 255, 255)),
+                                ));
                           }
-                          // int s = (code-f)%4;
-                          return Container(
-                              decoration: BoxDecoration(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(10)),
-                                  gradient: LinearGradient(colors: [
-                                    Color.fromRGBO(235, 66, 103, 1),
-                                    Color.fromRGBO(245, 120, 130, 1),
-                                  ])),
-                              margin: const EdgeInsets.all(4.0),
-                              alignment: Alignment.center,
-                              child: Text(
-                                date.day.toString(),
-                                style: TextStyle(
-                                    color: Color.fromARGB(255, 255, 255, 255)),
-                              ));
-                        }
-                        color = -1;
-                        return Container();
-                      },
-                      todayBuilder: (context, date, events) => Container(
-                          margin: const EdgeInsets.all(4.0),
-                          alignment: Alignment.center,
-                          decoration: BoxDecoration(
-                              color: Color.fromRGBO(255, 92, 141, 1),
-                              borderRadius: BorderRadius.circular(30)),
-                          child: Text(
-                            date.day.toString(),
-                            style: TextStyle(
-                                color: Color.fromARGB(255, 255, 255, 255)),
-                          )),
-                    ),
-                    firstDay: DateTime.utc(2019, 10, 16),
-                    lastDay: DateTime.now().add(Duration(days: 1000)),
-                    focusedDay: _focusedDay,
-                    calendarFormat: _calendarFormat,
-                    eventLoader: (day) {
-                      if (lastMenstruation.length != 0 &&
-                          periodLength != 0 &&
-                          menstrualLength != 0) {
-                        DateTime dt =
-                            lastMenstruation[lastMenstruation.length - 1]
-                                .subtract(Duration(days: menstrualLength - 1));
-                        dt = dt.add(Duration(days: periodLength));
-                        List<DateTime> dts = [];
-                        while (dt.isBefore(
-                            DateTime.now().add(Duration(days: 900)))) {
-                          dts.add(dt);
-                          for (int i = 1; i < menstrualLength; ++i) {
-                            dts.add(dts[dts.length - 1].add(Duration(days: 1)));
-                          }
-                          dt = dt.add(Duration(days: periodLength));
-                        }
-                        dynamic st = [];
-                        for (DateTime time in dts) {
-                          if (day.day == time.day &&
-                              day.month == time.month &&
-                              day.year == time.year) {
-                            st.add("next period date");
-                          }
-                        }
-
-                        return st;
-                      }
-                      return [];
-                    },
-                    selectedDayPredicate: (day) {
-                      return isSameDay(_selectedDay, day);
-                    },
-                    onDaySelected: (selectedDay, focusedDay) {
-                      if (!isSameDay(_selectedDay, selectedDay)) {
-                        setState(() {
-                          _selectedDay = selectedDay;
-                          _focusedDay = focusedDay;
-                        });
-                      }
-                    },
-                    onPageChanged: (focusedDay) {
-                      _focusedDay = focusedDay;
-                    },
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(
-                      left: 8.0, right: 8.0, top: 8.0, bottom: 0),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.only(
-                            left: 15.0, right: 20.0, top: 8.0, bottom: 8.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              "Menstrual Length :",
+                          color = -1;
+                          return Container();
+                        },
+                        todayBuilder: (context, date, events) => Container(
+                            margin: const EdgeInsets.all(4.0),
+                            alignment: Alignment.center,
+                            decoration: BoxDecoration(
+                                color: Color.fromRGBO(255, 92, 141, 1),
+                                borderRadius: BorderRadius.circular(30)),
+                            child: Text(
+                              date.day.toString(),
                               style: TextStyle(
-                                fontSize: 20,
-                              ),
-                            ),
-                            Spacer(
-                              flex: 3,
-                            ),
-                            Card(
-                                child: Container(
-                              decoration: BoxDecoration(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(10)),
-                                  gradient: LinearGradient(colors: [
-                                    Color.fromRGBO(235, 66, 103, 1),
-                                    Color.fromRGBO(245, 120, 130, 1),
-                                  ])),
-                              child: Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    vertical: 4.0, horizontal: 8),
-                                child: GestureDetector(
-                                  onTap: () {
-                                    Navigator.pushNamed(
-                                        context, TrackerInfo.id);
-                                  },
-                                  child: Text(
-                                    "${menstrualLength} days",
-                                    style: TextStyle(
-                                      fontSize: 20,
-                                      fontFamily: 'FredokaOne',
-                                      color: Color.fromARGB(255, 255, 255, 255),
-                                    ),
-                                  ),
+                                  color: Color.fromARGB(255, 255, 255, 255)),
+                            )),
+                      ),
+                      firstDay: DateTime.utc(2019, 10, 16),
+                      lastDay: DateTime.now().add(Duration(days: 1000)),
+                      focusedDay: _focusedDay,
+                      calendarFormat: _calendarFormat,
+                      eventLoader: (day) {
+                        if (lastMenstruation.length != 0 &&
+                            periodLength != 0 &&
+                            menstrualLength != 0) {
+                          DateTime dt =
+                              lastMenstruation[lastMenstruation.length - 1]
+                                  .subtract(Duration(days: menstrualLength - 1));
+                          dt = dt.add(Duration(days: periodLength));
+                          List<DateTime> dts = [];
+                          while (dt.isBefore(
+                              DateTime.now().add(Duration(days: 900)))) {
+                            dts.add(dt);
+                            for (int i = 1; i < menstrualLength; ++i) {
+                              dts.add(dts[dts.length - 1].add(Duration(days: 1)));
+                            }
+                            dt = dt.add(Duration(days: periodLength));
+                          }
+                          dynamic st = [];
+                          for (DateTime time in dts) {
+                            if (day.day == time.day &&
+                                day.month == time.month &&
+                                day.year == time.year) {
+                              st.add("next period date");
+                            }
+                          }
+    
+                          return st;
+                        }
+                        return [];
+                      },
+                      selectedDayPredicate: (day) {
+                        return isSameDay(_selectedDay, day);
+                      },
+                      onDaySelected: (selectedDay, focusedDay) {
+                        if (!isSameDay(_selectedDay, selectedDay)) {
+                          setState(() {
+                            _selectedDay = selectedDay;
+                            _focusedDay = focusedDay;
+                          });
+                        }
+                      },
+                      onPageChanged: (focusedDay) {
+                        _focusedDay = focusedDay;
+                      },
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(
+                        left: 8.0, right: 8.0, top: 8.0, bottom: 0),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.only(
+                              left: 15.0, right: 20.0, top: 8.0, bottom: 8.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                "Menstrual Length :",
+                                style: TextStyle(
+                                  fontSize: 20,
                                 ),
                               ),
-                            )),
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(
-                            left: 15.0, right: 20.0, top: 8.0, bottom: 8.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              'Period Length :',
-                              style: TextStyle(fontSize: 20),
-                            ),
-                            Spacer(
-                              flex: 3,
-                            ),
-                            Card(
-                                child: Container(
-                              decoration: BoxDecoration(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(10)),
-                                  gradient: LinearGradient(colors: [
-                                    Color.fromRGBO(235, 66, 103, 1),
-                                    Color.fromRGBO(245, 120, 130, 1),
-                                  ])),
-                              child: Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    vertical: 4.0, horizontal: 8),
-                                child: GestureDetector(
+                              Spacer(
+                                flex: 3,
+                              ),
+                              Card(
+                                  child: Container(
+                                decoration: BoxDecoration(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(10)),
+                                    gradient: LinearGradient(colors: [
+                                      Color.fromRGBO(235, 66, 103, 1),
+                                      Color.fromRGBO(245, 120, 130, 1),
+                                    ])),
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      vertical: 4.0, horizontal: 8),
+                                  child: GestureDetector(
                                     onTap: () {
                                       Navigator.pushNamed(
                                           context, TrackerInfo.id);
                                     },
                                     child: Text(
-                                      "${periodLength} days",
+                                      "${menstrualLength} days",
                                       style: TextStyle(
                                         fontSize: 20,
-                                        color:
-                                            Color.fromARGB(255, 255, 255, 255),
+                                        fontFamily: 'FredokaOne',
+                                        color: Color.fromARGB(255, 255, 255, 255),
                                       ),
-                                    )),
-                              ),
-                            )),
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(
-                            left: 15.0, right: 15.0, top: 8.0, bottom: 8.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              "Last Menstruation :",
-                              style: TextStyle(fontSize: 20),
-                            ),
-                            Spacer(
-                              flex: 3,
-                            ),
-                            Card(
-                                child: Container(
-                              decoration: BoxDecoration(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(10)),
-                                  gradient: LinearGradient(colors: [
-                                    Color.fromRGBO(235, 66, 103, 1),
-                                    Color.fromRGBO(245, 120, 130, 1),
-                                  ])),
-                              child: Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    vertical: 4.0, horizontal: 8),
-                                child: GestureDetector(
-                                  onTap: () {
-                                    Navigator.pushNamed(
-                                        context, TrackerInfo.id);
-                                  },
-                                  child: Text(
-                                    lastMenstruation.length == 0
-                                        ? " "
-                                        : '${lastMenstruation[lastMenstruation.length - 1].day.toString()}/${lastMenstruation[lastMenstruation.length - 1].month.toString()}/${lastMenstruation[lastMenstruation.length - 1].year.toString()}',
-                                    style: TextStyle(
-                                      fontSize: 20,
-                                      color: Color.fromARGB(255, 255, 255, 255),
                                     ),
                                   ),
                                 ),
-                              ),
-                            )),
-                          ],
+                              )),
+                            ],
+                          ),
                         ),
-                      ),
-                    ],
+                        Padding(
+                          padding: EdgeInsets.only(
+                              left: 15.0, right: 20.0, top: 8.0, bottom: 8.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                'Period Length :',
+                                style: TextStyle(fontSize: 20),
+                              ),
+                              Spacer(
+                                flex: 3,
+                              ),
+                              Card(
+                                  child: Container(
+                                decoration: BoxDecoration(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(10)),
+                                    gradient: LinearGradient(colors: [
+                                      Color.fromRGBO(235, 66, 103, 1),
+                                      Color.fromRGBO(245, 120, 130, 1),
+                                    ])),
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      vertical: 4.0, horizontal: 8),
+                                  child: GestureDetector(
+                                      onTap: () {
+                                        Navigator.pushNamed(
+                                            context, TrackerInfo.id);
+                                      },
+                                      child: Text(
+                                        "${periodLength} days",
+                                        style: TextStyle(
+                                          fontSize: 20,
+                                          color:
+                                              Color.fromARGB(255, 255, 255, 255),
+                                        ),
+                                      )),
+                                ),
+                              )),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(
+                              left: 15.0, right: 15.0, top: 8.0, bottom: 8.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                "Last Menstruation :",
+                                style: TextStyle(fontSize: 20),
+                              ),
+                              Spacer(
+                                flex: 3,
+                              ),
+                              Card(
+                                  child: Container(
+                                decoration: BoxDecoration(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(10)),
+                                    gradient: LinearGradient(colors: [
+                                      Color.fromRGBO(235, 66, 103, 1),
+                                      Color.fromRGBO(245, 120, 130, 1),
+                                    ])),
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      vertical: 4.0, horizontal: 8),
+                                  child: GestureDetector(
+                                    onTap: () {
+                                      Navigator.pushNamed(
+                                          context, TrackerInfo.id);
+                                    },
+                                    child: Text(
+                                      lastMenstruation.length == 0
+                                          ? " "
+                                          : '${lastMenstruation[lastMenstruation.length - 1].day.toString()}/${lastMenstruation[lastMenstruation.length - 1].month.toString()}/${lastMenstruation[lastMenstruation.length - 1].year.toString()}',
+                                      style: TextStyle(
+                                        fontSize: 20,
+                                        color: Color.fromARGB(255, 255, 255, 255),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              )),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),
+          floatingActionButton: FloatingActionButton(
+            onPressed: () {
+              popUpDialog(context);
+            },
+            elevation: 0,
+            backgroundColor: Theme.of(context).primaryColor,
+            child: const Icon(
+              Icons.chat_bubble,
+              color: Colors.white,
+              size: 30,
+            ),
+          )
       ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            popUpDialog(context);
-          },
-          elevation: 0,
-          backgroundColor: Theme.of(context).primaryColor,
-          child: const Icon(
-            Icons.chat_bubble,
-            color: Colors.white,
-            size: 30,
-          ),
-        )
     );
   }
 

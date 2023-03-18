@@ -55,78 +55,80 @@ class _LocationState extends State<Location> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBarHome(heading: 'Location'),
-      endDrawer: EndDrawer(),
-      bottomNavigationBar: BottomBar(),
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            children: [
-              SizedBox(
-                height: 550,
-                child: GoogleMap(
-                  // on below line setting camera position
-                  initialCameraPosition: _kGoogle,
-                  // on below line we are setting markers on the map
-                  markers: Set<Marker>.of(_markers),
-                  // on below line specifying map type.
-                  mapType: MapType.normal,
-                  // on below line setting user location enabled.
-                  myLocationEnabled: true,
-                  // on below line setting compass enabled.
-                  compassEnabled: true,
-                  // on below line specifying controller on map complete.
-                  onMapCreated: (GoogleMapController controller){
-                    _controller.complete(controller);
-                  },
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBarHome(heading: 'Location'),
+        endDrawer: EndDrawer(),
+        bottomNavigationBar: BottomBar(),
+        body: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              children: [
+                SizedBox(
+                  height: 550,
+                  child: GoogleMap(
+                    // on below line setting camera position
+                    initialCameraPosition: _kGoogle,
+                    // on below line we are setting markers on the map
+                    markers: Set<Marker>.of(_markers),
+                    // on below line specifying map type.
+                    mapType: MapType.normal,
+                    // on below line setting user location enabled.
+                    myLocationEnabled: true,
+                    // on below line setting compass enabled.
+                    compassEnabled: true,
+                    // on below line specifying controller on map complete.
+                    onMapCreated: (GoogleMapController controller){
+                      _controller.complete(controller);
+                    },
+                  ),
                 ),
-              ),
-              SizedBox(
-                height: 8,
-              ),
-              Expanded(
-                child: ListView(
-                  shrinkWrap: true,
-                  children: [
-                    LiveSafe(),
-                  ],
+                SizedBox(
+                  height: 8,
                 ),
-              ),
-            ],
+                Expanded(
+                  child: ListView(
+                    shrinkWrap: true,
+                    children: [
+                      LiveSafe(),
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () async{
-          getUserCurrentLocation().then((value) async {
-            print(value.latitude.toString() +" "+value.longitude.toString());
-
-            // marker added for current users location
-            _markers.add(
-                Marker(
-                  markerId: MarkerId("2"),
-                  position: LatLng(value.latitude, value.longitude),
-                  infoWindow: InfoWindow(
-                    title: 'My Current Location',
-                  ),
-                )
-            );
-
-            // specified current users location
-            CameraPosition cameraPosition = new CameraPosition(
-              target: LatLng(value.latitude, value.longitude),
-              zoom: 14,
-            );
-
-            final GoogleMapController controller = await _controller.future;
-            controller.animateCamera(CameraUpdate.newCameraPosition(cameraPosition));
-            setState(() {
+        floatingActionButton: FloatingActionButton(
+          onPressed: () async{
+            getUserCurrentLocation().then((value) async {
+              print(value.latitude.toString() +" "+value.longitude.toString());
+    
+              // marker added for current users location
+              _markers.add(
+                  Marker(
+                    markerId: MarkerId("2"),
+                    position: LatLng(value.latitude, value.longitude),
+                    infoWindow: InfoWindow(
+                      title: 'My Current Location',
+                    ),
+                  )
+              );
+    
+              // specified current users location
+              CameraPosition cameraPosition = new CameraPosition(
+                target: LatLng(value.latitude, value.longitude),
+                zoom: 14,
+              );
+    
+              final GoogleMapController controller = await _controller.future;
+              controller.animateCamera(CameraUpdate.newCameraPosition(cameraPosition));
+              setState(() {
+              });
             });
-          });
-        },
-        child: Icon(Icons.local_activity),
+          },
+          child: Icon(Icons.local_activity),
+        ),
       ),
     );
   }

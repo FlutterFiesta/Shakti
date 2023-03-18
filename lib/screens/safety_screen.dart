@@ -48,60 +48,62 @@ class _SafetyScreenState extends State<SafetyScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: kbase,
-      appBar: AppBarHome(heading: 'Safety'),
-      endDrawer: EndDrawer(),
-      bottomNavigationBar: BottomBar(),
-      body: ModalProgressHUD(
-        inAsyncCall: spinner,
-        progressIndicator: const CircularProgressIndicator(
-          color: kpink,
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: <Widget>[
-            Expanded(
-              child: GestureDetector(
-                onTap: () async {
-                  //
-                  print("*");
-                  final docref =
-                      await _firestore.collection("users").doc(userId).get();
-                  print(docref.data().toString());
-                  print(docref.data().toString().contains('safety'));
-                  print(docref['safety']);
-                  String phoneSafety = docref['safety'];
-                  print("*");
-                  print(phoneSafety.length);
-                  print(phoneSafety);
-
-                  if (phoneSafety.length == 0) {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => PhoneDetails()));
-                  } else {
-                    //Add code here
-                    final Uri url = Uri(
-                      scheme: 'tel',
-                      path: phoneSafety,
-                    );
-                    if (await canLaunchUrl(url)) {
-                      await launchUrl(url);
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: kbase,
+        appBar: AppBarHome(heading: 'Safety'),
+        endDrawer: EndDrawer(),
+        bottomNavigationBar: BottomBar(),
+        body: ModalProgressHUD(
+          inAsyncCall: spinner,
+          progressIndicator: const CircularProgressIndicator(
+            color: kpink,
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: <Widget>[
+              Expanded(
+                child: GestureDetector(
+                  onTap: () async {
+                    //
+                    print("*");
+                    final docref =
+                        await _firestore.collection("users").doc(userId).get();
+                    print(docref.data().toString());
+                    print(docref.data().toString().contains('safety'));
+                    print(docref['safety']);
+                    String phoneSafety = docref['safety'];
+                    print("*");
+                    print(phoneSafety.length);
+                    print(phoneSafety);
+    
+                    if (phoneSafety.length == 0) {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => PhoneDetails()));
                     } else {
-                      print('Cannot launch this url!');
+                      //Add code here
+                      final Uri url = Uri(
+                        scheme: 'tel',
+                        path: phoneSafety,
+                      );
+                      if (await canLaunchUrl(url)) {
+                        await launchUrl(url);
+                      } else {
+                        print('Cannot launch this url!');
+                      }
                     }
-                  }
-                },
-                child: Image(
-                  // width: 1.0,
-                  image: AssetImage('images/Panic2.png'),
+                  },
+                  child: Image(
+                    // width: 1.0,
+                    image: AssetImage('images/Panic2.png'),
+                  ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

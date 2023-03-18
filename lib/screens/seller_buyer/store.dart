@@ -53,255 +53,257 @@ class _StoreScreenState extends State<StoreScreen> {
   }
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: kbase,
-      appBar: AppBarHome(heading: 'Store'),
-      endDrawer:EndDrawer(),
-      bottomNavigationBar: BottomBar(),
-      body: ModalProgressHUD(
-        inAsyncCall: spinner,
-        progressIndicator: const CircularProgressIndicator(
-          color: kpink,
-        ),
-        child: SingleChildScrollView(
-          child: SafeArea(
-            child: Column(
-              children: [
-                FutureBuilder(
-                  future: Future.value(_auth.currentUser!.uid),
-                  builder: (context, futureSnapshot) {
-                    if (futureSnapshot.connectionState ==
-                        ConnectionState.waiting) {
-                      return SizedBox(
-                        height: MediaQuery.of(context).size.height / 1.3,
-                        child: const Center(
-                          child: CircularProgressIndicator(
-                            color: kpink,
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: kbase,
+        appBar: AppBarHome(heading: 'Store'),
+        endDrawer:EndDrawer(),
+        bottomNavigationBar: BottomBar(),
+        body: ModalProgressHUD(
+          inAsyncCall: spinner,
+          progressIndicator: const CircularProgressIndicator(
+            color: kpink,
+          ),
+          child: SingleChildScrollView(
+            child: SafeArea(
+              child: Column(
+                children: [
+                  FutureBuilder(
+                    future: Future.value(_auth.currentUser!.uid),
+                    builder: (context, futureSnapshot) {
+                      if (futureSnapshot.connectionState ==
+                          ConnectionState.waiting) {
+                        return SizedBox(
+                          height: MediaQuery.of(context).size.height / 1.3,
+                          child: const Center(
+                            child: CircularProgressIndicator(
+                              color: kpink,
+                            ),
                           ),
-                        ),
-                      );
-                    }
-                    // print(futureSnapshot.data);
-                    return StreamBuilder<QuerySnapshot>(
-
-                        // <2> Pass `Stream<QuerySnapshot>` to stream
-                        stream: _firestore
-                            .collection('store')
-                            .where('buy_id', isNotEqualTo: futureSnapshot.data)
-                            .where('order_now', isEqualTo: false)
-                            .snapshots(),
-                        builder: (context, snapshot) {
-                          if (snapshot.hasData) {
-                            // <3> Retrieve `List<DocumentSnapshot>` from snapshot
-                            final List<DocumentSnapshot> documents =
-                                snapshot.data!.docs;
-                            // print(documents.length);
-
-                            return SingleChildScrollView(
-                              child: ListView.builder(
-                                  // physics: NeverScrollableScrollPhysics(),
-                                  shrinkWrap: true,
-                                  physics: NeverScrollableScrollPhysics(),
-                                  itemCount: documents.length,
-                                  itemBuilder: (context, index) {
-                                    // print(documents[index].id);
-                                    return SizedBox(
-                                      width: double.infinity,
-                                      height:
-                                          MediaQuery.of(context).size.height *
-                                              0.6,
-                                      child: Card(
-                                        elevation: 10,
-                                        shadowColor: Colors.black,
-                                        color: Colors.white,
-                                        child: SizedBox(
-                                          // width: MediaQuery.of(context)
-                                          //     .size
-                                          //     .width *
-                                          //     0.90,
-                                          width: double.infinity,
-                                          height: MediaQuery.of(context)
-                                                  .size
-                                                  .height *
-                                              0.6,
-                                          child: Padding(
-                                            padding: const EdgeInsets.all(20.0),
-                                            child: Column(
-                                              children: [
-                                                Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.start,
-                                                  children: [
-                                                    CircleAvatar(
-                                                      backgroundColor: kdblue,
-                                                      radius: 26,
-                                                      child: CircleAvatar(
-                                                        radius: 24,
-                                                        backgroundImage:
-                                                            AssetImage(
-                                                                'images/Profile.png'),
+                        );
+                      }
+                      // print(futureSnapshot.data);
+                      return StreamBuilder<QuerySnapshot>(
+    
+                          // <2> Pass `Stream<QuerySnapshot>` to stream
+                          stream: _firestore
+                              .collection('store')
+                              .where('buy_id', isNotEqualTo: futureSnapshot.data)
+                              .where('order_now', isEqualTo: false)
+                              .snapshots(),
+                          builder: (context, snapshot) {
+                            if (snapshot.hasData) {
+                              // <3> Retrieve `List<DocumentSnapshot>` from snapshot
+                              final List<DocumentSnapshot> documents =
+                                  snapshot.data!.docs;
+                              // print(documents.length);
+    
+                              return SingleChildScrollView(
+                                child: ListView.builder(
+                                    // physics: NeverScrollableScrollPhysics(),
+                                    shrinkWrap: true,
+                                    physics: NeverScrollableScrollPhysics(),
+                                    itemCount: documents.length,
+                                    itemBuilder: (context, index) {
+                                      // print(documents[index].id);
+                                      return SizedBox(
+                                        width: double.infinity,
+                                        height:
+                                            MediaQuery.of(context).size.height *
+                                                0.6,
+                                        child: Card(
+                                          elevation: 10,
+                                          shadowColor: Colors.black,
+                                          color: Colors.white,
+                                          child: SizedBox(
+                                            // width: MediaQuery.of(context)
+                                            //     .size
+                                            //     .width *
+                                            //     0.90,
+                                            width: double.infinity,
+                                            height: MediaQuery.of(context)
+                                                    .size
+                                                    .height *
+                                                0.6,
+                                            child: Padding(
+                                              padding: const EdgeInsets.all(20.0),
+                                              child: Column(
+                                                children: [
+                                                  Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment.start,
+                                                    children: [
+                                                      CircleAvatar(
+                                                        backgroundColor: kdblue,
+                                                        radius: 26,
+                                                        child: CircleAvatar(
+                                                          radius: 24,
+                                                          backgroundImage:
+                                                              AssetImage(
+                                                                  'images/Profile.png'),
+                                                        ),
                                                       ),
-                                                    ),
-                                                    // getName(documents[index]['sell_id'])
-                                                    Padding(
-                                                      padding: EdgeInsets.only(
-                                                          left: 15.0),
-                                                      child: Column(
-                                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                                        children: [
-                                                          Text(
-                                                            documents[index]
-                                                                ['product_name'],
-                                                            style: TextStyle(
-                                                                fontSize: 20,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w900),
-                                                          ),
-                                                          SizedBox(height: 5,),
-                                                          Text('Seller: '+
-                                                            documents[index]
-                                                            ['seller_name'],
-                                                            style: TextStyle(
-                                                                fontSize: 15,
-                                                                fontWeight:
-                                                                FontWeight
-                                                                    .w200,
-                                                              fontStyle: FontStyle.italic,
+                                                      // getName(documents[index]['sell_id'])
+                                                      Padding(
+                                                        padding: EdgeInsets.only(
+                                                            left: 15.0),
+                                                        child: Column(
+                                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                                          children: [
+                                                            Text(
+                                                              documents[index]
+                                                                  ['product_name'],
+                                                              style: TextStyle(
+                                                                  fontSize: 20,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w900),
                                                             ),
-                                                          ),
-                                                        ],
-                                                      ),
-                                                    )
-                                                  ],
-                                                ),
-                                                SizedBox(
-                                                  height: 15,
-                                                ),
-                                                Row(
-                                                  children: [
-                                                    Padding(
-                                                      padding:
-                                                          const EdgeInsets.all(
-                                                              8.0),
-                                                      child: Text(
-                                                          documents[index]
-                                                              ['Bio']),
-                                                    ),
-                                                  ],
-                                                ),
-                                                ClipRRect(
-                                                  borderRadius:
-                                                      BorderRadius.circular(5),
-                                                  child: Container(
-
-                                                    width:
-                                                        MediaQuery.of(context)
-                                                            .size
-                                                            .width,
-                                                    height: 230,
-                                                    decoration: BoxDecoration(
-                                                      color: kbase,
-                                                      border: Border.all(width: 2, color: kdblue),
-                                                      image: DecorationImage(
-                                                        fit: BoxFit.contain,
-                                                        image: NetworkImage(
+                                                            SizedBox(height: 5,),
+                                                            Text('Seller: '+
+                                                              documents[index]
+                                                              ['seller_name'],
+                                                              style: TextStyle(
+                                                                  fontSize: 15,
+                                                                  fontWeight:
+                                                                  FontWeight
+                                                                      .w200,
+                                                                fontStyle: FontStyle.italic,
+                                                              ),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      )
+                                                    ],
+                                                  ),
+                                                  SizedBox(
+                                                    height: 15,
+                                                  ),
+                                                  Row(
+                                                    children: [
+                                                      Padding(
+                                                        padding:
+                                                            const EdgeInsets.all(
+                                                                8.0),
+                                                        child: Text(
                                                             documents[index]
-                                                                ['image']),
+                                                                ['Bio']),
                                                       ),
-                                                    ),
-                                                  ), // Container(
-                                                ),
-                                                SizedBox(
-                                                  height: 10,
-                                                ),
-                                                Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceBetween,
-                                                  children: [
-                                                    Padding(
-                                                      padding:
-                                                          const EdgeInsets.only(
-                                                              left: 8.0),
-                                                      child: Text(
-                                                        "₹" +
-                                                            documents[index]
-                                                                    ['price']
-                                                                .toString(),
-                                                        style: TextStyle(
-                                                            fontWeight:
-                                                                FontWeight.w700,
-                                                            color: kdblue,
-                                                            fontSize: 20),
+                                                    ],
+                                                  ),
+                                                  ClipRRect(
+                                                    borderRadius:
+                                                        BorderRadius.circular(5),
+                                                    child: Container(
+    
+                                                      width:
+                                                          MediaQuery.of(context)
+                                                              .size
+                                                              .width,
+                                                      height: 230,
+                                                      decoration: BoxDecoration(
+                                                        color: kbase,
+                                                        border: Border.all(width: 2, color: kdblue),
+                                                        image: DecorationImage(
+                                                          fit: BoxFit.contain,
+                                                          image: NetworkImage(
+                                                              documents[index]
+                                                                  ['image']),
+                                                        ),
                                                       ),
-                                                    ),
-                                                    MaterialButton(
-                                                      onPressed: () async {
-                                                        setState(() {
-                                                          spinner = true;
-                                                        });
-                                                        await _firestore
-                                                            .collection('store')
-                                                            .doc(documents[index].id)
-                                                            .update({
-                                                          'order_now': true,
-                                                          'buy_id':userId,
-                                                          'buyer_name':userName,
-                                                        });
-                                                        setState(() {
-                                                          spinner = false;
-                                                        });
-                                                      },
-                                                      child: Text(documents[index]['order_now']?'Added':
-                                                        'Buy Now',
-                                                        style: TextStyle(
-                                                            color: kbase),
+                                                    ), // Container(
+                                                  ),
+                                                  SizedBox(
+                                                    height: 10,
+                                                  ),
+                                                  Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceBetween,
+                                                    children: [
+                                                      Padding(
+                                                        padding:
+                                                            const EdgeInsets.only(
+                                                                left: 8.0),
+                                                        child: Text(
+                                                          "₹" +
+                                                              documents[index]
+                                                                      ['price']
+                                                                  .toString(),
+                                                          style: TextStyle(
+                                                              fontWeight:
+                                                                  FontWeight.w700,
+                                                              color: kdblue,
+                                                              fontSize: 20),
+                                                        ),
                                                       ),
-                                                      color:documents[index]['order_now']? Colors.grey: kdblue,
-                                                    )
-                                                  ],
-                                                ),
-                                              ],
+                                                      MaterialButton(
+                                                        onPressed: () async {
+                                                          setState(() {
+                                                            spinner = true;
+                                                          });
+                                                          await _firestore
+                                                              .collection('store')
+                                                              .doc(documents[index].id)
+                                                              .update({
+                                                            'order_now': true,
+                                                            'buy_id':userId,
+                                                            'buyer_name':userName,
+                                                          });
+                                                          setState(() {
+                                                            spinner = false;
+                                                          });
+                                                        },
+                                                        child: Text(documents[index]['order_now']?'Added':
+                                                          'Buy Now',
+                                                          style: TextStyle(
+                                                              color: kbase),
+                                                        ),
+                                                        color:documents[index]['order_now']? Colors.grey: kdblue,
+                                                      )
+                                                    ],
+                                                  ),
+                                                ],
+                                              ),
                                             ),
                                           ),
                                         ),
-                                      ),
-                                    );
-                                  }),
-                            );
-                          } else if (snapshot.hasError) {
-                            return Text('It\'s Error!');
-                          } else {
-                            return SizedBox(
-                              height: MediaQuery.of(context).size.height / 1.3,
-                              child: const Center(
-                                child: CircularProgressIndicator(
-                                  color: kpink,
+                                      );
+                                    }),
+                              );
+                            } else if (snapshot.hasError) {
+                              return Text('It\'s Error!');
+                            } else {
+                              return SizedBox(
+                                height: MediaQuery.of(context).size.height / 1.3,
+                                child: const Center(
+                                  child: CircularProgressIndicator(
+                                    color: kpink,
+                                  ),
                                 ),
-                              ),
-                            );
-                          }
-                        });
-                  },
-                ),
-              ],
+                              );
+                            }
+                          });
+                    },
+                  ),
+                ],
+              ),
             ),
           ),
         ),
+          floatingActionButton: FloatingActionButton(
+            onPressed: () {
+              popUpDialog(context);
+            },
+            elevation: 0,
+            backgroundColor: Theme.of(context).primaryColor,
+            child: const Icon(
+              Icons.chat_bubble,
+              color: Colors.white,
+              size: 30,
+            ),
+          )
       ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            popUpDialog(context);
-          },
-          elevation: 0,
-          backgroundColor: Theme.of(context).primaryColor,
-          child: const Icon(
-            Icons.chat_bubble,
-            color: Colors.white,
-            size: 30,
-          ),
-        )
     );
   }
 

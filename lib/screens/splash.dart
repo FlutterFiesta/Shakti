@@ -88,22 +88,24 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: kbase,
-      body: SafeArea(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            Expanded(
-              child: Center(
-                child: Image.asset(
-                  'images/splash_gif.gif',
-                  width: MediaQuery.of(context).size.width * 0.99,
-                  height: MediaQuery.of(context).size.height * 0.99,
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: kbase,
+        body: SafeArea(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              Expanded(
+                child: Center(
+                  child: Image.asset(
+                    'images/splash_gif.gif',
+                    width: MediaQuery.of(context).size.width * 0.99,
+                    height: MediaQuery.of(context).size.height * 0.99,
+                  ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

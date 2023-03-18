@@ -65,152 +65,154 @@ class _NewProductState extends State<NewProduct> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBarHome(heading: 'New Product'),
-      endDrawer: EndDrawer(),
-      bottomNavigationBar: BottomBar(),
-      body: SafeArea(
-        child: ModalProgressHUD(
-          inAsyncCall: spinner,
-          progressIndicator: const CircularProgressIndicator(
-            color: kpink,
-          ),
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(20, 20, 20, 10),
-                  child: TextField(
-                    keyboardType: TextInputType.text,
-                    textAlign: TextAlign.left,
-                    onChanged: (value) {
-                      //Do something with the user input.
-                      // email = value;
-                      setState(() {
-                        p_name = value;
-                      });
-                    },
-                    decoration: kProductFieldDecoration.copyWith(
-                        hintText: 'e.g. Jewellery', labelText: 'Product Name'),
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBarHome(heading: 'New Product'),
+        endDrawer: EndDrawer(),
+        bottomNavigationBar: BottomBar(),
+        body: SafeArea(
+          child: ModalProgressHUD(
+            inAsyncCall: spinner,
+            progressIndicator: const CircularProgressIndicator(
+              color: kpink,
+            ),
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(20, 20, 20, 10),
+                    child: TextField(
+                      keyboardType: TextInputType.text,
+                      textAlign: TextAlign.left,
+                      onChanged: (value) {
+                        //Do something with the user input.
+                        // email = value;
+                        setState(() {
+                          p_name = value;
+                        });
+                      },
+                      decoration: kProductFieldDecoration.copyWith(
+                          hintText: 'e.g. Jewellery', labelText: 'Product Name'),
+                    ),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(20, 20, 20, 10),
-                  child: TextField(
-                    keyboardType: TextInputType.text,
-                    textAlign: TextAlign.left,
-                    onChanged: (value) {
-                      //Do something with the user input.
-                      // email = value;
-                      setState(() {
-                        Bio = value;
-                      });
-                    },
-                    style: TextStyle(fontSize: 15),
-                    maxLines: 5,
-                    minLines: 3,
-                    decoration: kProductFieldDecoration.copyWith(
-                        hintText: 'Describe your Product here',
-                        labelText: 'About the Product'),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(20, 20, 20, 10),
+                    child: TextField(
+                      keyboardType: TextInputType.text,
+                      textAlign: TextAlign.left,
+                      onChanged: (value) {
+                        //Do something with the user input.
+                        // email = value;
+                        setState(() {
+                          Bio = value;
+                        });
+                      },
+                      style: TextStyle(fontSize: 15),
+                      maxLines: 5,
+                      minLines: 3,
+                      decoration: kProductFieldDecoration.copyWith(
+                          hintText: 'Describe your Product here',
+                          labelText: 'About the Product'),
+                    ),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(20, 20, 20, 10),
-                  child: TextField(
-                    keyboardType: TextInputType.number,
-                    textAlign: TextAlign.left,
-                    onChanged: (value) {
-                      //Do something with the user input.
-                      // email = value;
-                      setState(() {
-                        price = value;
-                      });
-                    },
-                    decoration: kProductFieldDecoration.copyWith(
-                        hintText: 'e.g. 499', labelText: 'Price (in INR)'),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(20, 20, 20, 10),
+                    child: TextField(
+                      keyboardType: TextInputType.number,
+                      textAlign: TextAlign.left,
+                      onChanged: (value) {
+                        //Do something with the user input.
+                        // email = value;
+                        setState(() {
+                          price = value;
+                        });
+                      },
+                      decoration: kProductFieldDecoration.copyWith(
+                          hintText: 'e.g. 499', labelText: 'Price (in INR)'),
+                    ),
                   ),
-                ),
-                TextButton(
-                    onPressed: () async {
-                      setState(() {
-                        spinner = true;
-                      });
-                      _getFromGallery();
-
-                      setState(() {
-                        spinner = false;
-                      });
-                    },
-                    child: Text(
-                      'Upload Image',
-                      style: TextStyle(color: kdblue),
-                    )),
-                TextButton(
-                    style: ButtonStyle(
-                        backgroundColor:
-                            MaterialStateProperty.all<Color>(kpink)),
-                    onPressed: () async {
-                      setState(() {
-                        spinner = true;
-                      });
-                      print(imagePath + " " + imageName);
-                      await storage.uploadFile(imagePath, imageName);
-                      downurl = await storage.downloadUrl(imageName);
-                      setState(() {
-                        imageUrl = downurl;
-                      });
-                      await _firestore.collection('store').add({
-                        'Bio': Bio,
-                        'buy_id': "",
-                        'buyer_name': "",
-                        'confirm': false,
-                        'delivered': false,
-                        'image': imageUrl,
-                        'order_now': false,
-                        'price': price,
-                        'product_id': p_id,
-                        'product_name': p_name,
-                        'sell_id': userId,
-                        'seller_name': userName
-                      }).then((value) async {
+                  TextButton(
+                      onPressed: () async {
                         setState(() {
                           spinner = true;
                         });
-                        await _firestore
-                            .collection('store')
-                            .doc(value.id)
-                            .update({
-                          'product_id': value.id,
-                        });
+                        _getFromGallery();
+    
                         setState(() {
                           spinner = false;
                         });
-                      }).catchError((error) {});
-                      setState(() {
-                        spinner = false;
-                      });
-                    },
-                    child: Text(
-                      'Save',
-                      style: TextStyle(color: Colors.white),
-                    )),
-              ],
+                      },
+                      child: Text(
+                        'Upload Image',
+                        style: TextStyle(color: kdblue),
+                      )),
+                  TextButton(
+                      style: ButtonStyle(
+                          backgroundColor:
+                              MaterialStateProperty.all<Color>(kpink)),
+                      onPressed: () async {
+                        setState(() {
+                          spinner = true;
+                        });
+                        print(imagePath + " " + imageName);
+                        await storage.uploadFile(imagePath, imageName);
+                        downurl = await storage.downloadUrl(imageName);
+                        setState(() {
+                          imageUrl = downurl;
+                        });
+                        await _firestore.collection('store').add({
+                          'Bio': Bio,
+                          'buy_id': "",
+                          'buyer_name': "",
+                          'confirm': false,
+                          'delivered': false,
+                          'image': imageUrl,
+                          'order_now': false,
+                          'price': price,
+                          'product_id': p_id,
+                          'product_name': p_name,
+                          'sell_id': userId,
+                          'seller_name': userName
+                        }).then((value) async {
+                          setState(() {
+                            spinner = true;
+                          });
+                          await _firestore
+                              .collection('store')
+                              .doc(value.id)
+                              .update({
+                            'product_id': value.id,
+                          });
+                          setState(() {
+                            spinner = false;
+                          });
+                        }).catchError((error) {});
+                        setState(() {
+                          spinner = false;
+                        });
+                      },
+                      child: Text(
+                        'Save',
+                        style: TextStyle(color: Colors.white),
+                      )),
+                ],
+              ),
             ),
           ),
         ),
+          floatingActionButton: FloatingActionButton(
+            onPressed: () {
+              popUpDialog(context);
+            },
+            elevation: 0,
+            backgroundColor: Theme.of(context).primaryColor,
+            child: const Icon(
+              Icons.chat_bubble,
+              color: Colors.white,
+              size: 30,
+            ),
+          )
       ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            popUpDialog(context);
-          },
-          elevation: 0,
-          backgroundColor: Theme.of(context).primaryColor,
-          child: const Icon(
-            Icons.chat_bubble,
-            color: Colors.white,
-            size: 30,
-          ),
-        )
     );
   }
 

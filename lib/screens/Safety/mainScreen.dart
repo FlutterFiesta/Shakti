@@ -61,82 +61,84 @@ class _AddContactsPageState extends State<AddContactsPage> {
       contactList = [];
     }
 
-    return Scaffold(
-      appBar: AppBarHome(heading: 'Chat Support'),
-      endDrawer: EndDrawer(),
-      bottomNavigationBar: BottomBar(),
-      body: SafeArea(
-        child: Container(
-            padding: EdgeInsets.all(12),
-            child: Column(
-              children: [
-                PrimaryButton(
-                    title: "Add Trusted Contacts",
-                    onPressed: () async {
-                      bool result = await Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => ContactsPage(),
-                          ));
-                      if (result == true) {
-                        showList();
-                      }
-                    }),
-                Expanded(
-                  child: ListView.builder(
-                    // shrinkWrap: true,
-                    itemCount: count,
-                    itemBuilder: (BuildContext context, int index) {
-                      return Card(
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: ListTile(
-                            title: Text(contactList![index].name),
-                            trailing: Container(
-                              width: 100,
-                              child: Row(
-                                children: [
-                                  IconButton(
-                                      onPressed: () async {
-                                        await FlutterPhoneDirectCaller.callNumber(
-                                            contactList![index].number);
-                                      },
-                                      icon: Icon(
-                                        Icons.call,
-                                        color: Colors.red,
-                                      )),
-                                  IconButton(
-                                      onPressed: () {
-                                        deleteContact(contactList![index]);
-                                      },
-                                      icon: Icon(
-                                        Icons.delete,
-                                        color: Colors.red,
-                                      )),
-                                ],
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBarHome(heading: 'Chat Support'),
+        endDrawer: EndDrawer(),
+        bottomNavigationBar: BottomBar(),
+        body: SafeArea(
+          child: Container(
+              padding: EdgeInsets.all(12),
+              child: Column(
+                children: [
+                  PrimaryButton(
+                      title: "Add Trusted Contacts",
+                      onPressed: () async {
+                        bool result = await Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => ContactsPage(),
+                            ));
+                        if (result == true) {
+                          showList();
+                        }
+                      }),
+                  Expanded(
+                    child: ListView.builder(
+                      // shrinkWrap: true,
+                      itemCount: count,
+                      itemBuilder: (BuildContext context, int index) {
+                        return Card(
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: ListTile(
+                              title: Text(contactList![index].name),
+                              trailing: Container(
+                                width: 100,
+                                child: Row(
+                                  children: [
+                                    IconButton(
+                                        onPressed: () async {
+                                          await FlutterPhoneDirectCaller.callNumber(
+                                              contactList![index].number);
+                                        },
+                                        icon: Icon(
+                                          Icons.call,
+                                          color: Colors.red,
+                                        )),
+                                    IconButton(
+                                        onPressed: () {
+                                          deleteContact(contactList![index]);
+                                        },
+                                        icon: Icon(
+                                          Icons.delete,
+                                          color: Colors.red,
+                                        )),
+                                  ],
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                      );
-                    },
+                        );
+                      },
+                    ),
                   ),
-                ),
-              ],
-            )),
+                ],
+              )),
+        ),
+          floatingActionButton: FloatingActionButton(
+            onPressed: () {
+              popUpDialog(context);
+            },
+            elevation: 0,
+            backgroundColor: Theme.of(context).primaryColor,
+            child: const Icon(
+              Icons.chat_bubble,
+              color: Colors.white,
+              size: 30,
+            ),
+          )
       ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            popUpDialog(context);
-          },
-          elevation: 0,
-          backgroundColor: Theme.of(context).primaryColor,
-          child: const Icon(
-            Icons.chat_bubble,
-            color: Colors.white,
-            size: 30,
-          ),
-        )
     );
   }
 

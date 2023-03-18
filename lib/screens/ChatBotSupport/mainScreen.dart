@@ -28,40 +28,42 @@ class _mainChatScreenState extends State<mainChatScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBarHome(heading: 'Chat Support'),
-      endDrawer: EndDrawer(),
-      body: Container(
-        child: Column(
-          children: [
-            Expanded(child: MessagesScreen(messages: messages)),
-            Container(
-              padding: EdgeInsets.symmetric(horizontal: 14, vertical: 8),
-              color: kpink,
-              child: Row(
-                children: [
-                  Expanded(
-                      child: TextField(
-                    controller: _controller,
-                    style: TextStyle(color: Colors.white),
-                    decoration: const InputDecoration(
-                        border: InputBorder.none,
-                        hintText: "Type your message...",
-                        hintStyle:
-                            TextStyle(color: Colors.white, fontSize: 16)),
-                  )),
-                  IconButton(
-                    onPressed: () {
-                      sendMessage(_controller.text);
-                      _controller.clear();
-                    },
-                    icon: Icon(Icons.send),
-                    color: Colors.white,
-                  )
-                ],
-              ),
-            )
-          ],
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBarHome(heading: 'Chat Support'),
+        endDrawer: EndDrawer(),
+        body: Container(
+          child: Column(
+            children: [
+              Expanded(child: MessagesScreen(messages: messages)),
+              Container(
+                padding: EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+                color: kpink,
+                child: Row(
+                  children: [
+                    Expanded(
+                        child: TextField(
+                      controller: _controller,
+                      style: TextStyle(color: Colors.white),
+                      decoration: const InputDecoration(
+                          border: InputBorder.none,
+                          hintText: "Type your message...",
+                          hintStyle:
+                              TextStyle(color: Colors.white, fontSize: 16)),
+                    )),
+                    IconButton(
+                      onPressed: () {
+                        sendMessage(_controller.text);
+                        _controller.clear();
+                      },
+                      icon: Icon(Icons.send),
+                      color: Colors.white,
+                    )
+                  ],
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );
