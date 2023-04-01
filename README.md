@@ -94,7 +94,64 @@ The flutter application is compatible to run on android smart phones.
 
 
 ## Tour through the App
+- <h3> Initial Screens: Login and Sign up</h3>
+<p align="left">
+  <figure>
+  <kbd><img src="images/readmeImg/screenimgs/MainScreen.jpg" height='300' width='150'/>
+   <div><figcaption> <p align="center" style="font-size:100px"> Welcome Screen</p></figcaption></div>
+     </figure>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+   <figure>
+  <kbd><img src="images/readmeImg/screenimgs/SignUp.jpg" height='300' width='150'/>
+   <div><figcaption> <p align="center" style="font-size:100px"> Join Us Screen</p></figcaption></div>
+     </figure>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <figure>
+  <kbd><img src="images/readmeImg/screenimgs/Login.jpg" height='300' width='150'/>
+   <div><figcaption> <p align="center" style="font-size:100px"> Login In Screen</p></figcaption></div>
+     </figure>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</p>
+<hr>
+      
+- <h3> Screens displaying features that empower women physically:</h3>
+<p align="left">
+   <figure style="padding-right: 20px;" >
+  <kbd><img src="images/readmeImg/screenimgs/Tracker.jpg" height='300' width='150'/>
+   <div><figcaption> <p align="center" style="font-size:100px">Period Tracker</p></figcaption></div>
+     </figure>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <figure>
+  <kbd><img src="images/readmeImg/screenimgs/SelfCare.jpg" height='300' width='150'/>
+   <div><figcaption> <p align="center" style="font-size:100px">Self care</p></figcaption></div>
+     </figure>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+   <figure>
+  <kbd><img src="images/readmeImg/screenimgs/Location.jpg" height='300' width='150'/>
+   <div><figcaption> <p align="center" style="font-size:100px"> Location</p></figcaption></div>
+     </figure>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <figure>
+  <kbd><img src="images/readmeImg/screenimgs/Safety.jpg" height='300' width='150'/>
+   <div><figcaption> <p align="center" style="font-size:100px"> Safety Call</p></figcaption></div>
+     </figure>
+ </p>    
 
+<hr>
+      
+- <h3> Screens displaying features that empower women mentally:</h3>
+<p align="left">
+   <figure style="padding-right: 20px;" >
+  <kbd><img src="images/readmeImg/screenimgs/Communities.jpg" height='300' width='150'/>
+   <div><figcaption> <p align="center" style="font-size:100px">Groups or community</p></figcaption></div>
+     </figure>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <figure>
+  <kbd><img src="images/readmeImg/screenimgs/Chat.jpg" height='300' width='150'/>
+   <div><figcaption> <p align="center" style="font-size:100px">Chat Support</p></figcaption></div>
+     </figure>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+   <figure>
+  <kbd><img src="images/readmeImg/screenimgs/Education.jpg" height='300' width='150'/>
+   <div><figcaption> <p align="center" style="font-size:100px"> Education</p></figcaption></div>
+     </figure>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <figure>
+ </p>    
+
+<hr>
+  
 [(Back to the top)](#-shakti--)
     
     
@@ -112,9 +169,9 @@ Agile is a development methodology adopted today in the software industry. Agile
 ### How I incorporated Agile Methodology during the development cycle?
 SCRUM is a subset of Agile, a framework for developing software.The basic time working unit is the sprint. SCRUM teams always reason in sprints and their planning is limited to sprints.
 
-- Sprint 1: **Research and Design** : Researching about ways to accomplish face recognition and dogs. Finding ways to query documents from firebase based on location. Exploring more about firestore and firebase storage. Designing the app theme and layout and wireframing the overall appearance, Planning out how the different functionalities would be embedded on different screens and the order in which they would be implemented.
+- Sprint 1: **Research and Design**
 
-- Sprint 2: **Building the application** : Divided the app into two interfaces: owner and finder. Built and coded the core of the application including all the functionalities separately for both the interfaces.Ensured data consistency in the database. Encountered bugs which were either fixed by reading through stack overflow and documentations or alternative implementations were found for the same. The UI was taken care of throughout the process so that the user experience is not compromised during the implementation of the functionalities. Later, when both the interfaces were complete the navigation routes were set up so as to link the interfaces properly.
+- Sprint 2: **Building the application**
 
 - Sprint 3: **Testing and debugging** : Tested the app and fixed all the bugs. Tested it from user point of view and implemented minor additional features that could improve the experience. This also included the implementation of alert boxes, loading screens and snackbars.
 
