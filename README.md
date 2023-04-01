@@ -5,18 +5,19 @@
 
 ## Table of Contents
 
-1. [About the project](#about-the-project)
+1. [Problem Statement](#problem-statement)
+2. [About the project](#about-the-project)
    - [Salient features](#salient-features)
-2. [Technology Stack](#technology-stack)
-3. [Compatibility](#compatibility)
-4. [Tour through the App](#tour-through-the-app)
-5. [Flow of the app](#flow-of-the-app)
-6. [Implementation of Agile Methodology](#implementation-of-agile-methodology)
-7. [Installation](#installation)
-8. [Special Instructions to Work with the App](#special-instructions-to-work-with-the-app)
-9. [Challenges Faced](#challenges-faced)
-10. [Future Scope](#future-scope)
-11. [Support and Contact](#future-scope)
+3. [Technology Stack](#technology-stack)
+4. [Compatibility](#compatibility)
+5. [Tour through the App](#tour-through-the-app)
+6. [Flow of the app](#flow-of-the-app)
+7. [Implementation of Agile Methodology](#implementation-of-agile-methodology)
+8. [Installation](#installation)
+9. [Special Instructions to Work with the App](#special-instructions-to-work-with-the-app)
+10. [Challenges Faced](#challenges-faced)
+11. [Future Scope](#future-scope)
+12. [Support and Contact](#future-scope)
 
 ## Problem Statement
     
@@ -25,7 +26,8 @@
  - Looking around and taking surveys we realized that indeed, the entire women community faces a common set of challenges which include not having communities of like minded people, abstaining from talking on taboo topics, scaling small businesses and access to right resources. 
                                           
  - Additionally, there is no one stop solution for us women. Thereby, we came up with the idea of SHAKTI, an app for women of all age groups, from those young girls to us to all the mothers out there!
-    
+   
+[(Back to the top)](#-shakti--)
 
 ## About the project
 
@@ -33,7 +35,7 @@
 
 - The purpose of the app is to empower women physically, mentally and financially.
 
-- The app uses both, Face Recognition technology and Realtime Location to give the most accurate result.
+- The app uses may Google Technologies like Flutter, Firebase, Tensorflow Lite model tflite for Face Recognition, Dialogflow for Chatbot and Google Maps for location.
 
 [(Back to the top)](#-shakti--)
 
@@ -41,7 +43,7 @@
 
 #### Features to empower physically
 - Period Tracker: No more keeping track of your last period, explore the world and take up challenges like a free bird
-- Self Care: Feeling shy to talk about those taboo topics you never found it easy to  interact with even your closed ones!
+- Self Care: Feeling shy to talk about those taboo topics you never found it easy to interact with even your closed ones!
 - Location: Access your current location and nearby places like hospital, police station etc.
 - Safety Call: Contact trusted people in emergency with a phone shake
 
@@ -50,15 +52,36 @@
 - Chat Support: Resolve general issues with a chat bot made using Google Dialogflow
 - Education: Learn and explore with the tutorials available
 
+#### Features to empower financially
+- Store: Manage Business and Home together, buy other's products and sell yours
 
-
-
-#### Key points:
+#### Other features:
+- Authentication: A tflite model is used to recognize females and only allow women user to sign in
+- Opportunities: Get acccess to various opportunities, scholarships and schemes just at a click! 
+- Organizations: Non-profit organizations to reach out for help
 
 [(Back to the top)](#-shakti--)
 
 ## Technology Stack
 
+<p align="center">
+<span>
+<img src='images/readmeImg/flutter.png' width="80" height="80">
+<img src='images/readmeImg/dart.png' width="80" height="80">
+<img src='images/readmeImg/firebase.png' width="80" height="80">
+<img src='images/readmeImg/maps.png' width="80" height="80">
+<img src='images/readmeImg/tflite.png' width="80" height="80">
+<img src='images/readmeImg/dialogflow.png' width="80" height="80">
+<img src='images/readmeImg/github.png' width="80" height="80">
+</span>
+ </p>
+
+- Flutter and Dart were used to develop the application.
+- Necessary packages were imported from pub.dev.
+- The backend has been implemented using Firebase. (Firebase authentication, Firestore and Firebase Storage have been used).
+- The models for Face Recognition have been implemented using tflite.
+- The locations have been fetched using Google Maps.
+- Google DialogFlow is used for implementing chat bot support.
 
 [(Back to the top)](#-shakti--)
 
@@ -95,11 +118,11 @@ SCRUM is a subset of Agile, a framework for developing software.The basic time w
 
 - Sprint 3: **Testing and debugging** : Tested the app and fixed all the bugs. Tested it from user point of view and implemented minor additional features that could improve the experience. This also included the implementation of alert boxes, loading screens and snackbars.
 
-
     
-    
-### How it helped me?
+### How it helped us?
 
+- It made the app development process more efficient and predictable.
+- I worked on functionalities looking at them as smaller units of the larger app due to which the process was easy to handle, flexible and allowed more room to adjust new functionalities.
 
 [(Back to the top)](#-shakti--)
     
@@ -114,7 +137,7 @@ git init
 
 Clone this repository:
 ``` 
-git clone https://github.com/FlutterFiesta/PowerShe.git
+git clone https://github.com/FlutterFiesta/Shakti.git
 ```
 <br>
 
@@ -140,29 +163,63 @@ Once the build is complete, run the ```run``` command to start the app:
 flutter run
 ```
 
+In case you encounter the error ```A problem occurred evaluating project ':tflite'```,
+
+you should change this on ~\tflite-1.1.2\android\build.gradle:
+
+```
+dependencies {
+    compile 'org.tensorflow:tensorflow-lite:+'
+    compile 'org.tensorflow:tensorflow-lite-gpu:+'
+}
+```
+to this:
+```
+dependencies {
+    implementation 'org.tensorflow:tensorflow-lite:+'
+    implementation 'org.tensorflow:tensorflow-lite-gpu:+'
+} 
+```
+
 [(Back to the top)](#-shakti--)
     
 ## Special Instructions to Work with the App
 
+1. The application can only be run on android physical devices. Due to the app being heavy, it would not work on virtual emulators.
+
+2. Depending on the kind of predictions made by the models, different alerts are prompted. The app allows to proceed when it is confirmed that it is the image of a female after careful examination.
+
+3. In case the app prompts to upload a clear image of a female, please ensure proper lighting in the image.
+
+4. Male users are prompted while selecting the gender and also would not be verified during face recognition.
+
+5. Permission to use Camera, Location, Contacts, Messaging etc should be given whenever prompted.
 
 [(Back to the top)](#-shakti--)
 
 ## Challenges Faced
 1. The major challenge was recognizing and matching the faces of women only. Though, there are a lot a APIs that support human face recognition, none of them clearly mentions about gender face recognition.
-   - *Therefore, I decided to implement tflite models inorder to predict the women.*
+   - *Therefore, we decided to implement tflite models inorder to predict the women.*
  2. 
 
 [(Back to the top)](#-shakti--)
     
 ## Future Scope
-
+- Period Tracker: Taking into consideration several factors that might lead to irregularity would result in a better prediction
+- Self Care: ChatGPT API could be integrated to answer all other questions related to taboo topics instantly
+- Location: Search path between two routes can be implemented using Google Maps API
+- Safety Call: Call is sent to all the trusted contacts along with message so that they can notice it even when they don't check their phone
+- Community: Moderator for the avoidance of hate and negativity
+- Chat Support: Implement monetary discussions with counsellors and doctors and multi-language feature
+- Education: Upgrade the content with progress levels to encourage women by awarding them with points 
+- Store: Can integrate payment gateway and also allow males to access this section of the app to buy and sell products
+- Authentication: Implement a three layer auth: One more layer using aadhar card gender verification, which could either be an uploaded image or scanner feature or using gestures and movements to verify
+- Opportunities: Include the opportunities for both men and women 
 
 [(Back to the top)](#-shakti--)
     
 ## Support and Contact
 
-Email to: codeoverc23@gmail.com
-    
+Email to: codeoverc23@gmail.com    
     
 [(Back to the top)](#-shakti--)
-    
