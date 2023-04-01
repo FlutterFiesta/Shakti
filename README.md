@@ -151,7 +151,23 @@ The flutter application is compatible to run on android smart phones.
  </p>    
 
 <hr>
-  
+ 
+- <h3> Screens displaying features that empower women financially:</h3>
+<p align="left">
+   <figure style="padding-right: 20px;" >
+  <kbd><img src="images/readmeImg/screenimgs/Store.jpg" height='300' width='150'/>
+   <div><figcaption> <p align="center" style="font-size:100px">Store</p></figcaption></div>
+     </figure>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <figure>
+  <kbd><img src="images/readmeImg/screenimgs/MyProducts.jpg" height='300' width='150'/>
+   <div><figcaption> <p align="center" style="font-size:100px">MyProducts</p></figcaption></div>
+     </figure>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+   <figure>
+ </p>    
+
+<hr>
+      
+      
 [(Back to the top)](#-shakti--)
     
     
