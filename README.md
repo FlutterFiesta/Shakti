@@ -193,7 +193,7 @@ SCRUM is a subset of Agile, a framework for developing software.The basic time w
 ### How it helped us?
 
 - It made the app development process more efficient and predictable.
-- I worked on functionalities looking at them as smaller units of the larger app due to which the process was easy to handle, flexible and allowed more room to adjust new functionalities.
+- We worked on functionalities looking at them as smaller units of the larger app due to which the process was easy to handle, flexible and allowed more room to adjust new functionalities.
 
 [(Back to the top)](#-shakti--)
     
