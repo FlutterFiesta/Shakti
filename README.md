@@ -182,15 +182,13 @@ The flutter application is compatible to run on android smart phones.
 ### What is Agile?
 Agile is a development methodology adopted today in the software industry. Agile promotes teamwork, flexible procedures, and sle-organizing teams.
 
-### How I incorporated Agile Methodology during the development cycle?
+### How we incorporated Agile Methodology during the development cycle?
 SCRUM is a subset of Agile, a framework for developing software.The basic time working unit is the sprint. SCRUM teams always reason in sprints and their planning is limited to sprints.
 
 - Sprint 1: **Research and Design**
-
 - Sprint 2: **Building the application**
-
-- Sprint 3: **Testing and debugging** : Tested the app and fixed all the bugs. Tested it from user point of view and implemented minor additional features that could improve the experience. This also included the implementation of alert boxes, loading screens and snackbars.
-
+- Sprint 3: **Testing and debugging** 
+     
     
 ### How it helped us?
 
