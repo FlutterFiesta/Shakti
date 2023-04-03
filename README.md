@@ -40,7 +40,8 @@
 
 [(Back to the top)](#-shakti--)
 
-### UN 17 Goals  <img src='images/sdg.png' width="40" height="40">
+### UN 17 Goals 
+
 - Our target is to achieve gender equality and empower all women and girls. 
 - When we analysed the results of our survey, we found that the major problem of women center about lack of awareness and opportunities to discover their real self and perform their best in the society. 
 - Due to increased gender inequality, women continue to be underrepresented at all levels. There is a much need to empower women physically, mentally as well as financially.
@@ -49,7 +50,8 @@
 - Women sometimes feel uncomfortable in discussing things with thier known ones and are not able to discover the undelying problems. Thus, they need a women community where they can share their feelings and personal experience. 
 - Disadvantages in education translate into lack of access to skills and limited opportunities in the labour market. 
 <br />
-Through our android application, we target to promote empowerment of women by the use of technology. 
+Through our android application, we target to promote empowerment of women by the use of technology.
+
 - The self care feature aware women about the topics which are not generally discussed very freely in some houses. The feature also provide a product section which redirects the user if they want to buy them. The menstrual track remembers the last date and predicts the next dates according to user's cycle for them to plan their travel, work etc.
 - The application provide women user with their current location and nearby locations to feel safe and comfortable along with a safety call which sends an SOS on a mobile shake
 - The local business run by many housewives and old women can be easily accessed through the store where they can sell their product and buy other's products.
