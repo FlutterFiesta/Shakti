@@ -7,6 +7,7 @@
 
 1. [Problem Statement](#problem-statement)
 2. [About the project](#about-the-project)
+   - [UN 17 Goals](#un-17-goals)
    - [Salient features](#salient-features)
 3. [Technology Stack](#technology-stack)
 4. [Compatibility](#compatibility)
@@ -38,6 +39,17 @@
 - The app uses may Google Technologies like Flutter, Firebase, Tensorflow Lite model tflite for Face Recognition, Dialogflow for Chatbot and Google Maps for location.
 
 [(Back to the top)](#-shakti--)
+
+### UN 17 Goals
+- Our target is to achieve gender equality and empower all women and girls. 
+- When we analysed the results of our survey, we found that the major problem of women center about lack of awareness and opportunities to discover their real self and perform their best in the society. 
+- Due to increased gender inequality, women continue to be underrepresented at all levels. There is a much need to empower women physically, mentally as well as financially.
+- In some countries, girls are refrained to talk about taboo topics and thus have limited information. Specially in rural areas, basic topics like menstraution, puberty, health problems are not even discussed. Also the working women, loses track of menstraul cycle amidst responsibilities.
+- Women are restricted to go out even for work because of safety concerns. The married women are not even allowed to step out in the market to expand their business of homemade pickle, embroidery, etc. 
+- Women sometimes feel uncomfortable in discussing things with thier known ones and are not able to discover the undelying problems. Thus, they need a women community where they can share their feelings and personal experience. 
+- Disadvantages in education translate into lack of access to skills and limited opportunities in the labour market. 
+<br />
+Through our android application, we target to promote empowerment of women by the use of technology. 
 
 ### Salient Features
 
