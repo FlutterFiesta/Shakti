@@ -42,6 +42,12 @@
 
 ### UN 17 Goals 
 
+<p align="center">
+<span>
+<img src='images/sdg.png' width="100" height="100">
+</span>
+ </p>
+
 - Our target is to achieve gender equality and empower all women and girls. 
 - When we analysed the results of our survey, we found that the major problem of women center about lack of awareness and opportunities to discover their real self and perform their best in the society. 
 - Due to increased gender inequality, women continue to be underrepresented at all levels. There is a much need to empower women physically, mentally as well as financially.
