@@ -21,7 +21,7 @@ class TrackerPage extends StatefulWidget {
 
 class _TrackerPageState extends State<TrackerPage> {
   CalendarFormat _calendarFormat = CalendarFormat.month;
-  DateTime _focusedDay = DateTime.utc(2023, 02, 10);
+  DateTime _focusedDay = DateTime.now();
   DateTime _selectedDay = DateTime.now();
   int periodLength = 28;
   int menstrualLength = 3;
