@@ -7,6 +7,7 @@
 
 1. [Problem Statement](#problem-statement)
 2. [About the project](#about-the-project)
+   - [Video Link](#detailed-video-link)
    - [UN 17 Goals](#un-17-goals)
    - [Salient features](#salient-features)
 3. [Technology Stack](#technology-stack)
@@ -38,7 +39,8 @@
 
 - The app uses many Google Technologies like Flutter, Firebase, Tensorflow Lite model tflite for Face Recognition, Dialogflow for Chatbot and Google Maps for location.
 
-[(Back to the top)](#-shakti--)
+### Detailed Video Link 
+[Video](https://youtu.be/UrC0VaKz1TA)
 
 ### UN 17 Goals 
 
