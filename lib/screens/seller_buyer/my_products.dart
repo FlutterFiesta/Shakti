@@ -44,8 +44,7 @@ class _MyProductsState extends State<MyProducts> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
+    return Scaffold(
         backgroundColor: kbase,
         appBar: AppBarHome(heading: 'My Products'),
         endDrawer: EndDrawer(),
@@ -112,7 +111,7 @@ class _MyProductsState extends State<MyProducts> {
                       }
                       // print(futureSnapshot.data);
                       return StreamBuilder<QuerySnapshot>(
-    
+
                           // <2> Pass `Stream<QuerySnapshot>` to stream
                           stream: _firestore
                               .collection('store')
@@ -124,7 +123,7 @@ class _MyProductsState extends State<MyProducts> {
                               final List<DocumentSnapshot> documents =
                                   snapshot.data!.docs;
                               // print(documents.length);
-    
+
                               return SingleChildScrollView(
                                 child: ListView.builder(
                                     // physics: NeverScrollableScrollPhysics(),
@@ -149,7 +148,8 @@ class _MyProductsState extends State<MyProducts> {
                                                     .height *
                                                 0.3,
                                             child: Padding(
-                                              padding: const EdgeInsets.all(20.0),
+                                              padding:
+                                                  const EdgeInsets.all(20.0),
                                               child: Row(
                                                 children: [
                                                   Container(
@@ -176,7 +176,8 @@ class _MyProductsState extends State<MyProducts> {
                                                               documents[index][
                                                                   'product_name'],
                                                               style: TextStyle(
-                                                                  fontSize: 16)),
+                                                                  fontSize:
+                                                                      16)),
                                                           Text(
                                                               "₹" +
                                                                   documents[index]
@@ -203,16 +204,14 @@ class _MyProductsState extends State<MyProducts> {
                                                               SizedBox(
                                                                 height: 30,
                                                               ),
-                                                              documents[index]
-                                                                          [
+                                                              documents[index][
                                                                           'order_now'] ==
                                                                       false
                                                                   ? TextButton(
                                                                       style:
                                                                           ButtonStyle(
                                                                         backgroundColor:
-                                                                            MaterialStateProperty.all<Color>(
-                                                                                kpink),
+                                                                            MaterialStateProperty.all<Color>(kpink),
                                                                         shape: MaterialStateProperty
                                                                             .all(
                                                                           RoundedRectangleBorder(
@@ -220,8 +219,7 @@ class _MyProductsState extends State<MyProducts> {
                                                                                 BorderRadius.circular(30.0),
                                                                             side:
                                                                                 BorderSide(
-                                                                              width:
-                                                                                  2,
+                                                                              width: 2,
                                                                             ),
                                                                           ),
                                                                         ),
@@ -231,8 +229,7 @@ class _MyProductsState extends State<MyProducts> {
                                                                       child:
                                                                           Container(
                                                                         // color:Colors.grey,
-                                                                        padding: const EdgeInsets
-                                                                                .symmetric(
+                                                                        padding: const EdgeInsets.symmetric(
                                                                             vertical:
                                                                                 2,
                                                                             horizontal:
@@ -241,8 +238,7 @@ class _MyProductsState extends State<MyProducts> {
                                                                             Text(
                                                                           'In store',
                                                                           style: TextStyle(
-                                                                              color:
-                                                                                  Colors.white,
+                                                                              color: Colors.white,
                                                                               fontSize: 13.0),
                                                                         ),
                                                                       ))
@@ -255,40 +251,27 @@ class _MyProductsState extends State<MyProducts> {
                                                                       ? OutlinedButton(
                                                                           onPressed:
                                                                               () async {
-                                                                            setState(
-                                                                                () {
-                                                                              spinner =
-                                                                                  true;
+                                                                            setState(() {
+                                                                              spinner = true;
                                                                             });
-                                                                            await _firestore
-                                                                                .collection('store')
-                                                                                .doc(documents[index].id)
-                                                                                .update({
-                                                                              'delivered':
-                                                                                  true,
+                                                                            await _firestore.collection('store').doc(documents[index].id).update({
+                                                                              'delivered': true,
                                                                             });
-                                                                            setState(
-                                                                                () {
-                                                                              spinner =
-                                                                                  false;
+                                                                            setState(() {
+                                                                              spinner = false;
                                                                             });
                                                                           },
                                                                           child: Text(
                                                                               'Confirm Delivery',
-                                                                              style:
-                                                                                  TextStyle(color: Colors.red)))
+                                                                              style: TextStyle(color: Colors.red)))
                                                                       : (documents[index]['delivered'])
                                                                           ? OutlinedButton(
-                                                                              onPressed:
-                                                                                  () {},
-                                                                              child:
-                                                                                  Text('Delivered', style: TextStyle(color: Colors.white)),
-                                                                              style:
-                                                                                  ButtonStyle(backgroundColor: MaterialStateProperty.all<Color>(Colors.green)),
+                                                                              onPressed: () {},
+                                                                              child: Text('Delivered', style: TextStyle(color: Colors.white)),
+                                                                              style: ButtonStyle(backgroundColor: MaterialStateProperty.all<Color>(Colors.green)),
                                                                             )
                                                                           : OutlinedButton(
-                                                                              onPressed:
-                                                                                  () async {
+                                                                              onPressed: () async {
                                                                                 setState(() {
                                                                                   spinner = true;
                                                                                 });
@@ -299,8 +282,7 @@ class _MyProductsState extends State<MyProducts> {
                                                                                   spinner = false;
                                                                                 });
                                                                               },
-                                                                              child:
-                                                                                  Text('Confirm  Order', style: TextStyle(color: Colors.orange)),
+                                                                              child: Text('Confirm  Order', style: TextStyle(color: Colors.orange)),
                                                                             ),
                                                               (documents[index][
                                                                       'order_now'])
@@ -308,24 +290,19 @@ class _MyProductsState extends State<MyProducts> {
                                                                       onPressed:
                                                                           () async {
                                                                         final docref = await _firestore
-                                                                            .collection(
-                                                                                "details")
-                                                                            .doc(documents[index]
-                                                                                [
-                                                                                'buy_id'])
+                                                                            .collection("users")
+                                                                            .doc(documents[index]['buy_id'])
                                                                             .get();
                                                                         String
                                                                             email =
-                                                                            docref[
-                                                                                'Email'];
+                                                                            docref['email'];
                                                                         String
                                                                             phone =
-                                                                            docref[
-                                                                                'Phone'];
+                                                                            docref['phoneNumber'];
                                                                         print(email +
                                                                             " " +
                                                                             phone);
-    
+
                                                                         showDialog<
                                                                             void>(
                                                                           context:
@@ -333,13 +310,10 @@ class _MyProductsState extends State<MyProducts> {
                                                                           barrierDismissible:
                                                                               false,
                                                                           builder:
-                                                                              (BuildContext
-                                                                                  context) {
+                                                                              (BuildContext context) {
                                                                             return AlertDialog(
-                                                                              title:
-                                                                                  Text("Details of the buyer"),
-                                                                              content:
-                                                                                  SingleChildScrollView(
+                                                                              title: Text("Details of the buyer"),
+                                                                              content: SingleChildScrollView(
                                                                                 child: ListBody(
                                                                                   children: <Widget>[
                                                                                     Text('Email: \n' + email + '\n\n' + "Phone: \n" + phone),
@@ -371,8 +345,7 @@ class _MyProductsState extends State<MyProducts> {
                                                                           Container(
                                                                         color:
                                                                             kdblue,
-                                                                        padding: const EdgeInsets
-                                                                                .symmetric(
+                                                                        padding: const EdgeInsets.symmetric(
                                                                             vertical:
                                                                                 5,
                                                                             horizontal:
@@ -381,8 +354,7 @@ class _MyProductsState extends State<MyProducts> {
                                                                             const Text(
                                                                           'Contact',
                                                                           style: TextStyle(
-                                                                              color:
-                                                                                  Colors.white,
+                                                                              color: Colors.white,
                                                                               fontSize: 13.0),
                                                                         ),
                                                                       ),
@@ -402,7 +374,8 @@ class _MyProductsState extends State<MyProducts> {
                                                     flex: 2,
                                                     child: Column(
                                                       crossAxisAlignment:
-                                                          CrossAxisAlignment.end,
+                                                          CrossAxisAlignment
+                                                              .end,
                                                       // mainAxisAlignment: MainAxisAlignment.end,
                                                       children: [
                                                         InkWell(
@@ -424,7 +397,8 @@ class _MyProductsState extends State<MyProducts> {
                                                                         ListBody(
                                                                       children: const <
                                                                           Widget>[
-                                                                        Text(''),
+                                                                        Text(
+                                                                            ''),
                                                                       ],
                                                                     ),
                                                                   ),
@@ -444,25 +418,21 @@ class _MyProductsState extends State<MyProducts> {
                                                                       ),
                                                                       onPressed:
                                                                           () async {
-                                                                        Navigator.of(
-                                                                                context)
+                                                                        Navigator.of(context)
                                                                             .pop();
                                                                         setState(
                                                                             () {
                                                                           spinner =
                                                                               true;
                                                                         });
-                                                                        await _firestore.runTransaction(
-                                                                            (Transaction
-                                                                                myTransaction) async {
+                                                                        await _firestore.runTransaction((Transaction
+                                                                            myTransaction) async {
                                                                           await myTransaction
                                                                               .delete(documents[index].reference);
                                                                         });
                                                                         FirebaseStorage
                                                                             .instance
-                                                                            .refFromURL(documents[index]
-                                                                                [
-                                                                                'image'])
+                                                                            .refFromURL(documents[index]['image'])
                                                                             .delete();
                                                                         setState(
                                                                             () {
@@ -498,7 +468,8 @@ class _MyProductsState extends State<MyProducts> {
                               return Text('It\'s Error!');
                             } else {
                               return SizedBox(
-                                height: MediaQuery.of(context).size.height / 1.3,
+                                height:
+                                    MediaQuery.of(context).size.height / 1.3,
                                 child: const Center(
                                   child: CircularProgressIndicator(
                                     color: kpink,
@@ -514,20 +485,18 @@ class _MyProductsState extends State<MyProducts> {
             ),
           ),
         ),
-          floatingActionButton: FloatingActionButton(
-            onPressed: () {
-              popUpDialog(context);
-            },
-            elevation: 0,
-            backgroundColor: Theme.of(context).primaryColor,
-            child: const Icon(
-              Icons.chat_bubble,
-              color: Colors.white,
-              size: 30,
-            ),
-          )
-      ),
-    );
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            popUpDialog(context);
+          },
+          elevation: 0,
+          backgroundColor: Theme.of(context).primaryColor,
+          child: const Icon(
+            Icons.chat_bubble,
+            color: Colors.white,
+            size: 30,
+          ),
+        ));
   }
 
   popUpDialog(BuildContext context) {

@@ -66,53 +66,54 @@ class _groupsHomeState extends State<groupsHome> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        appBar: AppBar(
-          actions: [
-            IconButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, SearchPage.id);
-                },
-                icon: const Icon(
-                  Icons.search,
-                ))
-          ],
-          backgroundColor: kpink,
-          title: Padding(
-            padding: const EdgeInsets.only(right: 40),
-            child: Center(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Image.asset(
-                    'images/logo.png',
-                    fit: BoxFit.contain,
-                    height: 32,
-                  ),
-                  Container(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text('Communities', style: TextStyle(fontSize:17),))
-                ],
-              ),
+    return Scaffold(
+      appBar: AppBar(
+        actions: [
+          IconButton(
+              onPressed: () {
+                Navigator.pushNamed(context, SearchPage.id);
+              },
+              icon: const Icon(
+                Icons.search,
+              ))
+        ],
+        backgroundColor: kpink,
+        title: Padding(
+          padding: const EdgeInsets.only(right: 40),
+          child: Center(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Image.asset(
+                  'images/logo.png',
+                  fit: BoxFit.contain,
+                  height: 32,
+                ),
+                Container(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      'Groups',
+                      style: TextStyle(fontSize: 17),
+                    ))
+              ],
             ),
           ),
         ),
-        endDrawer: EndDrawer(),
-        bottomNavigationBar: BottomBar(),
-        backgroundColor: kbase,
-        body: groupList(),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            popUpDialog(context);
-          },
-          elevation: 0,
-          backgroundColor: Theme.of(context).primaryColor,
-          child: const Icon(
-            Icons.add,
-            color: Colors.white,
-            size: 30,
-          ),
+      ), //
+      endDrawer: EndDrawer(),
+      bottomNavigationBar: BottomBar(),
+      backgroundColor: kbase,
+      body: groupList(),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          popUpDialog(context);
+        },
+        elevation: 0,
+        backgroundColor: Theme.of(context).primaryColor,
+        child: const Icon(
+          Icons.add,
+          color: Colors.white,
+          size: 30,
         ),
       ),
     );
@@ -216,7 +217,7 @@ class _groupsHomeState extends State<groupsHome> {
                 },
                 separatorBuilder: (context, index) {
                   return Divider(color: Colors.grey);
-                  },
+                },
               );
             } else {
               return noGroupWidget();

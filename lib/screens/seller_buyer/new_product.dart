@@ -37,6 +37,7 @@ class _NewProductState extends State<NewProduct> {
   var imageName;
   String imageUrl = "";
   String downurl = '';
+  String purl='';
 
   @override
   void initState() {
@@ -59,14 +60,14 @@ class _NewProductState extends State<NewProduct> {
     final docref = await _firestore.collection("users").doc(userId).get();
     setState(() {
       userName = docref['fullName'];
+      purl=docref['url'];
       print(userName);
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
+    return Scaffold(
         appBar: AppBarHome(heading: 'New Product'),
         endDrawer: EndDrawer(),
         bottomNavigationBar: BottomBar(),
@@ -92,7 +93,8 @@ class _NewProductState extends State<NewProduct> {
                         });
                       },
                       decoration: kProductFieldDecoration.copyWith(
-                          hintText: 'e.g. Jewellery', labelText: 'Product Name'),
+                          hintText: 'e.g. Jewellery',
+                          labelText: 'Product Name'),
                     ),
                   ),
                   Padding(
@@ -137,7 +139,7 @@ class _NewProductState extends State<NewProduct> {
                           spinner = true;
                         });
                         _getFromGallery();
-    
+
                         setState(() {
                           spinner = false;
                         });
@@ -172,7 +174,9 @@ class _NewProductState extends State<NewProduct> {
                           'product_id': p_id,
                           'product_name': p_name,
                           'sell_id': userId,
-                          'seller_name': userName
+                          'seller_name': userName,
+                          'url':purl
+
                         }).then((value) async {
                           setState(() {
                             spinner = true;
@@ -200,20 +204,18 @@ class _NewProductState extends State<NewProduct> {
             ),
           ),
         ),
-          floatingActionButton: FloatingActionButton(
-            onPressed: () {
-              popUpDialog(context);
-            },
-            elevation: 0,
-            backgroundColor: Theme.of(context).primaryColor,
-            child: const Icon(
-              Icons.chat_bubble,
-              color: Colors.white,
-              size: 30,
-            ),
-          )
-      ),
-    );
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            popUpDialog(context);
+          },
+          elevation: 0,
+          backgroundColor: Theme.of(context).primaryColor,
+          child: const Icon(
+            Icons.chat_bubble,
+            color: Colors.white,
+            size: 30,
+          ),
+        ));
   }
 
   popUpDialog(BuildContext context) {

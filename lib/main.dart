@@ -6,7 +6,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/services.dart';
 import 'package:power_she_pre/screens/Safety/mainScreen.dart';
 import 'package:power_she_pre/screens/Safety/contactPage.dart';
-
+import 'package:power_she_pre/myBody/bmain.dart';
 import 'package:power_she_pre/constants.dart';
 // import 'package:power_she_pre/safety/contactPage.dart';
 import 'package:power_she_pre/myBody/bmain.dart';
@@ -90,7 +90,7 @@ class _MyAppState extends State<MyApp> {
         scaffoldBackgroundColor: kbase,
         textTheme: GoogleFonts.openSansTextTheme(Theme.of(context).textTheme),
       ),
-      initialRoute: BHomeScreen.id,
+      initialRoute:BHomeScreen.id,
       routes: {
         SplashScreen.id: (context) => const SplashScreen(),
         OnboardScreen.id: (context) => const OnboardScreen(),
@@ -116,7 +116,8 @@ class _MyAppState extends State<MyApp> {
         TrackerPage.id:(context)=>const TrackerPage(),
         TrackerInfo.id:(context)=>const TrackerInfo(),
         AddContactsPage.id: (context) => const AddContactsPage(),
-        ContactsPage.id: (context) => const ContactsPage()
+        ContactsPage.id: (context) => const ContactsPage(),
+        BHomeScreen.id:(context)=>const BHomeScreen(),
         // TrackerInfo.id:(context)=>const TrackerInfo()
       },
     );

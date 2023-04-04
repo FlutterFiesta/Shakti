@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:power_she_pre/components/AppButton.dart';
 import 'package:power_she_pre/components/EndDrawer.dart';
@@ -10,11 +11,11 @@ import '../../components/AlertBox.dart';
 import 'package:power_she_pre/components/AppBarHome.dart';
 import '../../components/BottomBar.dart';
 import 'package:sidebarx/sidebarx.dart';
+// import 'package:razorpay_flutter/razorpay_flutter.dart';
 
 class StoreScreen extends StatefulWidget {
   static const String id = "store_screen";
   const StoreScreen({Key? key}) : super(key: key);
-
   @override
   State<StoreScreen> createState() => _StoreScreenState();
 }
@@ -23,14 +24,19 @@ class _StoreScreenState extends State<StoreScreen> {
   final _auth = FirebaseAuth.instance;
   final _firestore = FirebaseFirestore.instance;
   late User loggedInUser;
-  String userId='';
+  String userId = '';
   late Stream<QuerySnapshot> selectedDoc;
-  String userName='';
+  String userName = '';
   bool spinner = false;
+  String url = '';
+  // final _razorpay = Razorpay();
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
+    // _razorpay.on(Razorpay.EVENT_PAYMENT_SUCCESS, _handlePaymentSuccess);
+    // _razorpay.on(Razorpay.EVENT_PAYMENT_ERROR, _handlePaymentError);
+    // _razorpay.on(Razorpay.EVENT_EXTERNAL_WALLET, _handleExternalWallet);
     final user = _auth.currentUser;
     if (user != null) {
       setState(() {
@@ -43,21 +49,43 @@ class _StoreScreenState extends State<StoreScreen> {
     //     .collection('store')
     //     .where('sell_id', isNotEqualTo: userId).snapshots());
   }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    // _razorpay.clear(); // Removes all listeners
+  }
+
+  // void _handlePaymentSuccess(PaymentSuccessResponse response) {
+  //   // Do something when payment succeeds
+  // }
+  //
+  // void _handlePaymentError(PaymentFailureResponse response) {
+  //   // Do something when payment fails
+  // }
+  //
+  // void _handleExternalWallet(ExternalWalletResponse response) {
+  //   // Do something when an external wallet is selected
+  // }
   void getDoc() async {
     final docref = await _firestore.collection("users").doc(userId).get();
     setState(() {
       userName = docref['fullName'];
+      url = docref['url'];
       // print(userName);
       // print(userId);
+      //documents[index]['sell_id']
     });
   }
+
+
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
+    return Scaffold(
         backgroundColor: kbase,
         appBar: AppBarHome(heading: 'Store'),
-        endDrawer:EndDrawer(),
+        endDrawer: EndDrawer(),
         bottomNavigationBar: BottomBar(),
         body: ModalProgressHUD(
           inAsyncCall: spinner,
@@ -71,6 +99,8 @@ class _StoreScreenState extends State<StoreScreen> {
                   FutureBuilder(
                     future: Future.value(_auth.currentUser!.uid),
                     builder: (context, futureSnapshot) {
+                      // print(userId);
+                      // print(futureSnapshot.data);
                       if (futureSnapshot.connectionState ==
                           ConnectionState.waiting) {
                         return SizedBox(
@@ -83,13 +113,17 @@ class _StoreScreenState extends State<StoreScreen> {
                         );
                       }
                       // print(futureSnapshot.data);
+                      // print(futureSnapshot.data);
                       return StreamBuilder<QuerySnapshot>(
-    
+
                           // <2> Pass `Stream<QuerySnapshot>` to stream
+
                           stream: _firestore
                               .collection('store')
-                              .where('buy_id', isNotEqualTo: futureSnapshot.data)
+                              .where('buy_id',
+                                  isNotEqualTo: futureSnapshot.data)
                               .where('order_now', isEqualTo: false)
+
                               .snapshots(),
                           builder: (context, snapshot) {
                             if (snapshot.hasData) {
@@ -97,7 +131,7 @@ class _StoreScreenState extends State<StoreScreen> {
                               final List<DocumentSnapshot> documents =
                                   snapshot.data!.docs;
                               // print(documents.length);
-    
+
                               return SingleChildScrollView(
                                 child: ListView.builder(
                                     // physics: NeverScrollableScrollPhysics(),
@@ -105,7 +139,7 @@ class _StoreScreenState extends State<StoreScreen> {
                                     physics: NeverScrollableScrollPhysics(),
                                     itemCount: documents.length,
                                     itemBuilder: (context, index) {
-                                      // print(documents[index].id);
+
                                       return SizedBox(
                                         width: double.infinity,
                                         height:
@@ -126,7 +160,8 @@ class _StoreScreenState extends State<StoreScreen> {
                                                     .height *
                                                 0.6,
                                             child: Padding(
-                                              padding: const EdgeInsets.all(20.0),
+                                              padding:
+                                                  const EdgeInsets.all(20.0),
                                               child: Column(
                                                 children: [
                                                   Row(
@@ -138,37 +173,47 @@ class _StoreScreenState extends State<StoreScreen> {
                                                         radius: 26,
                                                         child: CircleAvatar(
                                                           radius: 24,
-                                                          backgroundImage:
-                                                              AssetImage(
-                                                                  'images/Profile.png'),
+                                                          backgroundImage:NetworkImage(
+                                                              (documents[index].data() as Map<String, dynamic>).containsKey("url")?documents[index]['url']:url
+                                                          ),
                                                         ),
                                                       ),
                                                       // getName(documents[index]['sell_id'])
                                                       Padding(
-                                                        padding: EdgeInsets.only(
-                                                            left: 15.0),
+                                                        padding:
+                                                            EdgeInsets.only(
+                                                                left: 15.0),
                                                         child: Column(
-                                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                                          crossAxisAlignment:
+                                                              CrossAxisAlignment
+                                                                  .start,
                                                           children: [
                                                             Text(
-                                                              documents[index]
-                                                                  ['product_name'],
+                                                              documents[index][
+                                                                  'product_name'],
                                                               style: TextStyle(
                                                                   fontSize: 20,
                                                                   fontWeight:
                                                                       FontWeight
                                                                           .w900),
                                                             ),
-                                                            SizedBox(height: 5,),
-                                                            Text('Seller: '+
-                                                              documents[index]
-                                                              ['seller_name'],
+                                                            SizedBox(
+                                                              height: 5,
+                                                            ),
+                                                            Text(
+                                                              'Seller: ' +
+                                                                  documents[
+                                                                          index]
+                                                                      [
+                                                                      'seller_name'],
                                                               style: TextStyle(
-                                                                  fontSize: 15,
-                                                                  fontWeight:
-                                                                  FontWeight
-                                                                      .w200,
-                                                                fontStyle: FontStyle.italic,
+                                                                fontSize: 15,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w200,
+                                                                fontStyle:
+                                                                    FontStyle
+                                                                        .italic,
                                                               ),
                                                             ),
                                                           ],
@@ -183,8 +228,8 @@ class _StoreScreenState extends State<StoreScreen> {
                                                     children: [
                                                       Padding(
                                                         padding:
-                                                            const EdgeInsets.all(
-                                                                8.0),
+                                                            const EdgeInsets
+                                                                .all(8.0),
                                                         child: Text(
                                                             documents[index]
                                                                 ['Bio']),
@@ -193,9 +238,9 @@ class _StoreScreenState extends State<StoreScreen> {
                                                   ),
                                                   ClipRRect(
                                                     borderRadius:
-                                                        BorderRadius.circular(5),
+                                                        BorderRadius.circular(
+                                                            5),
                                                     child: Container(
-    
                                                       width:
                                                           MediaQuery.of(context)
                                                               .size
@@ -203,7 +248,7 @@ class _StoreScreenState extends State<StoreScreen> {
                                                       height: 230,
                                                       decoration: BoxDecoration(
                                                         color: kbase,
-                                                        border: Border.all(width: 2, color: kdblue),
+                                                        //border: Border.all(width: 2,color: kdblue),
                                                         image: DecorationImage(
                                                           fit: BoxFit.contain,
                                                           image: NetworkImage(
@@ -223,7 +268,8 @@ class _StoreScreenState extends State<StoreScreen> {
                                                     children: [
                                                       Padding(
                                                         padding:
-                                                            const EdgeInsets.only(
+                                                            const EdgeInsets
+                                                                    .only(
                                                                 left: 8.0),
                                                         child: Text(
                                                           "₹" +
@@ -232,7 +278,8 @@ class _StoreScreenState extends State<StoreScreen> {
                                                                   .toString(),
                                                           style: TextStyle(
                                                               fontWeight:
-                                                                  FontWeight.w700,
+                                                                  FontWeight
+                                                                      .w700,
                                                               color: kdblue,
                                                               fontSize: 20),
                                                         ),
@@ -243,23 +290,33 @@ class _StoreScreenState extends State<StoreScreen> {
                                                             spinner = true;
                                                           });
                                                           await _firestore
-                                                              .collection('store')
-                                                              .doc(documents[index].id)
+                                                              .collection(
+                                                                  'store')
+                                                              .doc(documents[
+                                                                      index]
+                                                                  .id)
                                                               .update({
                                                             'order_now': true,
-                                                            'buy_id':userId,
-                                                            'buyer_name':userName,
+                                                            'buy_id': userId,
+                                                            'buyer_name':
+                                                                userName,
                                                           });
                                                           setState(() {
                                                             spinner = false;
                                                           });
                                                         },
-                                                        child: Text(documents[index]['order_now']?'Added':
-                                                          'Buy Now',
+                                                        child: Text(
+                                                          documents[index][
+                                                                  'order_now']
+                                                              ? 'Added'
+                                                              : 'Buy Now',
                                                           style: TextStyle(
                                                               color: kbase),
                                                         ),
-                                                        color:documents[index]['order_now']? Colors.grey: kdblue,
+                                                        color: documents[index]
+                                                                ['order_now']
+                                                            ? Colors.grey
+                                                            : kdblue,
                                                       )
                                                     ],
                                                   ),
@@ -275,7 +332,8 @@ class _StoreScreenState extends State<StoreScreen> {
                               return Text('It\'s Error!');
                             } else {
                               return SizedBox(
-                                height: MediaQuery.of(context).size.height / 1.3,
+                                height:
+                                    MediaQuery.of(context).size.height / 1.3,
                                 child: const Center(
                                   child: CircularProgressIndicator(
                                     color: kpink,
@@ -291,20 +349,18 @@ class _StoreScreenState extends State<StoreScreen> {
             ),
           ),
         ),
-          floatingActionButton: FloatingActionButton(
-            onPressed: () {
-              popUpDialog(context);
-            },
-            elevation: 0,
-            backgroundColor: Theme.of(context).primaryColor,
-            child: const Icon(
-              Icons.chat_bubble,
-              color: Colors.white,
-              size: 30,
-            ),
-          )
-      ),
-    );
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            popUpDialog(context);
+          },
+          elevation: 0,
+          backgroundColor: Theme.of(context).primaryColor,
+          child: const Icon(
+            Icons.chat_bubble,
+            color: Colors.white,
+            size: 30,
+          ),
+        ));
   }
 
   popUpDialog(BuildContext context) {

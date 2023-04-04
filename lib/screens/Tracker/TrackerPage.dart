@@ -80,8 +80,7 @@ class _TrackerPageState extends State<TrackerPage> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
+    return Scaffold(
         appBar: AppBarHome(heading: 'Tracker'),
         endDrawer: EndDrawer(),
         bottomNavigationBar: BottomBar(),
@@ -144,7 +143,8 @@ class _TrackerPageState extends State<TrackerPage> {
                                 child: Text(
                                   date.day.toString(),
                                   style: TextStyle(
-                                      color: Color.fromARGB(255, 255, 255, 255)),
+                                      color:
+                                          Color.fromARGB(255, 255, 255, 255)),
                                 ));
                           }
                           color = -1;
@@ -172,14 +172,16 @@ class _TrackerPageState extends State<TrackerPage> {
                             menstrualLength != 0) {
                           DateTime dt =
                               lastMenstruation[lastMenstruation.length - 1]
-                                  .subtract(Duration(days: menstrualLength - 1));
+                                  .subtract(
+                                      Duration(days: menstrualLength - 1));
                           dt = dt.add(Duration(days: periodLength));
                           List<DateTime> dts = [];
                           while (dt.isBefore(
                               DateTime.now().add(Duration(days: 900)))) {
                             dts.add(dt);
                             for (int i = 1; i < menstrualLength; ++i) {
-                              dts.add(dts[dts.length - 1].add(Duration(days: 1)));
+                              dts.add(
+                                  dts[dts.length - 1].add(Duration(days: 1)));
                             }
                             dt = dt.add(Duration(days: periodLength));
                           }
@@ -191,7 +193,7 @@ class _TrackerPageState extends State<TrackerPage> {
                               st.add("next period date");
                             }
                           }
-    
+
                           return st;
                         }
                         return [];
@@ -255,7 +257,8 @@ class _TrackerPageState extends State<TrackerPage> {
                                       style: TextStyle(
                                         fontSize: 20,
                                         fontFamily: 'FredokaOne',
-                                        color: Color.fromARGB(255, 255, 255, 255),
+                                        color:
+                                            Color.fromARGB(255, 255, 255, 255),
                                       ),
                                     ),
                                   ),
@@ -298,8 +301,8 @@ class _TrackerPageState extends State<TrackerPage> {
                                         "${periodLength} days",
                                         style: TextStyle(
                                           fontSize: 20,
-                                          color:
-                                              Color.fromARGB(255, 255, 255, 255),
+                                          color: Color.fromARGB(
+                                              255, 255, 255, 255),
                                         ),
                                       )),
                                 ),
@@ -343,7 +346,8 @@ class _TrackerPageState extends State<TrackerPage> {
                                           : '${lastMenstruation[lastMenstruation.length - 1].day.toString()}/${lastMenstruation[lastMenstruation.length - 1].month.toString()}/${lastMenstruation[lastMenstruation.length - 1].year.toString()}',
                                       style: TextStyle(
                                         fontSize: 20,
-                                        color: Color.fromARGB(255, 255, 255, 255),
+                                        color:
+                                            Color.fromARGB(255, 255, 255, 255),
                                       ),
                                     ),
                                   ),
@@ -360,20 +364,18 @@ class _TrackerPageState extends State<TrackerPage> {
             ),
           ),
         ),
-          floatingActionButton: FloatingActionButton(
-            onPressed: () {
-              popUpDialog(context);
-            },
-            elevation: 0,
-            backgroundColor: Theme.of(context).primaryColor,
-            child: const Icon(
-              Icons.chat_bubble,
-              color: Colors.white,
-              size: 30,
-            ),
-          )
-      ),
-    );
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            popUpDialog(context);
+          },
+          elevation: 0,
+          backgroundColor: Theme.of(context).primaryColor,
+          child: const Icon(
+            Icons.chat_bubble,
+            color: Colors.white,
+            size: 30,
+          ),
+        ));
   }
 
   popUpDialog(BuildContext context) {

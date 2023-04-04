@@ -25,7 +25,7 @@ class AppBarHome extends StatelessWidget with PreferredSizeWidget {
                 height: 32,
               ),
               Container(
-                  padding: const EdgeInsets.all(8.0), child: Text(heading, style: TextStyle(fontSize:17),))
+                  padding: const EdgeInsets.all(8.0), child: Text(heading,style: TextStyle(fontSize: 17),))
             ],
           ),
         ),
