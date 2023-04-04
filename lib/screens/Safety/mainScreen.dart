@@ -61,8 +61,7 @@ class _AddContactsPageState extends State<AddContactsPage> {
       contactList = [];
     }
 
-    return SafeArea(
-      child: Scaffold(
+    return Scaffold(
         appBar: AppBarHome(heading: 'Chat Support'),
         endDrawer: EndDrawer(),
         bottomNavigationBar: BottomBar(),
@@ -99,8 +98,9 @@ class _AddContactsPageState extends State<AddContactsPage> {
                                   children: [
                                     IconButton(
                                         onPressed: () async {
-                                          await FlutterPhoneDirectCaller.callNumber(
-                                              contactList![index].number);
+                                          await FlutterPhoneDirectCaller
+                                              .callNumber(
+                                                  contactList![index].number);
                                         },
                                         icon: Icon(
                                           Icons.call,
@@ -126,20 +126,18 @@ class _AddContactsPageState extends State<AddContactsPage> {
                 ],
               )),
         ),
-          floatingActionButton: FloatingActionButton(
-            onPressed: () {
-              popUpDialog(context);
-            },
-            elevation: 0,
-            backgroundColor: Theme.of(context).primaryColor,
-            child: const Icon(
-              Icons.chat_bubble,
-              color: Colors.white,
-              size: 30,
-            ),
-          )
-      ),
-    );
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            popUpDialog(context);
+          },
+          elevation: 0,
+          backgroundColor: Theme.of(context).primaryColor,
+          child: const Icon(
+            Icons.chat_bubble,
+            color: Colors.white,
+            size: 30,
+          ),
+        ));
   }
 
   popUpDialog(BuildContext context) {

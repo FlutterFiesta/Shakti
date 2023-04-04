@@ -1,16 +1,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.power_she_pre">
-
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-<!--    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />-->
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.WRITE_CONTACTS" />
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.SEND_SMS"/>
-
-    <application
-        android:label="power_she_pre"
+   <application
+        android:label="Shakti"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
@@ -42,7 +39,6 @@
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />
-
         <meta-data android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyAjC6202vyph82TLRDW5bXbXCmC0Oelip4"/>
     </application>

@@ -338,7 +338,10 @@ class _HomeScreenState extends State<HomeScreen> {
               children: [
                 ExpansionTile(
                     title: Text("Business", style: TextStyle(color: kdblue)),
-                    leading: Icon(Icons.business_rounded, color: kdblue,), //add icon
+                    leading: Icon(
+                      Icons.business_rounded,
+                      color: kdblue,
+                    ), //add icon
                     //childrenPadding: EdgeInsets.only(left:10), //children padding
                     children: [
                       SizedBox(
@@ -367,12 +370,14 @@ class _HomeScreenState extends State<HomeScreen> {
                                         SizedBox(
                                           height: 10,
                                         ),
-    
+
                                         ClipRRect(
-                                          borderRadius: BorderRadius.circular(5),
+                                          borderRadius:
+                                              BorderRadius.circular(5),
                                           child: Container(
-                                            width:
-                                                MediaQuery.of(context).size.width,
+                                            width: MediaQuery.of(context)
+                                                .size
+                                                .width,
                                             height: 200,
                                             child: YoutubePlayer(
                                               key: ObjectKey(_business[index]),
@@ -397,8 +402,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                         Align(
                                             alignment: Alignment.centerLeft,
                                             child: Padding(
-                                              padding: const EdgeInsets.fromLTRB(
-                                                  0, 0, 0, 6),
+                                              padding:
+                                                  const EdgeInsets.fromLTRB(
+                                                      0, 0, 0, 6),
                                               child: Text(
                                                 _businessTitle[index],
                                                 textAlign: TextAlign.center,
@@ -406,7 +412,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                                 style: const TextStyle(
                                                     fontFamily: 'Lustria',
                                                     color: kdblue,
-                                                    fontWeight: FontWeight.bold),
+                                                    fontWeight:
+                                                        FontWeight.bold),
                                               ),
                                             )),
                                       ],
@@ -424,7 +431,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     ]),
                 ExpansionTile(
                     title: Text("Safety", style: TextStyle(color: kdblue)),
-                    leading: Icon(Icons.safety_check_rounded, color: kdblue), //add icon
+                    leading: Icon(Icons.safety_check_rounded,
+                        color: kdblue), //add icon
                     //childrenPadding: EdgeInsets.only(left:10), //children padding
                     children: [
                       SizedBox(
@@ -450,12 +458,14 @@ class _HomeScreenState extends State<HomeScreen> {
                                         SizedBox(
                                           height: 10,
                                         ),
-    
+
                                         ClipRRect(
-                                          borderRadius: BorderRadius.circular(5),
+                                          borderRadius:
+                                              BorderRadius.circular(5),
                                           child: Container(
-                                            width:
-                                                MediaQuery.of(context).size.width,
+                                            width: MediaQuery.of(context)
+                                                .size
+                                                .width,
                                             height: 150,
                                             child: YoutubePlayer(
                                               key: ObjectKey(_safety[index]),
@@ -480,8 +490,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                         Align(
                                             alignment: Alignment.centerLeft,
                                             child: Padding(
-                                              padding: const EdgeInsets.fromLTRB(
-                                                  0, 0, 0, 6),
+                                              padding:
+                                                  const EdgeInsets.fromLTRB(
+                                                      0, 0, 0, 6),
                                               child: Text(
                                                 _safetyTitle[index],
                                                 textAlign: TextAlign.center,
@@ -489,7 +500,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                                 style: const TextStyle(
                                                     fontFamily: 'Lustria',
                                                     color: kdblue,
-                                                    fontWeight: FontWeight.bold),
+                                                    fontWeight:
+                                                        FontWeight.bold),
                                               ),
                                             )),
                                       ],
@@ -507,7 +519,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     ]),
                 ExpansionTile(
                     title: Text("Health", style: TextStyle(color: kdblue)),
-                    leading: Icon(Icons.health_and_safety_rounded, color: kdblue), //add icon
+                    leading: Icon(Icons.health_and_safety_rounded,
+                        color: kdblue), //add icon
                     //childrenPadding: EdgeInsets.only(left:10), //children padding
                     children: [
                       SizedBox(
@@ -533,12 +546,14 @@ class _HomeScreenState extends State<HomeScreen> {
                                         SizedBox(
                                           height: 10,
                                         ),
-    
+
                                         ClipRRect(
-                                          borderRadius: BorderRadius.circular(5),
+                                          borderRadius:
+                                              BorderRadius.circular(5),
                                           child: Container(
-                                            width:
-                                                MediaQuery.of(context).size.width,
+                                            width: MediaQuery.of(context)
+                                                .size
+                                                .width,
                                             height: 150,
                                             child: YoutubePlayer(
                                               key: ObjectKey(_health[index]),
@@ -563,8 +578,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                         Align(
                                             alignment: Alignment.centerLeft,
                                             child: Padding(
-                                              padding: const EdgeInsets.fromLTRB(
-                                                  0, 0, 0, 6),
+                                              padding:
+                                                  const EdgeInsets.fromLTRB(
+                                                      0, 0, 0, 6),
                                               child: Text(
                                                 _healthTitle[index],
                                                 textAlign: TextAlign.center,
@@ -572,7 +588,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                                 style: const TextStyle(
                                                     fontFamily: 'Lustria',
                                                     color: kdblue,
-                                                    fontWeight: FontWeight.bold),
+                                                    fontWeight:
+                                                        FontWeight.bold),
                                               ),
                                             )),
                                       ],
@@ -590,7 +607,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     ]),
                 ExpansionTile(
                     title: Text("Personality", style: TextStyle(color: kdblue)),
-                    leading: Icon(Icons.person_rounded, color: kdblue), //add icon
+                    leading:
+                        Icon(Icons.person_rounded, color: kdblue), //add icon
                     //childrenPadding: EdgeInsets.only(left:10), //children padding
                     children: [
                       SizedBox(
@@ -619,15 +637,18 @@ class _HomeScreenState extends State<HomeScreen> {
                                         SizedBox(
                                           height: 10,
                                         ),
-    
+
                                         ClipRRect(
-                                          borderRadius: BorderRadius.circular(5),
+                                          borderRadius:
+                                              BorderRadius.circular(5),
                                           child: Container(
-                                            width:
-                                                MediaQuery.of(context).size.width,
+                                            width: MediaQuery.of(context)
+                                                .size
+                                                .width,
                                             height: 150,
                                             child: YoutubePlayer(
-                                              key: ObjectKey(_personality[index]),
+                                              key: ObjectKey(
+                                                  _personality[index]),
                                               controller: _personality[index],
                                               actionsPadding:
                                                   const EdgeInsets.only(
@@ -649,8 +670,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                         Align(
                                             alignment: Alignment.centerLeft,
                                             child: Padding(
-                                              padding: const EdgeInsets.fromLTRB(
-                                                  0, 0, 0, 6),
+                                              padding:
+                                                  const EdgeInsets.fromLTRB(
+                                                      0, 0, 0, 6),
                                               child: Text(
                                                 _personalityTitle[index],
                                                 textAlign: TextAlign.center,
@@ -658,7 +680,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                                 style: const TextStyle(
                                                     fontFamily: 'Lustria',
                                                     color: kdblue,
-                                                    fontWeight: FontWeight.bold),
+                                                    fontWeight:
+                                                        FontWeight.bold),
                                               ),
                                             )),
                                       ],
@@ -676,7 +699,10 @@ class _HomeScreenState extends State<HomeScreen> {
                     ]),
                 ExpansionTile(
                     title: Text("Parenting", style: TextStyle(color: kdblue)),
-                    leading: Icon(Icons.home, color: kdblue,), //add icon
+                    leading: Icon(
+                      Icons.home,
+                      color: kdblue,
+                    ), //add icon
                     //childrenPadding: EdgeInsets.only(left:10), //children padding
                     children: [
                       SizedBox(
@@ -705,12 +731,14 @@ class _HomeScreenState extends State<HomeScreen> {
                                         SizedBox(
                                           height: 10,
                                         ),
-    
+
                                         ClipRRect(
-                                          borderRadius: BorderRadius.circular(5),
+                                          borderRadius:
+                                              BorderRadius.circular(5),
                                           child: Container(
-                                            width:
-                                                MediaQuery.of(context).size.width,
+                                            width: MediaQuery.of(context)
+                                                .size
+                                                .width,
                                             height: 150,
                                             child: YoutubePlayer(
                                               key: ObjectKey(_parenting[index]),
@@ -735,8 +763,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                         Align(
                                             alignment: Alignment.centerLeft,
                                             child: Padding(
-                                              padding: const EdgeInsets.fromLTRB(
-                                                  0, 0, 0, 6),
+                                              padding:
+                                                  const EdgeInsets.fromLTRB(
+                                                      0, 0, 0, 6),
                                               child: Text(
                                                 _parentingTitle[index],
                                                 textAlign: TextAlign.center,
@@ -744,7 +773,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                                 style: const TextStyle(
                                                     fontFamily: 'Lustria',
                                                     color: kdblue,
-                                                    fontWeight: FontWeight.bold),
+                                                    fontWeight:
+                                                        FontWeight.bold),
                                               ),
                                             )),
                                       ],
@@ -761,8 +791,10 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ]),
                 ExpansionTile(
-                    title: Text("Financial Management", style: TextStyle(color: kdblue)),
-                    leading: Icon(Icons.attach_money_rounded, color: kdblue), //add icon
+                    title: Text("Financial Management",
+                        style: TextStyle(color: kdblue)),
+                    leading: Icon(Icons.attach_money_rounded,
+                        color: kdblue), //add icon
                     //childrenPadding: EdgeInsets.only(left:10), //children padding
                     children: [
                       SizedBox(
@@ -791,12 +823,14 @@ class _HomeScreenState extends State<HomeScreen> {
                                         SizedBox(
                                           height: 10,
                                         ),
-    
+
                                         ClipRRect(
-                                          borderRadius: BorderRadius.circular(5),
+                                          borderRadius:
+                                              BorderRadius.circular(5),
                                           child: Container(
-                                            width:
-                                                MediaQuery.of(context).size.width,
+                                            width: MediaQuery.of(context)
+                                                .size
+                                                .width,
                                             height: 150,
                                             child: YoutubePlayer(
                                               key: ObjectKey(_finance[index]),
@@ -821,8 +855,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                         Align(
                                             alignment: Alignment.centerLeft,
                                             child: Padding(
-                                              padding: const EdgeInsets.fromLTRB(
-                                                  0, 0, 0, 6),
+                                              padding:
+                                                  const EdgeInsets.fromLTRB(
+                                                      0, 0, 0, 6),
                                               child: Text(
                                                 _financeTitle[index],
                                                 textAlign: TextAlign.center,
@@ -830,7 +865,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                                 style: const TextStyle(
                                                     fontFamily: 'Lustria',
                                                     color: kdblue,
-                                                    fontWeight: FontWeight.bold),
+                                                    fontWeight:
+                                                        FontWeight.bold),
                                               ),
                                             )),
                                       ],
@@ -847,8 +883,10 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ]),
                 ExpansionTile(
-                    title: Text("Women Empowerment", style: TextStyle(color: kdblue)),
-                    leading: Icon(Icons.female_rounded, color: kdblue), //add icon
+                    title: Text("Women Empowerment",
+                        style: TextStyle(color: kdblue)),
+                    leading:
+                        Icon(Icons.female_rounded, color: kdblue), //add icon
                     //childrenPadding: EdgeInsets.only(left:10), //children padding
                     children: [
                       SizedBox(
@@ -877,12 +915,14 @@ class _HomeScreenState extends State<HomeScreen> {
                                         SizedBox(
                                           height: 10,
                                         ),
-    
+
                                         ClipRRect(
-                                          borderRadius: BorderRadius.circular(5),
+                                          borderRadius:
+                                              BorderRadius.circular(5),
                                           child: Container(
-                                            width:
-                                                MediaQuery.of(context).size.width,
+                                            width: MediaQuery.of(context)
+                                                .size
+                                                .width,
                                             height: 150,
                                             child: YoutubePlayer(
                                               key: ObjectKey(_empower[index]),
@@ -907,8 +947,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                         Align(
                                             alignment: Alignment.centerLeft,
                                             child: Padding(
-                                              padding: const EdgeInsets.fromLTRB(
-                                                  0, 0, 0, 6),
+                                              padding:
+                                                  const EdgeInsets.fromLTRB(
+                                                      0, 0, 0, 6),
                                               child: Text(
                                                 _empowerTitle[index],
                                                 textAlign: TextAlign.center,
@@ -916,7 +957,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                                 style: const TextStyle(
                                                     fontFamily: 'Lustria',
                                                     color: kdblue,
-                                                    fontWeight: FontWeight.bold),
+                                                    fontWeight:
+                                                        FontWeight.bold),
                                               ),
                                             )),
                                       ],

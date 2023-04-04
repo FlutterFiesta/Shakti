@@ -7,7 +7,6 @@ import '../components/AppBarHome.dart';
 import '../components/BottomBar.dart';
 import '../components/card.dart';
 
-
 class Products extends StatelessWidget {
   static const String id = "products";
   Products({Key? key}) : super(key: key);
@@ -15,31 +14,36 @@ class Products extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBarHome(heading: 'Products'),
-      endDrawer: EndDrawer(),
-      bottomNavigationBar: BottomBar(),
-      body: StreamBuilder(
-        stream: FirebaseFirestore.instance.collection('bodyProduct').snapshots(),
-        builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-          if (!snapshot.hasData) {
-            return Center(
-              child: CircularProgressIndicator(),
-            );
-          }
-          else{
-            return Container(
+        appBar: AppBarHome(heading: 'Products'),
+        endDrawer: EndDrawer(),
+        bottomNavigationBar: BottomBar(),
+        body: StreamBuilder(
+          stream:
+              FirebaseFirestore.instance.collection('bodyProduct').snapshots(),
+          builder:
+              (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+            if (!snapshot.hasData) {
+              return Center(
+                child: CircularProgressIndicator(),
+              );
+            } else {
+              return Container(
                 color: kbase,
                 child: ListView(
                   children: snapshot.data!.docs.map((document) {
-                  return Container(
-                  child: CardLayout(url: document['url'],imageUrl: document['imageUrl'],subText: document['subText'],mainText: document['mainText']),
+                    return Container(
+                      child: CardLayout(
+                          url: document['url'],
+                          imageUrl: document['imageUrl'],
+                          subText: document['subText'],
+                          mainText: document['mainText']),
+                    );
+                  }).toList(),
+                ),
               );
-            }).toList(),
-          ),
-        );
-        }
-        },
-      ),
+            }
+          },
+        ),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
             popUpDialog(context);
@@ -51,8 +55,7 @@ class Products extends StatelessWidget {
             color: Colors.white,
             size: 30,
           ),
-        )
-    );   
+        ));
   }
 
   popUpDialog(BuildContext context) {

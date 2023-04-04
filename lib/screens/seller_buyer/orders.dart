@@ -23,11 +23,11 @@ class _OrderScreenState extends State<OrderScreen> {
   final _auth = FirebaseAuth.instance;
   final _firestore = FirebaseFirestore.instance;
   late User loggedInUser;
-  String userId='';
+  String userId = '';
   late Stream<QuerySnapshot> selectedDoc;
-  String userName='';
+  String userName = '';
   bool spinner = false;
-  int currVal=0;
+  int currVal = 0;
   @override
   void initState() {
     // TODO: implement initState
@@ -55,13 +55,12 @@ class _OrderScreenState extends State<OrderScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
+    return Scaffold(
         backgroundColor: kbase,
         appBar: AppBarHome(heading: 'My Orders'),
         endDrawer: EndDrawer(),
         bottomNavigationBar: BottomBar(),
-       // bottomNavigationBar: BottomAppBar(),
+        // bottomNavigationBar: BottomAppBar(),
         body: ModalProgressHUD(
           inAsyncCall: spinner,
           progressIndicator: const CircularProgressIndicator(
@@ -87,8 +86,8 @@ class _OrderScreenState extends State<OrderScreen> {
                       }
                       // print(futureSnapshot.data);
                       return StreamBuilder<QuerySnapshot>(
-    
-                        // <2> Pass `Stream<QuerySnapshot>` to stream
+
+                          // <2> Pass `Stream<QuerySnapshot>` to stream
                           stream: _firestore
                               .collection('store')
                               .where('buy_id', isEqualTo: futureSnapshot.data)
@@ -99,10 +98,10 @@ class _OrderScreenState extends State<OrderScreen> {
                               final List<DocumentSnapshot> documents =
                                   snapshot.data!.docs;
                               // print(documents.length);
-    
+
                               return SingleChildScrollView(
                                 child: ListView.builder(
-                                  // physics: NeverScrollableScrollPhysics(),
+                                    // physics: NeverScrollableScrollPhysics(),
                                     shrinkWrap: true,
                                     physics: NeverScrollableScrollPhysics(),
                                     itemCount: documents.length,
@@ -111,8 +110,8 @@ class _OrderScreenState extends State<OrderScreen> {
                                       return SizedBox(
                                         width: double.infinity,
                                         height:
-                                        MediaQuery.of(context).size.height *
-                                            0.2,
+                                            MediaQuery.of(context).size.height *
+                                                0.2,
                                         child: Card(
                                           elevation: 10,
                                           shadowColor: Colors.black,
@@ -120,93 +119,152 @@ class _OrderScreenState extends State<OrderScreen> {
                                           child: SizedBox(
                                             width: double.infinity,
                                             height: MediaQuery.of(context)
-                                                .size
-                                                .height *
+                                                    .size
+                                                    .height *
                                                 0.2,
                                             child: Padding(
-                                              padding: const EdgeInsets.all(20.0),
+                                              padding:
+                                                  const EdgeInsets.all(20.0),
                                               child: Row(
                                                 children: [
-                                                  Container(height: 100,width: 100,
-                                                  decoration: BoxDecoration(
-                                                    image:DecorationImage(image:NetworkImage(documents[index]['image']),fit: BoxFit.fill)
-                                                  ),
+                                                  Container(
+                                                    height: 100,
+                                                    width: 100,
+                                                    decoration: BoxDecoration(
+                                                        image: DecorationImage(
+                                                            image: NetworkImage(
+                                                                documents[index]
+                                                                    ['image']),
+                                                            fit: BoxFit.fill)),
                                                   ),
                                                   SizedBox(
                                                     width: 10,
                                                   ),
                                                   Column(
-    
                                                     children: [
                                                       Column(
-                                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .start,
                                                         children: [
-                                                          Text(documents[index]['product_name'],style:TextStyle(fontSize: 18)),
-                                                        Text(
-                                                            "₹"+documents[index]['price'].toString(),
-                                                            style:TextStyle(fontStyle: FontStyle.italic)
-                                                        ),
+                                                          Text(
+                                                              documents[index][
+                                                                  'product_name'],
+                                                              style: TextStyle(
+                                                                  fontSize:
+                                                                      18)),
+                                                          Text(
+                                                              "₹" +
+                                                                  documents[index]
+                                                                          [
+                                                                          'price']
+                                                                      .toString(),
+                                                              style: TextStyle(
+                                                                  fontStyle:
+                                                                      FontStyle
+                                                                          .italic)),
                                                           Row(
                                                             children: [
                                                               TextButton(
-                                                                onPressed: () {},
-                                                                child: Container(
-                                                                  color: getColor(documents[index]['order_now'],documents[index]['confirm'],documents[index]['delivered']),
-                                                                  padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                                                                onPressed:
+                                                                    () {},
+                                                                child:
+                                                                    Container(
+                                                                  color: getColor(
+                                                                      documents[
+                                                                              index]
+                                                                          [
+                                                                          'order_now'],
+                                                                      documents[
+                                                                              index]
+                                                                          [
+                                                                          'confirm'],
+                                                                      documents[
+                                                                              index]
+                                                                          [
+                                                                          'delivered']),
+                                                                  padding: const EdgeInsets
+                                                                          .symmetric(
+                                                                      vertical:
+                                                                          5,
+                                                                      horizontal:
+                                                                          10),
                                                                   child: Text(
-                                                                    getText(documents[index]['order_now'],documents[index]['confirm'],documents[index]['delivered']),
-                                                                    style: TextStyle(color: Colors.white, fontSize: 13.0),
+                                                                    getText(
+                                                                        documents[index]
+                                                                            [
+                                                                            'order_now'],
+                                                                        documents[index]
+                                                                            [
+                                                                            'confirm'],
+                                                                        documents[index]
+                                                                            [
+                                                                            'delivered']),
+                                                                    style: TextStyle(
+                                                                        color: Colors
+                                                                            .white,
+                                                                        fontSize:
+                                                                            13.0),
                                                                   ),
                                                                 ),
                                                               ),
-    
                                                               TextButton(
-                                                                onPressed: () async{
-    
-    
-                                                                  final docref = await _firestore.collection("details").doc(documents[index]['sell_id']).get();
-                                                                  String email=docref['Email'];
-                                                                  String phone=docref['Phone'];
-                                                                  print(email+" "+phone);
-    
-                                                                  showDialog<void>(
-                                                                    context: context,
+                                                                onPressed:
+                                                                    () async {
+                                                                  final docref = await _firestore
+                                                                      .collection(
+                                                                          "users")
+                                                                      .doc(documents[
+                                                                              index]
+                                                                          [
+                                                                          'sell_id'])
+                                                                      .get();
+                                                                  print(docref);
+                                                                  String email =
+                                                                      docref[
+                                                                          'email'];
+                                                                  String phone =
+                                                                      docref[
+                                                                          'phoneNumber'];
+                                                                  print(email +
+                                                                      " " +
+                                                                      phone);
+
+                                                                  showDialog<
+                                                                      void>(
+                                                                    context:
+                                                                        context,
                                                                     barrierDismissible:
-                                                                    false,
-                                                                    builder: (BuildContext
-                                                                    context) {
+                                                                        false,
+                                                                    builder:
+                                                                        (BuildContext
+                                                                            context) {
                                                                       return AlertDialog(
                                                                         title: Text(
                                                                             "Details of the seller"),
                                                                         content:
-                                                                        SingleChildScrollView(
-                                                                          child: ListBody(
-                                                                            children: <
-                                                                                Widget>[
-                                                                              Text(
-                                                                                  'Email: \n'+email+'\n\n'+"Phone: \n"+phone),
+                                                                            SingleChildScrollView(
+                                                                          child:
+                                                                              ListBody(
+                                                                            children: <Widget>[
+                                                                              Text('Email: \n' + email + '\n\n' + "Phone: \n" + phone),
                                                                             ],
                                                                           ),
                                                                         ),
-                                                                        actions: <Widget>[
+                                                                        actions: <
+                                                                            Widget>[
                                                                           TextButton(
                                                                             child:
-                                                                            const Text(
+                                                                                const Text(
                                                                               'Ok',
-                                                                              style:
-                                                                              TextStyle(
-                                                                                fontSize:
-                                                                                18,
-                                                                                color:
-                                                                                kpink,
+                                                                              style: TextStyle(
+                                                                                fontSize: 18,
+                                                                                color: kpink,
                                                                               ),
                                                                             ),
                                                                             onPressed:
-                                                                                ()  {
-                                                                              Navigator.of(
-                                                                                  context)
-                                                                                  .pop();
-    
+                                                                                () {
+                                                                              Navigator.of(context).pop();
                                                                             },
                                                                           ),
                                                                         ],
@@ -217,42 +275,59 @@ class _OrderScreenState extends State<OrderScreen> {
                                                                   //   spinner = false;//
                                                                   // });
                                                                 },
-                                                                child: Container(
+                                                                child:
+                                                                    Container(
                                                                   color: kdblue,
-                                                                  padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-                                                                  child: const Text(
+                                                                  padding: const EdgeInsets
+                                                                          .symmetric(
+                                                                      vertical:
+                                                                          5,
+                                                                      horizontal:
+                                                                          10),
+                                                                  child:
+                                                                      const Text(
                                                                     'Contact',
-                                                                    style: TextStyle(color: Colors.white, fontSize: 13.0),
+                                                                    style: TextStyle(
+                                                                        color: Colors
+                                                                            .white,
+                                                                        fontSize:
+                                                                            13.0),
                                                                   ),
                                                                 ),
                                                               ),
                                                             ],
                                                           )
-    
-                                                      ],)
+                                                        ],
+                                                      )
                                                     ],
                                                   ),
                                                   Expanded(
                                                     flex: 2,
                                                     child: Column(
-                                                      crossAxisAlignment: CrossAxisAlignment.end,
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .end,
                                                       // mainAxisAlignment: MainAxisAlignment.end,
                                                       children: [
                                                         InkWell(
                                                           onTap: () {
-                                                            if(documents[index]['confirm']){
+                                                            if (documents[index]
+                                                                ['confirm']) {
                                                               showDialog<void>(
-                                                                context: context,
+                                                                context:
+                                                                    context,
                                                                 barrierDismissible:
-                                                                false, // user must tap button!
-                                                                builder: (BuildContext
-                                                                context) {
+                                                                    false, // user must tap button!
+                                                                builder:
+                                                                    (BuildContext
+                                                                        context) {
                                                                   return AlertDialog(
                                                                     title: Text(
                                                                         'You cannot cancel the product now'),
                                                                     content:
-                                                                    SingleChildScrollView(
-                                                                      child: ListBody(
+                                                                        SingleChildScrollView(
+                                                                      child:
+                                                                          ListBody(
                                                                         children: const <
                                                                             Widget>[
                                                                           Text(
@@ -260,25 +335,24 @@ class _OrderScreenState extends State<OrderScreen> {
                                                                         ],
                                                                       ),
                                                                     ),
-                                                                    actions: <Widget>[
+                                                                    actions: <
+                                                                        Widget>[
                                                                       TextButton(
                                                                         child:
-                                                                        const Text(
+                                                                            const Text(
                                                                           'Ok',
                                                                           style:
-                                                                          TextStyle(
+                                                                              TextStyle(
                                                                             fontSize:
-                                                                            18,
+                                                                                18,
                                                                             color:
-                                                                            kpink,
+                                                                                kpink,
                                                                           ),
                                                                         ),
                                                                         onPressed:
-                                                                            ()  {
-                                                                          Navigator.of(
-                                                                              context)
+                                                                            () {
+                                                                          Navigator.of(context)
                                                                               .pop();
-    
                                                                         },
                                                                       ),
                                                                     ],
@@ -286,21 +360,23 @@ class _OrderScreenState extends State<OrderScreen> {
                                                                   ;
                                                                 },
                                                               );
-                                                            }else {
+                                                            } else {
                                                               showDialog<void>(
-                                                                context: context,
+                                                                context:
+                                                                    context,
                                                                 barrierDismissible:
-                                                                false,
+                                                                    false,
                                                                 // user must tap button!
-                                                                builder: (
-                                                                    BuildContext
-                                                                    context) {
+                                                                builder:
+                                                                    (BuildContext
+                                                                        context) {
                                                                   return AlertDialog(
                                                                     title: Text(
                                                                         'Are you sure you want to unorder this product?'),
                                                                     content:
-                                                                    SingleChildScrollView(
-                                                                      child: ListBody(
+                                                                        SingleChildScrollView(
+                                                                      child:
+                                                                          ListBody(
                                                                         children: const <
                                                                             Widget>[
                                                                           Text(
@@ -312,44 +388,41 @@ class _OrderScreenState extends State<OrderScreen> {
                                                                         Widget>[
                                                                       TextButton(
                                                                         child:
-                                                                        const Text(
+                                                                            const Text(
                                                                           'Yes',
                                                                           style:
-                                                                          TextStyle(
+                                                                              TextStyle(
                                                                             fontSize:
-                                                                            18,
+                                                                                18,
                                                                             color:
-                                                                            kpink,
+                                                                                kpink,
                                                                           ),
                                                                         ),
                                                                         onPressed:
                                                                             () async {
-                                                                          Navigator
-                                                                              .of(
-                                                                              context)
+                                                                          Navigator.of(context)
                                                                               .pop();
                                                                           setState(
-                                                                                  () {
-                                                                                spinner =
+                                                                              () {
+                                                                            spinner =
                                                                                 true;
-                                                                              });
+                                                                          });
                                                                           await _firestore
-                                                                              .collection(
-                                                                              'store')
-                                                                              .doc(
-                                                                              documents[index]
-                                                                                  .id)
-                                                                              .update(
-                                                                              {
-                                                                                'order_now': false,
-                                                                                'buy_id': "",
-                                                                                'buyer_name': "",
-                                                                              });
+                                                                              .collection('store')
+                                                                              .doc(documents[index].id)
+                                                                              .update({
+                                                                            'order_now':
+                                                                                false,
+                                                                            'buy_id':
+                                                                                "",
+                                                                            'buyer_name':
+                                                                                "",
+                                                                          });
                                                                           setState(
-                                                                                  () {
-                                                                                spinner =
+                                                                              () {
+                                                                            spinner =
                                                                                 false;
-                                                                              });
+                                                                          });
                                                                         },
                                                                       ),
                                                                     ],
@@ -380,7 +453,8 @@ class _OrderScreenState extends State<OrderScreen> {
                               return Text('It\'s Error!');
                             } else {
                               return SizedBox(
-                                height: MediaQuery.of(context).size.height / 1.3,
+                                height:
+                                    MediaQuery.of(context).size.height / 1.3,
                                 child: const Center(
                                   child: CircularProgressIndicator(
                                     color: kpink,
@@ -396,20 +470,18 @@ class _OrderScreenState extends State<OrderScreen> {
             ),
           ),
         ),
-          floatingActionButton: FloatingActionButton(
-            onPressed: () {
-              popUpDialog(context);
-            },
-            elevation: 0,
-            backgroundColor: Theme.of(context).primaryColor,
-            child: const Icon(
-              Icons.chat_bubble,
-              color: Colors.white,
-              size: 30,
-            ),
-          )
-      ),
-    );
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            popUpDialog(context);
+          },
+          elevation: 0,
+          backgroundColor: Theme.of(context).primaryColor,
+          child: const Icon(
+            Icons.chat_bubble,
+            color: Colors.white,
+            size: 30,
+          ),
+        ));
   }
 
   popUpDialog(BuildContext context) {
@@ -424,25 +496,22 @@ class _OrderScreenState extends State<OrderScreen> {
   }
 
   String getText(bool o, bool c, bool d) {
-    if(d){
+    if (d) {
       return 'Delivered';
-    }else if(c){
+    } else if (c) {
       return 'Confirmed';
-    }else{
+    } else {
       return 'Ordered';
     }
   }
 }
 
-Color getColor(bool o, bool c, bool d){
-  if(d){
+Color getColor(bool o, bool c, bool d) {
+  if (d) {
     return Colors.green;
-  }else if(c){
+  } else if (c) {
     return Colors.orange;
-  }else{
+  } else {
     return Colors.grey;
   }
 }
-
-
-
