@@ -36,7 +36,7 @@
 
 - The purpose of the app is to empower women physically, mentally and financially.
 
-- The app uses may Google Technologies like Flutter, Firebase, Tensorflow Lite model tflite for Face Recognition, Dialogflow for Chatbot and Google Maps for location.
+- The app uses many Google Technologies like Flutter, Firebase, Tensorflow Lite model tflite for Face Recognition, Dialogflow for Chatbot and Google Maps for location.
 
 [(Back to the top)](#-shakti--)
 
@@ -188,10 +188,28 @@ The flutter application is compatible to run on android smart phones.
    <div><figcaption> <p align="center" style="font-size:100px">MyProducts</p></figcaption></div>
      </figure>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
    <figure>
+   <kbd><img src="images/readmeImg/screenimgs/MyOrders.jpg" height='300' width='150'/>
+   <div><figcaption> <p align="center" style="font-size:100px">MyOrders</p></figcaption></div>
+     </figure>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+   <figure>
  </p>    
 
 <hr>
-      
+ 
+- <h3> Other: </h3>
+<p align="left">
+   <figure style="padding-right: 20px;" >
+  <kbd><img src="images/readmeImg/screenimgs/Opportunities.jpg" height='300' width='150'/>
+   <div><figcaption> <p align="center" style="font-size:100px">Opportunities</p></figcaption></div>
+     </figure>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <figure>
+  <kbd><img src="images/readmeImg/screenimgs/Organizations.jpg" height='300' width='150'/>
+   <div><figcaption> <p align="center" style="font-size:100px">Organizations</p></figcaption></div>
+     </figure>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+   <figure>
+ </p>    
+
+<hr>
       
 [(Back to the top)](#-shakti--)
     
