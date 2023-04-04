@@ -296,7 +296,11 @@ dependencies {
 ## Challenges Faced
 1. The major challenge was recognizing and matching the faces of women only. Though, there are a lot a APIs that support human face recognition, none of them clearly mentions about gender face recognition.
    - *Therefore, we decided to implement tflite models inorder to predict the women.*
- 2. 
+2. We've taken a survey about the common problems of women nearby, there were many things that need to be catered to but choosing some of them was a challenge for us. Moreover, we don't have suitable technologies for implementing some of the solutions.
+3. The features decided to serve as small applications in themselves- grouping together would be a major task by selecting the appropriate technology.
+4. The flutter depreciations, the amount of load an application takes, and updations in firebase were also taken into consideration.
+5. The live location was not being fetched, then we changed the permissions for the same that could use GPS in android.
+6. Another challenge was to select UI theme as it should be appealing to attract women users to the app. It should reflect feeling of being at peace, safe, strong, and empowered. Women users should feel comfortable while using the app.
 
 [(Back to the top)](#-shakti--)
     
