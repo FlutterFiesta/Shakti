@@ -127,7 +127,7 @@ The flutter application is compatible to run on android smart phones.
      </figure>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
    <figure>
   <kbd><img src="images/readmeImg/screenimgs/SignUp.jpg" height='300' width='150'/>
-   <div><figcaption> <p align="center" style="font-size:100px"> Join Us Screen</p></figcaption></div>
+   <div><figcaption> <p align="center" style="font-size:100px"> Sign Up Screen</p></figcaption></div>
      </figure>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <figure>
   <kbd><img src="images/readmeImg/screenimgs/Login.jpg" height='300' width='150'/>
