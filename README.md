@@ -222,7 +222,7 @@ The flutter application is compatible to run on android smart phones.
     
     
 ## Flow of the App
-<p align="center"><img src='' width="800" height="370"></p>
+<p align="center"><img src='images/flowchart.png' width="800" height="370"></p>
 
 [(Back to the top)](#-shakti--)
     
