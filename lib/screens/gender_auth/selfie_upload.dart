@@ -329,9 +329,9 @@ class _SelfieUploadState extends State<SelfieUpload> {
                               } else {
                                 print("entered");
                                 await storage.uploadFile(
-                                    imageFile.path, 'selfie');
+                                    imageFile.path, userId);
                                 downurl =
-                                await storage.downloadUrl('selfie');
+                                await storage.downloadUrl(userId);
                                 setState((){
                                   imageurl=downurl;
                                   spinner=true;
