@@ -84,6 +84,7 @@ Through our android application, we target to promote empowerment of women by th
 - Authentication: A tflite model is used to recognize females and only allow women user to sign in
 - Opportunities: Get acccess to various opportunities, scholarships and schemes just at a click! 
 - Organizations: Non-profit organizations to reach out for help
+- Notiifcation: Daily notifications to keep women motivated
 
 [(Back to the top)](#-shakti--)
 
@@ -205,6 +206,10 @@ The flutter application is compatible to run on android smart phones.
   <figure>
   <kbd><img src="images/readmeImg/screenimgs/Organizations.jpg" height='300' width='150'/>
    <div><figcaption> <p align="center" style="font-size:100px">Organizations</p></figcaption></div>
+     </figure>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+   <figure>
+   <kbd><img src="images/readmeImg/screenimgs/Notification.jpg" height='300' width='150'/>
+   <div><figcaption> <p align="center" style="font-size:100px">Daily Notification</p></figcaption></div>
      </figure>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
    <figure>
  </p>    
